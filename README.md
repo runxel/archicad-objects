@@ -11,11 +11,19 @@ On the other hand you'll need to convert them back to a libpart for the use in A
 ---
 
 ### Objects:
-• **Spannrichtung.xml**   
-	· _Description (GER)_: Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung.  
-	 · _created in_: v19 build 5005 EDU  
-	 · _Dependencies_: uses the "Resize_A_B_ZZYZX" macro.  
-	 · _Version_: 2.0  
+• **Spannrichtung.xml**  
+	· _Language_: GER   
+	· _Description_: Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung.  
+	· _created in_: v19 build 5005 EDU  
+	· _Dependencies_: uses the "Resize_A_B_ZZYZX" macro.  
+	· _Version_: 2.0  
+
+• **Text auf Polylinie**  
+	· _Language_: GER  
+	· _Description_: Zur Darstellung von Text auf Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
+	· _created in_: v20 build 6005  
+	· _Dependencies_: _none (uses polyline code by Esteban Ramos, tho)_  
+	· _Version_: 1.0 
 
 
 ---

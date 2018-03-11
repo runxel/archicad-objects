@@ -20,13 +20,13 @@ On the other hand you'll need to convert them back to a libpart for the use in A
 
 • **Text auf Polylinie**  
 	· _Language_: GER  
-	· _Description_: Zur Darstellung von Text auf Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
+	· _Description_: Zur Darstellung von Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
 	· _created in_: v20 build 6005  
-	· _Dependencies_: _none (uses polyline code by Esteban Ramos, tho)_  
+	· _Dependencies_: _none (but is based on the polyline code by Esteban Ramos)_  
 	· _Version_: 1.0 
 
 
 ---
 
 
-**Proudly made with [Sublime Text 3](https://www.sublimetext.com/) and the [GDL-Sublime](https://github.com/runxel/GDL-sublime) plugin.**
+**Made with [Sublime Text 3](https://www.sublimetext.com/) and the [GDL-Sublime](https://github.com/runxel/GDL-sublime) plugin.**

@@ -27,7 +27,7 @@ On the other hand you'll need to convert them back to a libpart for the use in A
 
 • **Rollifahrer**  
 	· _Language_: GER  
-	· _Description_: Zur Überprüfung von Bewegungsflächen und des Wendekreises eiens Rollstuhlfahrers.  
+	· _Description_: Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
 	· _created in_: v22  
 	· _Dependencies_: _none_  
 	· _Version_: 1.0 

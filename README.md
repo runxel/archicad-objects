@@ -1,10 +1,10 @@
 # [ArchiCAD-Objects](https://github.com/runxel/ArchiCAD-Objects)
-ArchiCAD Objects made by me.
+ArchiCAD Objects made or modified by me.
 
 ---
 
 ### How to use?
-Not all files are uploaded as .gsm (ArchiCAD library part / "object") but in its exchange format: XML.  
+Not all files are uploaded as `.gsm` (ArchiCAD library part / "object") but in its exchange format: XML.  
 Thus they are easier to maintain and also you can see the source code directly.
 On the other hand you'll need to convert them back to a libpart for the use in AC. This can be done by using the [LP_XMLConverter](http://gdl.graphisoft.com/tips-and-tricks/how-to-use-the-lp_xmlconverter-tool/).
 
@@ -25,6 +25,10 @@ On the other hand you'll need to convert them back to a libpart for the use in A
 	· _Dependencies_: _none (but is based on the polyline code by Esteban Ramos)_  
 	· _Version_: 1.0 
 
+
+---
+
+If not stated otherwise the license is Public Domain CC0 1.0.
 
 ---
 

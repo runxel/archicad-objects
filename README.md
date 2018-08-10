@@ -4,7 +4,7 @@ ArchiCAD Objects made by me.
 ---
 
 ### How to use?
-The files are uploaded in the exchange format for .gsm (ArchiCAD library part / "object") files: XML.
+Not all files are uploaded as .gsm (ArchiCAD library part / "object") but in its exchange format: XML.  
 Thus they are easier to maintain and also you can see the source code directly.
 On the other hand you'll need to convert them back to a libpart for the use in AC. This can be done by using the [LP_XMLConverter](http://gdl.graphisoft.com/tips-and-tricks/how-to-use-the-lp_xmlconverter-tool/).
 

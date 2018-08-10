@@ -25,6 +25,14 @@ On the other hand you'll need to convert them back to a libpart for the use in A
 	· _Dependencies_: _none (but is based on the polyline code by Esteban Ramos)_  
 	· _Version_: 1.0 
 
+• **Rollifahrer**  
+	· _Language_: GER  
+	· _Description_: Zur Überprüfung von Bewegungsflächen und des Wendekreises eiens Rollstuhlfahrers. 
+	· _created in_: v22 
+	· _Dependencies_: _none_  
+	· _Version_: 1.0 
+
+
 
 ---
 

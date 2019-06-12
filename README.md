@@ -22,7 +22,8 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 	· _compatibility_: v20 build 6005  
 	· _Language_: GER  
 	· _Dependencies_: none (but is based on the polyline code by Esteban Ramos)  
-	· _Version_: 1.0 
+	· _Version_: 1.0  
+	![text on polyline](Objects/Text_auf_Polylinie/Text_auf_Polylinie/images/Picture_0.png)
 
 • [**Spannrichtung**](Objects/Spannrichtung)  
 	· _Description_:  
@@ -32,6 +33,7 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 	· _Language_: GER   
 	· _Dependencies_: "Resize_A_B_ZZYZX" macro  
 	· _Version_: 2.0  
+	![span direction](Objects/Spannrichtung/Spannrichtung/images/Picture_0.png)
 
 • [**Rollstuhlgerecht**](Objects/Rollstuhlgerecht)  
 	· _Description_:   
@@ -40,7 +42,8 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 	· _compatibility_: v22  
 	· _Language_: GER  
 	· _Dependencies_: none  
-	· _Version_: 1.0 
+	· _Version_: 1.0  
+	![turning circle](Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png)
 
 
 

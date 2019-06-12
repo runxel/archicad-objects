@@ -15,7 +15,7 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 ---
 
 ## Objects:
-• [**Text auf Polylinie**](Objects/Text auf Polylinie)  
+• [**Text auf Polylinie**](Objects/Text_auf_Polylinie)  
 	· _Description_:   
 	(DE) Zur Darstellung von Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
 	(EN) Shows text on a polyline, even in 3D. Use case are elevation lines, boundary curves, etc.  

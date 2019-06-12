@@ -1,0 +1,139 @@
+﻿
+!
+!   Name     : Spannrichtung.gsm
+!   Datum    : 2016-02-24
+!   Version  : 2.0
+!   Autor    : Lucas Becker
+!
+
+!! Im Tragwerksplan anzeigen, sonst nicht
+rr = REQUEST('floor_plan_option', "", floorPlanOption)
+IF floorPlanOption=0 THEN END !! 1=Deckenspiegel / RCP
+
+
+IF b_dynamicArrows THEN
+	_q = (A+B)/2
+	lengthArrows = 0.0014 * _q^2 + 0.0432 * _q + 0.3461	! Parabelfunktion
+ENDIF
+
+
+pen 			pen_line	! Stiftfarbe
+line_type		lt_line		! Linienart
+line_property 	0			! allgemeine Linie
+
+unID = 1
+! HOTSPOTS
+hotspot2	0, 0, 	unID
+	unID = unID+1
+hotspot2	0, B/2, unID
+	unID = unID+1
+hotspot2	0, 0, 	unID, B, 1+128 			! Basisfangpunkt
+	unID = unID+1
+hotspot2	0, B, 	unID, B, 2 				! beweglicher Punkt
+	unID = unID+1
+hotspot2	0, -1,	unID, B, 3 				! Referenzvektor
+	unID = unID+1
+
+IF symbolStyles_m = 1 AND b_pointsusp THEN
+	GOSUB 'point'
+ELSE
+	nasty_caller = B
+	GOSUB 'axis'									! eine Achse
+ENDIF
+
+IF symbolStyles_m = 1 THEN							! vierseitig gelagert
+	hotspot2	-A_half, B/2, 	unID
+		unID = unID+1
+	hotspot2	0, 		 B/2, 	unID, A_half, 1+128 	! Basisfangpunkt
+		unID = unID+1
+	hotspot2	A_half,  B/2, 	unID, A_half, 2		! beweglicher Punkt
+		unID = unID+1
+	hotspot2	(-A)-1,  B/2, 	unID, A_half, 3		! Referenzvektor
+		unID = unID+1
+
+	add2	-A_half,	B/2
+	rot2	-90
+
+	nasty_caller = A
+	GOSUB 'axis'
+ENDIF
+
+
+IF symbolStyles_m = 3 THEN 					! dreiseitig gelagert
+	hotspot2	0, 		 B/2, 	unID, A_half, 1+128 	! Basisfangpunkt
+		unID = unID+1
+	hotspot2	A_half,  B/2, 	unID, A_half, 2		! beweglicher Punkt
+		unID = unID+1
+	hotspot2	(-A )-1,  B/2, 	unID, A_half, 3		! Referenzvektor
+		unID = unID+1
+	GOSUB 'halfaxis'
+ENDIF
+
+
+! ---------------------------------------------------------------------- !
+END ! ------------------------------------------------------------------ !
+! ---------------------------------------------------------------------- !
+
+! ---------------------------------------------------------------------- !
+! ---------------------------------------------------------------------- !
+'axis': 										! eine Achse zeichnen
+	line2		0,	0,	0,	nasty_caller
+	hotline2	0,	0,	0,	nasty_caller
+	add2		0,	nasty_caller
+	rot2		210 							! Pfeil
+	GOSUB 'arrow'
+	del 2										! 0punkt reset
+	IF NOT(symbolStyles_m = 4) THEN
+		rot2		30							! Pfeil 2
+		GOSUB 'arrow'
+		del top 								! 0punkt reset
+	ENDIF
+return
+
+! ---------------------------------------------------------------------- !
+! ---------------------------------------------------------------------- !
+'point': 										! punktgelagert
+	line2 		0,	0,	A,	B
+	hotline2 	0,	0,	A,	B
+	line2 		A,	0,	0,	B
+	hotline2 	A,	0,	0,	B
+
+	GOSUB 'arrow'
+	add2		0, B
+	rot2		270	 							! Pfeil
+	GOSUB 'arrow'
+	add2		0, A
+	rot2		270 							! Pfeil
+	GOSUB 'arrow'
+	add2 		0, B
+	rot2 		270
+	GOSUB 'arrow'
+	del 6
+
+	CALL 'Resize_A_B_ZZYZX' Parameters ALL
+
+	EXIT
+return
+
+
+! ---------------------------------------------------------------------- !
+! ---------------------------------------------------------------------- !
+'halfaxis': 									! dreiseitig gelagert
+	add2		0,	B/2
+	rot2		-90
+	
+	line2		0,	0,	0,	A_half
+	hotline2	0,	0,	0,	A_half
+	add2		0,	A_half
+	rot2		210
+	GOSUB 'arrow'
+	del 4
+return
+
+
+! ---------------------------------------------------------------------- !
+! ---------------------------------------------------------------------- !
+'arrow': 									! Pfeile
+	line2		0,	0,	0,	lengthArrows
+	hotline2	0,	0,	0,	lengthArrows
+Return

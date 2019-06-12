@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_UIDefault/>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Länge"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="A_half">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.5</Value>
+		</Length>
+		<Integer Name="iHS">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<PenColor Name="pen_line">
+			<Description><![CDATA["Linienstift"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="lt_line">
+			<Description><![CDATA["Linientyp"]]></Description>
+			<Value>1</Value>
+		</LineType>
+		<Boolean Name="b_dynamicArrows">
+			<Description><![CDATA["Dynamische Pfeillänge"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<RealNum Name="lengthArrows">
+			<Description><![CDATA["Pfeillänge"]]></Description>
+			<Value>0.8</Value>
+		</RealNum>
+		<Boolean Name="b_pointsusp">
+			<Description><![CDATA["Punktgelagert"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<String Name="symbolStyles">
+			<Description><![CDATA["Symbol Typ"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value><![CDATA["vierseitig gelagert"]]></Value>
+		</String>
+		<Integer Name="symbolStyles_m">
+			<Description><![CDATA["Symbol Typ"]]></Description>
+			<Value>1</Value>
+		</Integer>
+	</Parameters>
+</ParamSection>

@@ -1,0 +1,47 @@
+﻿
+HIDEPARAMETER ALL "A", "B"
+
+DIM stSymbolStyles[4]
+	stSymbolStyles[1] = 'vierseitig gelagert'
+	stSymbolStyles[2] = 'zweiseitig gelagert'
+	stSymbolStyles[3] = 'dreiseitig gelagert'
+	stSymbolStyles[4] = 'auskragend'
+
+VALUES "symbolStyles" stSymbolStyles
+VALUES "symbolStyles_m" 1,2,3,4
+
+VALUES "A" range [1,50]
+VALUES 'A_half' range [0.5,25]
+VALUES "B" range [1,50]
+
+IF b_dynamicArrows THEN LOCK "lengthArrows" ELSE VALUES "lengthArrows" range [0.6,6]
+
+IF symbolStyles_m % 2 = 0 THEN LOCK 'A'
+
+
+IF ( GLOB_MODPAR_NAME = 'symbolStyles_m' AND symbolStyles_m = 3 ) THEN
+	PARAMETERS A = A_half
+ENDIF
+
+IF ( GLOB_MODPAR_NAME = 'symbolStyles_m' AND symbolStyles_m = 1 ) THEN
+	PARAMETERS A = A_half * 2
+ENDIF
+
+IF NOT(symbolStyles_m = 3) THEN
+	IF GLOB_MODPAR_NAME = 'A' THEN
+		PARAMETERS A_half = A/2
+	ENDIF
+
+	IF GLOB_MODPAR_NAME = 'A_half' THEN
+		PARAMETERS A = A_half * 2
+	ENDIF
+ELSE
+	IF GLOB_MODPAR_NAME = 'A' THEN
+		PARAMETERS A_half = A
+	ENDIF
+
+	IF GLOB_MODPAR_NAME = 'A_half' THEN
+		PARAMETERS A = A_half
+	ENDIF
+ENDIF
+

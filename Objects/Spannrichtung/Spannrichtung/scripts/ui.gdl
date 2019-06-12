@@ -1,0 +1,69 @@
+﻿
+uiDialogWidth = 444 						! px
+xOfs = 10									! Offset X-Richtung
+yOfs = 5									! dynamischer Abstand Y-Richtung
+linespace = 25								! Zeilenabstand
+lengthOut = (uiDialogWidth/2)*0.6 - xOfs	! Länge UI_OUTFIELD
+inOfs = lengthOut + xOfs 					! Offset UI_INFIELD
+lengthIn = uiDialogWidth/2 - inOfs - xOfs 	! Länge UI_INFIELD
+heightOutIn = 16
+heightInPen = 20
+heightInMat = 24
+
+xOfs2 = uiDialogWidth/2 + xOfs 				! Offset 2. Spalte
+inOfs2 = lengthOut + xOfs2 + xOfs
+
+
+
+UI_DIALOG "Symboleinstellungen", uiDialogWidth, 266
+
+UI_STYLE 2,1	! groß, fett
+
+UI_OUTFIELD "Achtung! Die Spannrichtung ist nur im Deckenspiegel zu sehen.\n(siehe Modelldarstellung)", 0, yOfs, uiDialogWidth, 32, 0\
+			UI_TOOLTIP "Dokumentation > Modelldarstellung > Erstellen >> Verschiedene Einstellungen der Bibliothekselemente"
+UI_SEPARATOR 0,36,uiDialogWidth,36 ! waagerechte Linie
+
+yOfs = 25 + linespace
+
+UI_STYLE 0,0	! klein, normal
+UI_OUTFIELD "Stift", 0, yOfs, lengthOut, heightOutIn, 0
+UI_INFIELD 'pen_line', inOfs, yOfs-6, 40, heightInPen
+
+yOfs = yOfs + linespace
+
+UI_OUTFIELD "Linientyp", 0, yOfs, lengthOut, heightOutIn, 0
+UI_INFIELD 'lt_line', inOfs, yOfs-7, lengthIn, heightInMat
+
+yOfs = yOfs + linespace
+
+UI_INFIELD{3} 'b_dynamicArrows', 0, yOfs, 200, heightOutIn,
+					7, "", 2, 1,
+					0,0,0,0,
+					1, "Dynamische Pfeilspitzen", 0,
+					2, "Dynamische Pfeilspitzen", 1\
+					UI_TOOLTIP "Pfeilspitzen ändern ihre Länge abhängig von der Plattengröße"
+
+yOfs = yOfs + linespace
+
+UI_OUTFIELD "Länge Pfeilspitzen", 0, yOfs, lengthOut, heightOutIn, 0
+UI_INFIELD 'lengthArrows', inOfs, yOfs, 62, 15
+
+yOfs = yOfs + linespace
+
+IF symbolStyles_m = 1 THEN
+	UI_INFIELD{3} 'b_pointsusp', 0, yOfs, 200, heightOutIn,
+					7, "", 2, 1,
+					0,0,0,0,
+					1, "Punktgelagert", 0,
+					2, "Punktgelagert", 1\
+					UI_TOOLTIP "Decke ist punktgelagert."
+ENDIF
+
+! rechts:
+UI_INFIELD{3} 'symbolStyles_m', 270, 50, 120, 114,
+					2, 1, 4, 4,
+					110, 110, 109, 110,
+					1, "vierseitig gelagert", 1,
+					2, "zweiseitig gelagert", 2,
+					3, "dreiseitig gelagert", 3,
+					4, "auskragend", 4

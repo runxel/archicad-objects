@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LibpartData Owner="1196638531" Signature="1196644685" Version="40">
+	<Identification>
+		<MainGUID>1F2E872F-EE05-0349-86D9-A93E8FAC01D4</MainGUID>
+		<IsPlaceable>true</IsPlaceable>
+		<IsArchivable>false</IsArchivable>
+		<MigrationValue>Normal</MigrationValue>
+		<IsTemplate>false</IsTemplate>
+	</Identification>
+	<Ancestry SectVersion="1" SectionFlags="0" SubIdent="0"/>
+	<CalledMacros SectVersion="2" SectionFlags="0" SubIdent="0"/>
+	<Script_2D SectVersion="20" SectionFlags="0" SubIdent="0"/>
+	<Script_1D SectVersion="20" SectionFlags="0" SubIdent="0"/>
+	<Script_VL SectVersion="20" SectionFlags="0" SubIdent="0"/>
+	<ParamSection SectVersion="22" SectionFlags="0" SubIdent="0"/>
+	<Copyright SectVersion="1" SectionFlags="0" SubIdent="0"/>
+	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0"/>
+	<Picture MIME="image/png" Name="Picture_0.png" SectVersion="19" SectionFlags="0" SubIdent="0"/>
+</LibpartData>

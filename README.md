@@ -38,14 +38,31 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 • [**Rollstuhlgerecht**](Objects/Rollstuhlgerecht)  
 	· _Description_:   
 	(DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
-	(EN)For checking of turning circle of wheelchair users.  
+	(EN) For checking of turning circle of wheelchair users.  
 	· _compatibility_: v22  
 	· _Language_: GER  
 	· _Dependencies_: none  
 	· _Version_: 1.0  
 	![turning circle](Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png)
 
+• [**Faltmarker**](Objects/Faltmarker)  
+    · _Description_:   
+    (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
+    (EN) Folding marker for the use in the layout. DIN 824 compliant.  
+    · _compatibility_: v20  
+    · _Language_: GER  
+    · _Dependencies_: none  
+    · _Version_: 1.2  
+    ![Faltmarker](Objects/Faltmarker/Faltmarker/images/Picture_0.png)  
+    DIN 824:  
+    ![DIN 824](https://i.imgur.com/G5TzGH7.png)
 
+
+---
+
+### Compatibility
+It is assumed that objects will be upwards compatible. Meaning: the version numbers above are the _lowest_ possible Archicad version where you can use the corresponding object.  
+(If for any reason an object is not upwards compatible at some point in the future I will either make a new one, or will clearly state it here.)
 
 ---
 

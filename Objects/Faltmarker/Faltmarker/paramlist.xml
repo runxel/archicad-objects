@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="22" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Mass 1"]]></Description>
+			<Fix/>
+			<Value>0.42</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Mass 2"]]></Description>
+			<Fix/>
+			<Value>0.297</Value>
+		</Length>
+		<String Name="papersize">
+			<Description><![CDATA["Größe entfaltet"]]></Description>
+			<Value><![CDATA["Individuell: 420 × 297"]]></Value>
+		</String>
+		<Integer Name="endformat">
+			<Description><![CDATA["Ablageformat A4"]]></Description>
+			<Value>0</Value>
+		</Integer>
+		<Integer Name="folding">
+			<Description><![CDATA["Restfaltung"]]></Description>
+			<Value>1</Value>
+		</Integer>
+
+		<!-- b_marker: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_marker">
+			<Description><![CDATA["Faltmarker Blattrand"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<PenColor Name="pen_marker">
+			<Description><![CDATA["Stift Marker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="line_marker">
+			<Description><![CDATA["Stift Marker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<RealNum Name="n_marker">
+			<Description><![CDATA["Länge Marker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>6</Value>
+		</RealNum>
+
+		<!-- b_diagonal: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_diagonal">
+			<Description><![CDATA["Marker für Schrägfaltung anzeigen"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="pen_diagonal">
+			<Description><![CDATA["Stift Schrägmarker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+
+		<!-- b_mid: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_mid">
+			<Description><![CDATA["Faltmarker im Blatt"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="pen_mid">
+			<Description><![CDATA["Stift Marker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="line_mid">
+			<Description><![CDATA["Linientyp Marker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<RealNum Name="n_mid">
+			<Description><![CDATA["Länge Marker"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>6</Value>
+		</RealNum>
+
+		<!-- b_division: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_division">
+			<Description><![CDATA["Teilung anzeigen "]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="pen_division">
+			<Description><![CDATA["Stift Unterteilung"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>93</Value>
+		</PenColor>
+		<LineType Name="line_division">
+			<Description><![CDATA["Linientyp Unterteilung"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>40</Value>
+		</LineType>
+
+		<!-- b_margin: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_margin">
+			<Description><![CDATA["Druckrand"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<RealNum Name="n_margin">
+			<Description><![CDATA["Druckrand"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>3</Value>
+		</RealNum>
+
+		<!-- b_header: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_header">
+			<Description><![CDATA["Deckblatt hervorheben"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<FillPattern Name="fill_header">
+			<Description><![CDATA["Schraffur Deckblatt"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>161</Value>
+		</FillPattern>
+		<PenColor Name="pen_header">
+			<Description><![CDATA["Stift Deckblatt"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>141</Value>
+		</PenColor>
+		<PenColor Name="back_header">
+			<Description><![CDATA["Hintergrundstift Deckblatt"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</PenColor>
+
+		<!-- b_cropmark: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_cropmark">
+			<Description><![CDATA["Schnittmarken"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="pen_cropmark">
+			<Description><![CDATA["Stift Schnittmarken"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<RealNum Name="n_cropmark">
+			<Description><![CDATA["Länge Schnittmarken in mm"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>10</Value>
+		</RealNum>
+
+		<!-- title_punch: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="title_punch">
+			<Description><![CDATA["Lochrand u. -marke"]]></Description>
+		</Title>
+		<Boolean Name="b_punch_margin">
+			<Description><![CDATA["Lochrand zeigen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_punch_marker">
+			<Description><![CDATA["Lochermarke zeigen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="pen_punch_margin">
+			<Description><![CDATA["Stift Lochrand"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>96</Value>
+		</PenColor>
+		<LineType Name="line_punch_margin">
+			<Description><![CDATA["Linientyp Lochrand"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2</Value>
+		</LineType>
+	</Parameters>
+</ParamSection>

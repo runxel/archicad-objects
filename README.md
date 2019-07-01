@@ -18,7 +18,7 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 • [**Text auf Polylinie**](Objects/Text_auf_Polylinie)  
 	· _Description_:   
 	(DE) Zur Darstellung von Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
-	(EN) Shows text on a polyline, even in 3D. Use case are elevation lines, boundary curves, etc.  
+	(EN) Shows text on a polyline, even in 3D. Use cases are elevation lines, boundary curves, etc.  
 	· _compatibility_: v20 build 6005  
 	· _Language_: GER  
 	· _Dependencies_: none (but is based on the polyline code by Esteban Ramos)  

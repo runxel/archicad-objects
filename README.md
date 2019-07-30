@@ -27,8 +27,8 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 
 • [**Spannrichtung**](Objects/Spannrichtung)  
 	· _Description_:  
-	(DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung.  
-	(EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO.  
+	(DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
+	(EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
 	· _compatibility_: v19 build 5005  
 	· _Language_: GER   
 	· _Dependencies_: "Resize_A_B_ZZYZX" macro  

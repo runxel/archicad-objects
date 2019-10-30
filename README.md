@@ -31,9 +31,9 @@ _Description_:
 _Description_:  
 (DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
 (EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
-![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
-![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)   
-![Dependencies](https://img.shields.io/badge/dependencies-Yes-ff7979?style=flat-square) => "Resize_A_B_ZZYZX" macro  
+![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)  
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
+![Dependencies](https://img.shields.io/badge/dependencies-Yes-ff7979?style=flat-square) "Resize_A_B_ZZYZX" macro  
 ![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
 
 ![span direction](Objects/Spannrichtung/Spannrichtung/images/Picture_0.png)
@@ -42,7 +42,7 @@ _Description_:
 _Description_:   
 (DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
 (EN) For checking of turning circle of wheelchair users.  
-![Compatibility](https://img.shields.io/badge/compatibility-v22▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v22▲-lightgrey?style=flat-square)  
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)  
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
@@ -53,7 +53,7 @@ _Description_:
 _Description_:   
 (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
 (EN) Folding marker for the use in the layout. DIN 824 compliant.  
-![Compatibility](https://img.shields.io/badge/compatibility-v20▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v20▲-lightgrey?style=flat-square)  
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)  
 ![Version](https://img.shields.io/badge/version-1.2-2980b9?style=flat-square)  

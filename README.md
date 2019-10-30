@@ -29,7 +29,7 @@ Credit to Esteban Ramos for his polyline code.
 ![text on polyline](Objects/Text_auf_Polylinie/Text_auf_Polylinie/images/Picture_0.png)
 
 
-## [Spannrichtung](Objects/Spannrichtung)  
+### [Spannrichtung](Objects/Spannrichtung)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-ff7979?style=flat-square)
@@ -41,7 +41,7 @@ Credit to Esteban Ramos for his polyline code.
 ![span direction](Objects/Spannrichtung/Spannrichtung/images/Picture_0.png)
 
 
-## [Rollstuhlgerecht](Objects/Rollstuhlgerecht)  
+### [Rollstuhlgerecht](Objects/Rollstuhlgerecht)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
@@ -53,7 +53,7 @@ Credit to Esteban Ramos for his polyline code.
 ![turning circle](Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png)
 
 
-## [Faltmarker](Objects/Faltmarker)  
+### [Faltmarker](Objects/Faltmarker)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)

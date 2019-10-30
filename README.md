@@ -22,7 +22,6 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square) 
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
-_Description_:  
 (DE) Zur Darstellung von Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
 (EN) Shows text on a polyline, even in 3D. Use cases are elevation lines, boundary curves, etc.  
 Credit to Esteban Ramos for his polyline code.
@@ -36,7 +35,6 @@ Credit to Esteban Ramos for his polyline code.
 ![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-ff7979?style=flat-square)
 ![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
 
-_Description_:  
 (DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
 (EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
 
@@ -49,7 +47,6 @@ _Description_:
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
-_Description_:  
 (DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
 (EN) For checking of turning circle of wheelchair users.  
 
@@ -62,7 +59,6 @@ _Description_:
 ![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.2-2980b9?style=flat-square)
 
-_Description_:   
 (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
 (EN) Folding marker for the use in the layout. DIN 824 compliant.  
 

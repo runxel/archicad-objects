@@ -33,7 +33,7 @@ Credit to Esteban Ramos for his polyline code.
 ## [Spannrichtung](Objects/Spannrichtung)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_ _macro-ff7979?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-ff7979?style=flat-square)
 ![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
 
 _Description_:  

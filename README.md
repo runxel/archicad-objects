@@ -17,46 +17,54 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 ## Objects:
 
 ### [Text auf Polylinie](Objects/Text_auf_Polylinie)  
+![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square) 
+![Compatibility](https://img.shields.io/badge/compatibility-v20_build_6005_▲-lightgrey?style=flat-square)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
+
 _Description_:  
 (DE) Zur Darstellung von Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
 (EN) Shows text on a polyline, even in 3D. Use cases are elevation lines, boundary curves, etc.  
-![Compatibility](https://img.shields.io/badge/compatibility-v20_build_6005_▲-lightgrey?style=flat-square)  
-![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square) (credit to Esteban Ramos for his polyline code tho)  
-![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
+Credit to Esteban Ramos for his polyline code.
 
 ![text on polyline](Objects/Text_auf_Polylinie/Text_auf_Polylinie/images/Picture_0.png)
 
+
 ## [Spannrichtung](Objects/Spannrichtung)  
+![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_ _macro-ff7979?style=flat-square)
+![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
+
 _Description_:  
 (DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
 (EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
-![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)  
-![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
-![Dependencies](https://img.shields.io/badge/dependencies-Yes-ff7979?style=flat-square) "Resize_A_B_ZZYZX" macro  
-![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
 
 ![span direction](Objects/Spannrichtung/Spannrichtung/images/Picture_0.png)
 
+
 ## [Rollstuhlgerecht](Objects/Rollstuhlgerecht)  
-_Description_:   
+![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
+
+_Description_:  
 (DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
 (EN) For checking of turning circle of wheelchair users.  
-![Compatibility](https://img.shields.io/badge/compatibility-v22▲-lightgrey?style=flat-square)  
-![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)  
-![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
 ![turning circle](Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png)
 
+
 ## [Faltmarker](Objects/Faltmarker)  
+![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2-2980b9?style=flat-square)
+
 _Description_:   
 (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
 (EN) Folding marker for the use in the layout. DIN 824 compliant.  
-![Compatibility](https://img.shields.io/badge/compatibility-v20▲-lightgrey?style=flat-square)  
-![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)  
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)  
-![Version](https://img.shields.io/badge/version-1.2-2980b9?style=flat-square)  
 
 ![Faltmarker](Objects/Faltmarker/Faltmarker/images/Picture_0.png)  
 DIN 824:  

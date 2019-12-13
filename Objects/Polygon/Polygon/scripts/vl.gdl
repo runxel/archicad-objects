@@ -1,0 +1,1 @@
+﻿PARAMETERS 		B = AVALUES 			"n_vertices", RANGE [3, 360]VALUES 			"sel_fillpen", RANGE [1, 255]VALUES 			"sel_pen", RANGE [1, 255]if not(b_contour) then	sel_lt = 1	LOCK 		"sel_lt"endifif not(b_fill) then	LOCK 		"sel_fillpen", "sel_backpen", "sel_fill"endif

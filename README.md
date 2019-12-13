@@ -67,6 +67,16 @@ DIN 824:
 ![DIN 824](https://i.imgur.com/G5TzGH7.png)
 
 
+### [Polygon](Objects/Polygon)  
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
+
+(DE) Regelmäßiges Polygon.  
+(EN) A regular polygon inscribed in a circle.  
+
+
 ---
 
 ### Compatibility

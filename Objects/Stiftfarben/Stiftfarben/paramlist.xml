@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_UIDefault/>
+			<STBit_FixSize/>
+			<STBit_UIUseHierarchicalPages/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<String Name="HEX">
+			<Description><![CDATA["hex values"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="16" SecondDimension="0">
+				<AVal Row="1"><![CDATA["0"]]></AVal>
+				<AVal Row="2"><![CDATA["1"]]></AVal>
+				<AVal Row="3"><![CDATA["2"]]></AVal>
+				<AVal Row="4"><![CDATA["3"]]></AVal>
+				<AVal Row="5"><![CDATA["4"]]></AVal>
+				<AVal Row="6"><![CDATA["5"]]></AVal>
+				<AVal Row="7"><![CDATA["6"]]></AVal>
+				<AVal Row="8"><![CDATA["7"]]></AVal>
+				<AVal Row="9"><![CDATA["8"]]></AVal>
+				<AVal Row="10"><![CDATA["9"]]></AVal>
+				<AVal Row="11"><![CDATA["a"]]></AVal>
+				<AVal Row="12"><![CDATA["b"]]></AVal>
+				<AVal Row="13"><![CDATA["c"]]></AVal>
+				<AVal Row="14"><![CDATA["d"]]></AVal>
+				<AVal Row="15"><![CDATA["e"]]></AVal>
+				<AVal Row="16"><![CDATA["f"]]></AVal>
+			</ArrayValues>
+		</String>
+		<Integer Name="gs_ui_current_page">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>2</Value>
+		</Integer>
+		<Boolean Name="bLockSymbol">
+			<Description><![CDATA["Autom. orientieren"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+
+		<!-- __sep1__: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__sep1__">
+			<Description><![CDATA["Reihe Einstellungen"]]></Description>
+		</Title>
+		<Integer Name="iPenColorSymbStyle">
+			<Description><![CDATA["Stil"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="nColors">
+			<Description><![CDATA["Anzahl Farben"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>255</Value>
+		</Integer>
+		<Integer Name="nFillsInARow">
+			<Description><![CDATA["Farben in eine Reihe"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>20</Value>
+		</Integer>
+		<Boolean Name="bFrame">
+			<Description><![CDATA["Rahmen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+
+		<!-- __sep2__: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__sep2__">
+			<Description><![CDATA["Zeichensatz Einstellungen"]]></Description>
+		</Title>
+		<String Name="fontType">
+			<Description><![CDATA["Schrifttyp"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Consolas"]]></Value>
+		</String>
+		<RealNum Name="Font_size">
+			<Description><![CDATA["Größe"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>10</Value>
+		</RealNum>
+		<Boolean Name="BOL">
+			<Description><![CDATA["Fett"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="ITA">
+			<Description><![CDATA["Kursiv"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="UND">
+			<Description><![CDATA["Unterstrichen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Integer Name="FE">
+			<Description><![CDATA["Zeichensatz Effekte"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<PenColor Name="textPen">
+			<Description><![CDATA["Text-Stift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>4</Value>
+		</PenColor>
+
+		<!-- __sep3__: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__sep3__">
+			<Description><![CDATA["2D-Darstellung"]]></Description>
+		</Title>
+		<FillPattern Name="gs_fill_type">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Schraffur-Vordergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Schraffur-Hintergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<FillPattern Name="fillType">
+			<Description><![CDATA["Farbschraffur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>64</Value>
+		</FillPattern>
+	</Parameters>
+</ParamSection>

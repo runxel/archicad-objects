@@ -19,7 +19,7 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 ### [Text auf Polylinie](Objects/Text_auf_Polylinie)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v20_build_6005_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square) 
+![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square) 
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
 (DE) Zur Darstellung von Text auf einer Polylinie, auch in 3D. Nutzbar für Höhenlinien, Grenzen, u.ä.  
@@ -44,7 +44,7 @@ Credit to Esteban Ramos for his polyline code.
 ### [Rollstuhlgerecht](Objects/Rollstuhlgerecht)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
 (DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
@@ -56,7 +56,7 @@ Credit to Esteban Ramos for his polyline code.
 ### [Faltmarker](Objects/Faltmarker)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.2-2980b9?style=flat-square)
 
 (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
@@ -70,11 +70,22 @@ DIN 824:
 ### [Polygon](Objects/Polygon)  
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-No-a9dfbf?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
 (DE) Regelmäßiges Polygon.  
 (EN) A regular polygon inscribed in a circle.  
+
+
+### [Stiftfarben](Objects/Stiftfarben)  
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
+[![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](objects/Stiftfarben/CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-Attribution_4.0-ffd46b?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
+
+(DE) Erweiterung des mitgelieferten 'Stiftfarben' Objekts. Dabei wurden die Standardeinstellungen etwas geändert, Schreibfehler ausgebessert und unsinnige Eingaben ausgeschlossen.  
+(EN) An extension to the default supplied 'pen color test' object (the one you ought to print and check your pen colors).  
 
 
 ---

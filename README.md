@@ -29,10 +29,11 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 (EN) Shows text on a polyline, even in 3D. Use cases are elevation lines, boundary curves, etc.  
 Credit to Esteban Ramos for his polyline code.
 
+<br>
 
 ### [Spannrichtung](Objects/Spannrichtung)
 
-<img align="right" width=200 src="Objects/Spannrichtung/Spannrichtung/images/Picture_0.png">
+<img align="right" width=100 src="Objects/Spannrichtung/Spannrichtung/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
@@ -42,10 +43,11 @@ Credit to Esteban Ramos for his polyline code.
 (DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
 (EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
 
+<br>
 
 ### [Rollstuhlgerecht](Objects/Rollstuhlgerecht)
 
-<img align="right" width=200 src="Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png">
+<img align="right" width=180 src="Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
@@ -55,10 +57,11 @@ Credit to Esteban Ramos for his polyline code.
 (DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
 (EN) For checking of turning circle of wheelchair users.  
 
+<br>
 
 ### [Faltmarker](Objects/Faltmarker)
 
-<img align="right" width=200 src="Objects/Faltmarker/Faltmarker/images/Picture_0.png">
+<img align="right" width=180 src="Objects/Faltmarker/Faltmarker/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
@@ -68,13 +71,16 @@ Credit to Esteban Ramos for his polyline code.
 (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
 (EN) Folding marker for the use in the layout. DIN 824 compliant.  
 
+<br>
+
 DIN 824:  
 <img width=300 src="https://i.imgur.com/G5TzGH7.png">
 
+<br>
 
 ### [Polygon](Objects/Polygon)
 
-<img align="right" width=200 src="Objects/Polygon/Polygon/images/Picture_0.png">
+<img align="right" width=180 src="Objects/Polygon/Polygon/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
@@ -84,10 +90,11 @@ DIN 824:
 (DE) Regelmäßiges Polygon.  
 (EN) A regular polygon inscribed in a circle.  
 
+<br>
 
 ### [Stiftfarben](Objects/Stiftfarben)
 
-<img align="right" width=200 src="Objects/Stiftfarben/Stiftfarben/images/Picture_0.png">
+<img align="right" width=180 src="Objects/Stiftfarben/Stiftfarben/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
@@ -98,6 +105,7 @@ DIN 824:
 (DE) Erweiterung des mitgelieferten 'Stiftfarben' Objekts. Dabei wurden die Standardeinstellungen etwas geändert, Schreibfehler ausgebessert und unsinnige Eingaben ausgeschlossen.  
 (EN) An extension to the default supplied 'pen color test' object (the one you ought to print and check your pen colors).  
 
+<br>
 
 ---
 

@@ -16,7 +16,10 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 
 ## Objects:
 
-### [Text auf Polylinie](Objects/Text_auf_Polylinie)  
+### [Text auf Polylinie](Objects/Text_auf_Polylinie)
+
+<img align="right" width=200 src="Objects/Text_auf_Polylinie/Text_auf_Polylinie/images/Picture_0.png">
+
 ![Compatibility](https://img.shields.io/badge/compatibility-v20_build_6005_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square) 
@@ -26,10 +29,11 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 (EN) Shows text on a polyline, even in 3D. Use cases are elevation lines, boundary curves, etc.  
 Credit to Esteban Ramos for his polyline code.
 
-![text on polyline](Objects/Text_auf_Polylinie/Text_auf_Polylinie/images/Picture_0.png)
 
+### [Spannrichtung](Objects/Spannrichtung)
 
-### [Spannrichtung](Objects/Spannrichtung)  
+<img align="right" width=200 src="Objects/Spannrichtung/Spannrichtung/images/Picture_0.png">
+
 ![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-ff7979?style=flat-square)
@@ -38,10 +42,11 @@ Credit to Esteban Ramos for his polyline code.
 (DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
 (EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
 
-![span direction](Objects/Spannrichtung/Spannrichtung/images/Picture_0.png)
 
+### [Rollstuhlgerecht](Objects/Rollstuhlgerecht)
 
-### [Rollstuhlgerecht](Objects/Rollstuhlgerecht)  
+<img align="right" width=200 src="Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png">
+
 ![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
@@ -50,10 +55,11 @@ Credit to Esteban Ramos for his polyline code.
 (DE) Zur Überprüfung von Bewegungsflächen und des Wendekreises eines Rollstuhlfahrers.  
 (EN) For checking of turning circle of wheelchair users.  
 
-![turning circle](Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png)
 
+### [Faltmarker](Objects/Faltmarker)
 
-### [Faltmarker](Objects/Faltmarker)  
+<img align="right" width=200 src="Objects/Faltmarker/Faltmarker/images/Picture_0.png">
+
 ![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
@@ -62,12 +68,14 @@ Credit to Esteban Ramos for his polyline code.
 (DE) Faltmarker zur Verwendung im Layout und der anschließenden (physischen) Ablage im A4-Endformat. DIN 824 konform.  
 (EN) Folding marker for the use in the layout. DIN 824 compliant.  
 
-![Faltmarker](Objects/Faltmarker/Faltmarker/images/Picture_0.png)  
 DIN 824:  
-![DIN 824](https://i.imgur.com/G5TzGH7.png)
+<img width=300 src="https://i.imgur.com/G5TzGH7.png">
 
 
-### [Polygon](Objects/Polygon)  
+### [Polygon](Objects/Polygon)
+
+<img align="right" width=200 src="Objects/Polygon/Polygon/images/Picture_0.png">
+
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
@@ -77,7 +85,10 @@ DIN 824:
 (EN) A regular polygon inscribed in a circle.  
 
 
-### [Stiftfarben](Objects/Stiftfarben)  
+### [Stiftfarben](Objects/Stiftfarben)
+
+<img align="right" width=200 src="Objects/Stiftfarben/Stiftfarben/images/Picture_0.png">
+
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)

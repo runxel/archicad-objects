@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_UIDefault/>
+			<STBit_FixSize/>
+			<STBit_UIUseHierarchicalPages/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["X Dimension"]]></Description>
+			<Fix/>
+			<Value>0.5</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Y Dimension"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.025</Value>
+		</Length>
+		<String Name="_alphabet">
+			<Description><![CDATA["Alphabet"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="26" SecondDimension="0">
+				<AVal Row="1"><![CDATA["a"]]></AVal>
+				<AVal Row="2"><![CDATA["b"]]></AVal>
+				<AVal Row="3"><![CDATA["c"]]></AVal>
+				<AVal Row="4"><![CDATA["d"]]></AVal>
+				<AVal Row="5"><![CDATA["e"]]></AVal>
+				<AVal Row="6"><![CDATA["f"]]></AVal>
+				<AVal Row="7"><![CDATA["g"]]></AVal>
+				<AVal Row="8"><![CDATA["h"]]></AVal>
+				<AVal Row="9"><![CDATA["i"]]></AVal>
+				<AVal Row="10"><![CDATA["j"]]></AVal>
+				<AVal Row="11"><![CDATA["k"]]></AVal>
+				<AVal Row="12"><![CDATA["l"]]></AVal>
+				<AVal Row="13"><![CDATA["m"]]></AVal>
+				<AVal Row="14"><![CDATA["n"]]></AVal>
+				<AVal Row="15"><![CDATA["o"]]></AVal>
+				<AVal Row="16"><![CDATA["p"]]></AVal>
+				<AVal Row="17"><![CDATA["q"]]></AVal>
+				<AVal Row="18"><![CDATA["r"]]></AVal>
+				<AVal Row="19"><![CDATA["s"]]></AVal>
+				<AVal Row="20"><![CDATA["t"]]></AVal>
+				<AVal Row="21"><![CDATA["u"]]></AVal>
+				<AVal Row="22"><![CDATA["v"]]></AVal>
+				<AVal Row="23"><![CDATA["w"]]></AVal>
+				<AVal Row="24"><![CDATA["x"]]></AVal>
+				<AVal Row="25"><![CDATA["y"]]></AVal>
+				<AVal Row="26"><![CDATA["z"]]></AVal>
+			</ArrayValues>
+		</String>
+		<String Name="_roman">
+			<Description><![CDATA["Römische Ziffern"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="7" SecondDimension="0">
+				<AVal Row="1"><![CDATA["m"]]></AVal>
+				<AVal Row="2"><![CDATA["d"]]></AVal>
+				<AVal Row="3"><![CDATA["c"]]></AVal>
+				<AVal Row="4"><![CDATA["l"]]></AVal>
+				<AVal Row="5"><![CDATA["x"]]></AVal>
+				<AVal Row="6"><![CDATA["v"]]></AVal>
+				<AVal Row="7"><![CDATA["i"]]></AVal>
+			</ArrayValues>
+		</String>
+		<Integer Name="gs_ui_current_page">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+
+		<!-- header_general: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="header_general">
+			<Description><![CDATA["Einstellungen"]]></Description>
+		</Title>
+		<String Name="prefix">
+			<Description><![CDATA["Prefix"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="suffix">
+			<Description><![CDATA["Suffix"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<Integer Name="n_begin">
+			<Description><![CDATA["Beginn"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="n_step">
+			<Description><![CDATA["Schrittweite"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="n_end">
+			<Description><![CDATA["Ende"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>4</Value>
+		</Integer>
+		<Boolean Name="b_readable">
+			<Description><![CDATA["Immer lesbar"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Integer Name="number_type">
+			<Description><![CDATA["Zähltyp"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Boolean Name="b_upper">
+			<Description><![CDATA["Großbuchstaben"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_divide">
+			<Description><![CDATA["Aufteilen statt addieren"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="distance">
+			<Description><![CDATA["Abstand der Teilungen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.166666666666667</Value>
+		</Length>
+		<Integer Name="n_part">
+			<Description><![CDATA["Anzahl Teilungen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>3</Value>
+		</Integer>
+
+		<!-- header_font: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="header_font">
+			<Description><![CDATA["Aussehen"]]></Description>
+		</Title>
+		<PenColor Name="pen_text">
+			<Description><![CDATA["Farbe"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<String Name="fontType">
+			<Description><![CDATA["Zeichensatz"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Arial"]]></Value>
+		</String>
+		<RealNum Name="fontsize">
+			<Description><![CDATA["Schrifthöhe"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2.5</Value>
+		</RealNum>
+		<Boolean Name="fontBold">
+			<Description><![CDATA["Fett"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontItalic">
+			<Description><![CDATA["Kursiv"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontUnder">
+			<Description><![CDATA["Unterstrichen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_frame">
+			<Description><![CDATA["Rahmen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="frame_pen">
+			<Description><![CDATA["Stift Rahmen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<Boolean Name="b_fill">
+			<Description><![CDATA["Hintergrund"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<FillPattern Name="fill_type">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Schraffurstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Schraffurhintergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<Length Name="_padding">
+			<Description><![CDATA["Abstand Text–Rahmen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+	</Parameters>
+</ParamSection>

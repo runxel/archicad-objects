@@ -1,0 +1,1 @@
+﻿! MASTER !eps = 0.0001n_step = max(1, n_step)total_n = max( int((n_end - n_begin + eps)/n_step) +1, 1)if b_divide and total_n > 1 then    x_dist = A / (total_n-1)else     x_dist = Aendifruns = total_n-1scaleF = GLOB_SCALE / 100hk = fontsize * scaleF / 24  ! placeholder size during feedback mode

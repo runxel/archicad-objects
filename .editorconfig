@@ -1,0 +1,18 @@
+# EditorConfig for https://github.com/runxel/ArchiCAD-Objects
+# see docs at https://EditorConfig.org
+
+root = true
+
+[*]
+end_of_line = crlf
+
+[*.gdl]
+charset = utf-8-bom
+indent_style = space
+indent_size = 4
+insert_final_newline = false
+
+[*.md]
+charset = utf-8
+indent_style = tab
+indent_size = 4

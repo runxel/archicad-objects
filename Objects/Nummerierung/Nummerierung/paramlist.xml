@@ -108,7 +108,7 @@
 			</Flags>
 			<Value><![CDATA[""]]></Value>
 		</String>
-		<Integer Name="n_begin">
+		<Integer Name="n_start">
 			<Description><![CDATA["Beginn"]]></Description>
 			<Flags>
 				<ParFlg_Child/>

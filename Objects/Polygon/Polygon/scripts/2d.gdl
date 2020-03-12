@@ -1,1 +1,54 @@
-﻿status = 1if b_contour then	polystatus = 1+2+4+0else	polystatus = 0+2+4+0endif_radius = A/2_angle  = 360/n_vertices  ! GDL takes DEG, not RADrr = request ("View_Rotangle", "", _angle_view_rot)_total_rot = (SYMB_ROTANGLE + _angle_view_rot) MOD 360DIM 		posx[], posy[]pen  		sel_penline_type 	sel_ltif b_fill then	fill 	sel_fill  ! otherwise it's emptyendif! --------------------------------------------------------- !hotspot2 	0, 0  ! midpoint hotspot | first encountered HS is the one taken for placement for i = 0 to n_vertices-1	theta = _angle * i  ! get the current heading angle	posx[i+1] = _radius * cos(theta)	posy[i+1] = _radius * sin(theta)	put 	  posx[i+1], posy[i+1], status	hotspot2  posx[i+1], posy[i+1]	if i <> 0 then		hotline2   posx[i], posy[i],  	posx[i+1], posy[i+1]	endif	if not(b_contour) and not(b_fill) then		add2 	posx[i+1], posy[i+1]			rot2 	-45 - _total_rot 				line2 -0.125, 0,  0.125, 0			rot2 	90				line2 -0.125, 0,  0.125, 0		del ntr()	endif	next iput 0, 0, 700+status  ! final closing linepoly2_b 	nsp/3, polystatus,			sel_fillpen, sel_backpen,			get(nsp)
+﻿
+status = 1
+if b_contour then
+	polystatus = 1+2+4+0
+else
+	polystatus = 0+2+4+0
+endif
+_radius = A/2
+_angle  = 360/n_vertices  ! GDL takes DEG, not RAD
+rr = request ("View_Rotangle", "", _angle_view_rot)
+_total_rot = (SYMB_ROTANGLE + _angle_view_rot) MOD 360
+
+DIM 		posx[], posy[]
+
+pen  		sel_pen
+line_type 	sel_lt
+if b_fill then
+	fill 	sel_fill  ! otherwise it's empty
+endif
+
+
+! --------------------------------------------------------- !
+
+hotspot2 	0, 0  ! midpoint hotspot | first encountered HS is the one taken for placement 
+
+
+for i = 0 to n_vertices-1
+	theta = _angle * i  ! get the current heading angle
+	posx[i+1] = _radius * cos(theta)
+	posy[i+1] = _radius * sin(theta)
+	put 	  posx[i+1], posy[i+1], status
+	hotspot2  posx[i+1], posy[i+1]
+	if i <> 0 then
+		hotline2   posx[i], posy[i],  	posx[i+1], posy[i+1]
+	endif
+	if not(b_contour) and not(b_fill) then
+		add2 	posx[i+1], posy[i+1]
+			rot2 	-45 - _total_rot 
+				line2 -0.125, 0,  0.125, 0
+			rot2 	90
+				line2 -0.125, 0,  0.125, 0
+		del ntr()
+	endif
+	
+next i
+
+put 0, 0, 700+status  ! final closing line
+! needs a hotline, too
+hotline2   posx[vardim1(posx)], posy[vardim1(posy)],    posx[1], posy[1]
+
+
+poly2_b 	nsp/3, polystatus,
+			sel_fillpen, sel_backpen,
+			get(nsp)

@@ -20,7 +20,7 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 
 <img align="right" width=200 src="Objects/Text_auf_Polylinie/Text_auf_Polylinie/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v20_build_6005_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v20_build_6005_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square) 
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
@@ -35,7 +35,7 @@ Credit to Esteban Ramos for his polyline code.
 
 <img align="right" width=100 src="Objects/Spannrichtung/Spannrichtung/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-ff7979?style=flat-square)
 ![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
@@ -49,7 +49,7 @@ Credit to Esteban Ramos for his polyline code.
 
 <img align="right" width=180 src="Objects/Rollstuhlgerecht/Rollstuhlgerecht/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v22_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
@@ -63,7 +63,7 @@ Credit to Esteban Ramos for his polyline code.
 
 <img align="right" width=180 src="Objects/Faltmarker/Faltmarker/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v20_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.2-2980b9?style=flat-square)
@@ -82,7 +82,7 @@ DIN 824:
 
 <img align="right" width=180 src="Objects/Polygon/Polygon/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
@@ -96,7 +96,7 @@ DIN 824:
 
 <img align="right" width=180 src="Objects/Stiftfarben/Stiftfarben/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 [![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](objects/Stiftfarben/CHANGELOG.md)
@@ -111,7 +111,7 @@ DIN 824:
 
 <img align="right" width=180 src="Objects/Nummerierung/Nummerierung/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square)
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 [![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](objects/Nummerierung/CHANGELOG.md)

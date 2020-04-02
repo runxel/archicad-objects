@@ -28,7 +28,7 @@ I did for a while, but it's plain useless now that we have the HSF format availa
 (DE) Zur Anzeige von Komplexen Profilen aus dem Profil Manager im 2D.  
 (EN) Displays a selected complex profile in 2D.  
 
-_Anmerkung: Profilmodifikatoren können nicht verwendet werden. Es kann jedoch über `A` und `B` Stretchfaktoren eingegeben werden._
+_Anmerkung: Profilmodifikatoren können nicht verwendet werden. Es kann jedoch über `A` und `B` Stretchfaktoren eingegeben werden._  
 _Note: Profile modifiers can not be used. However you may use `A` and `B` as stretch factors._
 
 <br>

@@ -1,0 +1,75 @@
+﻿! --- 2D script --- !
+
+uID = 0
+
+mul2 A, B
+
+if n then
+    for i_curr_comp = 1 to n_components
+
+        if _bShowPart[i_curr_comp] then
+
+            ! GET contour pen for current segment ---
+            _bShowOutline = 1
+            _pen = 1
+            n = REQUEST ("Profile_component_info", idx_profile, i_curr_comp, "gs_profile_showoutline", _bShowOutline)
+            n = REQUEST ("Profile_component_info", idx_profile, i_curr_comp, "gs_profile_outlinepen", _pen)
+
+            ! GET building material + fill attributes (pens) ---
+            _bmat = 1
+            n = REQUEST("Profile_component_info", idx_profile, i_curr_comp, "gs_profile_bmat", _bmat)
+            n = REQUEST{2} ("Building_Material_info", _bmat, "gs_bmat_cutfill_properties", _fillType, _fillPen, _fillBgPen)
+
+
+            dim _currPens[]
+            dim _currLineTypes[]
+            n = REQUEST ("Profile_component_info", idx_profile, i_curr_comp, "gs_profile_comp_pens", _currPens)
+            n = REQUEST ("Profile_component_info", idx_profile, i_curr_comp, "gs_profile_comp_linetypes", _currLineTypes)
+
+            fill _fillType
+            pen _pen
+            
+        endif
+
+        ! STORE all the parameters for later use with poly2_b{6} ---
+        _penLtIdx = 1
+
+        for m = _contStartPoints[i_curr_comp] to _contEndPoints[i_curr_comp] step 5
+
+            put _profileGeometryRawData[m],       ! x coor
+                _profileGeometryRawData[m + 1],   ! y coor
+                _profileGeometryRawData[m + 2] +\
+                _profileGeometryRawData[m + 4],   ! status (visibility + additional)
+                _currPens[_penLtIdx],             ! pen
+                _currLineTypes[_penLtIdx]         ! linetype
+
+            _penLtIdx = _penLtIdx + 1
+			
+			! place hotspots at component's vertices
+            if b_extra_hotspots and\
+			   abs(_profileGeometryRawData[m]) <= _xmax - _xmin     and\
+               abs(_profileGeometryRawData[m + 1]) <= _ymax - _ymin and\
+               _profileGeometryRawData[m + 2] and\
+			   (_profileGeometryRawData[m + 4] # 800 and _profileGeometryRawData[m + 4] # 900) then
+ 
+                	hotspot2   _profileGeometryRawData[m], _profileGeometryRawData[m + 1], uID : uID=uID+1
+            endif
+            
+        next m
+
+        ! DRAW the component ---
+        poly2_b{6} (NSP/5), 1+2+4, 1, 0,    ! cut fill, 0 distortion flag
+                    _fillPen, _fillBgPen,
+                    0, 0,                   ! fill origo
+                    0.1, 0.1, 0.2, 0.2,     ! mxx, mxy, myx, myy
+                    0.1,                    ! gradientInnerRadius
+                    get(NSP)
+
+    next i_curr_comp
+endif
+
+
+! create bounding box
+if b_bb and b_extra_bb then
+    rect2 _xmin, _ymin, _xmax, _ymax
+endif

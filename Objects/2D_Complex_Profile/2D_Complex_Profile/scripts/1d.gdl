@@ -1,0 +1,60 @@
+﻿! --- MASTER script --- !
+! see http://gdl.graphisoft.com/gdl_other_docs/get-the-basic-properties-and-geometry
+
+
+! component types
+dict CT
+CT.core   = 0
+CT.finish = 1
+CT.other  = 2
+
+
+! current script type == 2D
+if GLOB_SCRIPT_TYPE = 2 then
+
+    ! init
+    n_components = 0
+    dim component_types[]
+
+    ! returns the number and types of the profile components
+    n = REQUEST{2} ("Profile_components", idx_profile, n_components, component_types)
+
+    ! returns the bounding box of the profile
+    b_bb = REQUEST ("Profile_default_boundingbox", idx_profile, _xmin, _ymin, _xmax, _ymax)
+
+
+    if n then
+        dim _bShowPart[]
+        _needRequestDetails = 0
+    
+        for k = 1 to n_components
+            _bShowPart[k] = 1
+            ! check partial structure display settings and look, if we have to draw that 
+            ! glob struc disp: | 0 – entire structure | 1 – core only | 2 – without finishes
+            if GLOB_STRUCTURE_DISPLAY = 1 AND component_types[k] # CT.core then _bShowPart[k] = 0
+            if GLOB_STRUCTURE_DISPLAY = 2 AND component_types[k] = CT.finish then _bShowPart[k] = 0
+            if _bShowPart[k] then _needRequestDetails = 1
+        next k
+    
+        if _needRequestDetails then
+            dim _profileGeometryRawData[]
+
+            ! get the profile's geometry
+            ! each point has 5 properties:
+            ! x coordinate, y coordinate, 2 visibility masks, and additional status code
+            n = REQUEST ("Profile_default_geometry", idx_profile, _profileGeometryRawData)
+    
+            dim _contStartPoints[]
+            dim _contEndPoints[]
+            _contStartPoints[1] = n_components + 1
+            for _i = 2 to n_components
+                _contStartPoints[_i] = _contStartPoints[_i - 1] + _profileGeometryRawData[_i - 1] * 5
+                _contEndPoints[_i-1] = _contStartPoints[_i] - 1
+            next _i
+
+            _contEndPoints[n_components] = vardim1(_profileGeometryRawData)
+        endif
+
+    endif
+
+endif

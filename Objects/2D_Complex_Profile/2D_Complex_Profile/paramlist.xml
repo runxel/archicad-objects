@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Faktor X"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Faktor Y"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="b_limit_prof_view">
+			<Description><![CDATA["Nur Objekt-Profile anzeigen"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<Profile Name="idx_profile">
+			<Description><![CDATA["Profil"]]></Description>
+			<Value>4</Value>
+		</Profile>
+		<Separator Name="__div__">
+			<Description><![CDATA[""]]></Description>
+		</Separator>
+		<Boolean Name="b_extra_hotspots">
+			<Description><![CDATA["Hotspots auf Profileckpunkten"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_extra_bb">
+			<Description><![CDATA["Bounding Box anzeigen"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+	</Parameters>
+</ParamSection>

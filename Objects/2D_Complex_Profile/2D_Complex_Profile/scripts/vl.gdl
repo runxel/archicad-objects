@@ -1,0 +1,12 @@
+﻿! --- PARAM script --- !
+
+g_prof_type = 0  ! init
+
+if not(b_limit_prof_view) then
+    g_prof_type = 1+2+4+8+16  ! wall, beam, column, handrail, other
+else
+    g_prof_type = 16  ! j5 = "other" (lib object profiles)
+endif
+
+
+values  "idx_profile"    profiletypes_mask  g_prof_type

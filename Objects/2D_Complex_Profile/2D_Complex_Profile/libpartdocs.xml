@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<libpartdocs>
+	<Copyright SectVersion="1" SectionFlags="0" SubIdent="0">
+		<Author>Lucas Becker</Author>
+		<License>
+			<Type>CC BY</Type>
+			<Version>4.0</Version>
+		</License>
+	</Copyright>
+	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0">
+		<![CDATA[]]>
+	</Keywords>
+	<CommentSection>
+		<![CDATA[Zeigt ein Profil aus dem Profilmanager im 2D an.
+# v 1.0 | 2020-04-01]]>
+	</CommentSection>
+
+</libpartdocs>

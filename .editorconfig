@@ -6,10 +6,16 @@ root = true
 [*]
 end_of_line = crlf
 
-[*.gdl]
+[*.{gdl, xml}]
 charset = utf-8-bom
-indent_style = space
 indent_size = 4
+
+[*.gdl]
+indent_style = space
+insert_final_newline = true
+
+[*.xml]
+indent_style = tab
 insert_final_newline = false
 
 [*.md]

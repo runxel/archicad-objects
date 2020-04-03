@@ -1,6 +1,7 @@
 ﻿! --- 2D script --- !
 
-uID = 0
+eps = 0.0001
+uID = IDS
 
 mul2 A, B
 
@@ -47,8 +48,8 @@ if n then
 			
 			! place hotspots at component's vertices
             if b_extra_hotspots and\
-			   abs(_profileGeometryRawData[m]) <= _xmax - _xmin     and\
-               abs(_profileGeometryRawData[m + 1]) <= _ymax - _ymin and\
+			   abs(_profileGeometryRawData[m]) <= (_xmax - _xmin + eps)     and\
+               abs(_profileGeometryRawData[m + 1]) <= (_ymax - _ymin + eps) and\
                _profileGeometryRawData[m + 2] and\
 			   (_profileGeometryRawData[m + 4] # 800 and _profileGeometryRawData[m + 4] # 900) then
  

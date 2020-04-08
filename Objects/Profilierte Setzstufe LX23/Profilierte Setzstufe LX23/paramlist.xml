@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_UIDefault/>
+			<STBit_FixSize/>
+			<STBit_UIUseHierarchicalPages/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Maß 1"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ZZYZX">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsIn3D">
+			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Length Name="ac_bottomlevel">
+			<Description><![CDATA["Untere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ac_toplevel">
+			<Description><![CDATA["Obere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Integer Name="ac_RiserPosition">
+			<Description><![CDATA["Setzstufen-Position"]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Integer>
+		<Profile Name="profileID">
+			<Description><![CDATA["Setzstufen-Profil"]]></Description>
+			<Value>14</Value>
+		</Profile>
+		<Boolean Name="b_stretch_height">
+			<Description><![CDATA["Höhe strecken"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+
+		<!-- lx_holes: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="lx_holes">
+			<Description><![CDATA["Löcher"]]></Description>
+		</Title>
+		<Boolean Name="b_cut_hole">
+			<Description><![CDATA["Löcher schneiden"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Integer Name="i_hole_type">
+			<Description><![CDATA["Lochart in den Setzstufen"]]></Description>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="i_hole_count">
+			<Description><![CDATA["Anzahl der Löcher"]]></Description>
+			<Value>1</Value>
+		</Integer>
+		<Length Name="f_hole_width">
+			<Description><![CDATA["Lochbreite"]]></Description>
+			<Value>0.05</Value>
+		</Length>
+		<Length Name="f_hole_height">
+			<Description><![CDATA["Lochhöhe"]]></Description>
+			<Value>0.05</Value>
+		</Length>
+		<Boolean Name="b_hole_even_dist">
+			<Description><![CDATA["Gleichmäßige Lochverteilung"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="f_hole_dist">
+			<Description><![CDATA["Abstand der Löcher"]]></Description>
+			<Value>0.05</Value>
+		</Length>
+		<Length Name="f_hole_ofs_y">
+			<Description><![CDATA["Offset in Y-Richtung"]]></Description>
+			<Value>0</Value>
+		</Length>
+		<Boolean Name="b_hole_edit_hex_incircle">
+			<Description><![CDATA["Inkreisdurchmesser editierbar"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Length Name="f_hole_hex_incircle">
+			<Description><![CDATA["Inkreisdurchmesser Hexagon"]]></Description>
+			<Value>0</Value>
+		</Length>
+		<Profile Name="prof_hole_cut">
+			<Description><![CDATA["Custom Cut Profile"]]></Description>
+			<Value>16</Value>
+		</Profile>
+
+
+		<!-- gs_2D_representation: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_2D_representation">
+			<Description><![CDATA["2D-Darstellung"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+		</Title>
+		<FillPattern Name="gs_fill_type">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Schraffur-Vordergrundstift"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Schraffur-Hintergrundstift"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+
+		<!-- gs_3D_representation: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_3D_representation">
+			<Description><![CDATA["3D-Darstellung"]]></Description>
+		</Title>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Aufsichtslinien-Stift"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>15</Value>
+		</PenColor>
+		<Integer Name="gs_resol">
+			<Description><![CDATA["Querschnitt Auflösung"]]></Description>
+			<Value>36</Value>
+		</Integer>
+
+		<!-- gs_material: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_material">
+			<Description><![CDATA["Baustoffe und Oberflächen"]]></Description>
+		</Title>
+		<Boolean Name="bOverrideProfExtSurf">
+			<Description><![CDATA["Profil-Extrusionsoberfläche überschreiben"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Material Name="profExtSurf">
+			<Description><![CDATA["Profil-Extrusionsoberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>4</Value>
+		</Material>
+		<Boolean Name="bOverrideProfEndSurf">
+			<Description><![CDATA["Profilende-Oberfläche überschreiben"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Material Name="profEndSurf">
+			<Description><![CDATA["Profilende-Oberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>4</Value>
+		</Material>
+
+		<!-- gs_list: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_list">
+			<Description><![CDATA["DWG Export Parameter"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+		</Title>
+		<RealNum Name="gs_list_cost">
+			<Description><![CDATA["Preis"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="gs_list_manufacturer">
+			<Description><![CDATA["Hersteller"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_note">
+			<Description><![CDATA["Anmerkungen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_location">
+			<Description><![CDATA["Lage"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_accessories">
+			<Description><![CDATA["Zubehör"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_soundinsul">
+			<Description><![CDATA["Mindestschallschutz"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_Type">
+			<Description><![CDATA["Gruppe Typ"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Andere"]]></Value>
+		</String>
+		<Integer Name="iFMType">
+			<Description><![CDATA["Gruppe Typ"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>25</Value>
+		</Integer>
+		<String Name="FM_InventoryNumber">
+			<Description><![CDATA["Inventarnummer"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_SerialNumber">
+			<Description><![CDATA["Seriennummer"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_ProductionYear">
+			<Description><![CDATA["Herstellungsjahr"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<RealNum Name="FM_ObjectWeight">
+			<Description><![CDATA["Objektgewicht"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="FM_ObjectWeightUnit">
+			<Description><![CDATA["Objektgewichtseinheit"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["kg"]]></Value>
+		</String>
+		<RealNum Name="FM_Stories">
+			<Description><![CDATA["Anzahl Geschosse"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<RealNum Name="FM_HalfLandings">
+			<Description><![CDATA["Anzahl Zwischenpodeste"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<RealNum Name="FM_LevelHeight">
+			<Description><![CDATA["Niveauhöhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<RealNum Name="FM_HeadRoom">
+			<Description><![CDATA["Lichte Höhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="FM_BearingStructure">
+			<Description><![CDATA["Tragende Konstruktion"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<RealNum Name="FM_BearingCapacity">
+			<Description><![CDATA["Tragekapazität"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<Boolean Name="FM_SmokeFree">
+			<Description><![CDATA["Rauchfreies Treppenhaus"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<RealNum Name="FM_StepsLength">
+			<Description><![CDATA["Stufenlänge"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="FM_MaterialFootstep">
+			<Description><![CDATA["Material Treppenstufe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_MaterialStairRailing">
+			<Description><![CDATA["Material Geländer"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_MaterialHandhold">
+			<Description><![CDATA["Material Handlauf"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom1">
+			<Description><![CDATA["Frei definierbar 1"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom2">
+			<Description><![CDATA["Frei definierbar 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom3">
+			<Description><![CDATA["Frei definierbar 3"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom4">
+			<Description><![CDATA["Frei definierbar 4"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom5">
+			<Description><![CDATA["Frei definierbar 5"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+
+		<!-- ifc_Title: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="ifc_Title">
+			<Description><![CDATA["IFC2x3 Eigenschaften-Set für Treppen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+		</Title>
+		<Integer Name="ifc_StairType">
+			<Description><![CDATA["Treppentyp"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<Integer Name="ifc_NumberOfRiser">
+			<Description><![CDATA["Anzahl der Steigungen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<Integer Name="ifc_NumberOfTreads">
+			<Description><![CDATA["Nummer der Trittstufe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<Length Name="ifc_RiserHeight">
+			<Description><![CDATA["Steigungshöhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="ifc_TreadLength">
+			<Description><![CDATA["Stufenlänge"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+	</Parameters>
+</ParamSection>

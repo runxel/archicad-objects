@@ -1,0 +1,75 @@
+﻿! --- PARAM script --- !
+
+! ==============================================================================
+! Hideparameter
+! ==============================================================================
+hideparameter all
+
+! ==============================================================================
+! Parameter Values
+! ==============================================================================
+
+values  "profileID"			PROFILETYPES_MASK 16	! other: Object
+
+values  "gs_resol"			range [4,)
+
+values{2} "i_hole_type",
+           HOLE.round, `Rund`,
+           HOLE.oval, `Oval`,
+           HOLE.rect, `Rechteckig`,
+           HOLE.diamond, `Diamant`,
+           HOLE.hex, `Hexagon liegend`,
+           HOLE.hexup , `Hexagon stehend`,
+           HOLE.tri, `Dreieck`,
+           HOLE.custom, `Extra Profil`
+
+
+values  "i_hole_count"   range [1, 100]
+values  "f_hole_height"  range [0.01,)
+values  "f_hole_width"   range [0.01,)
+values  "f_hole_dist"    range [0.005,1]
+
+
+if not(b_hole_edit_hex_incircle) then
+    lock "f_hole_hex_incircle"
+    ! diameter of the incircle of a hexagon
+    f_hole_hex_incircle = ((sqr(3)/2) * (f_hole_width/2)) *2
+    parameters f_hole_hex_incircle = f_hole_hex_incircle
+endif
+
+if GLOB_MODPAR_NAME = "i_hole_type" and i_hole_type = HOLE.custom then
+    ! reset to 1 hole if set to custom
+    i_hole_count = 1
+    parameters i_hole_count = i_hole_count
+    f_hole_ofs_y = 0
+    parameters f_hole_ofs_y = f_hole_ofs_y
+endif
+
+! ==============================================================================
+! Parameter Lock
+! ==============================================================================
+
+if not(bOverrideProfExtSurf) then
+    lock "profExtSurf"
+endif
+
+if not(bOverrideProfEndSurf) then
+    lock "profEndSurf"
+endif
+
+if b_hole_even_dist then
+    lock "f_hole_dist"
+endif
+
+if not(b_cut_hole) then
+    lock "i_hole_type",
+         "i_hole_count",
+         "f_hole_width",
+         "f_hole_height",
+         "b_hole_even_dist",
+         "f_hole_dist",
+         "f_hole_ofs_y",
+         "b_hole_edit_hex_incircle",
+         "f_hole_hex_incircle",
+         "prof_hole_cut"
+endif

@@ -1,0 +1,362 @@
+﻿!! --- UI script --- ! 
+
+dict UI
+UI.width  = 555
+UI.height = 240
+
+if i_hole_type = HOLE.round    then UI.pict.id = 8
+if i_hole_type = HOLE.oval     then UI.pict.id = 9
+if i_hole_type = HOLE.rect     then UI.pict.id = 10
+if i_hole_type = HOLE.diamond  then UI.pict.id = 11
+if i_hole_type = HOLE.hex      then UI.pict.id = 12
+if i_hole_type = HOLE.hexup    then UI.pict.id = 13
+if i_hole_type = HOLE.tri      then UI.pict.id = 14
+if i_hole_type = HOLE.custom   then UI.pict.id = 15
+
+! ==============================================================================
+! TRANSLATION !
+dict TLX, TLX_DE, TLX_EN
+  TLX_DE.dialog = `Profilierte Setzstufe LX23 | Komponenten-Einstellungen`
+  TLX_EN.dialog = `Profiled Riser LX23 | component settings`
+  TLX_DE.tabid.riser = `Stil`
+  TLX_EN.tabid.riser = `Style`
+  TLX_DE.tabid.holes = `Löcher`
+  TLX_EN.tabid.holes = `Holes`
+  TLX_DE.tabid.repres = `Darstellung`
+  TLX_EN.tabid.repres = `Representation`
+  
+  TLX_DE.riserset.prof = `Setzstufen-Profil`
+  TLX_EN.riserset.prof = `riser profile`
+  TLX_DE.riserset.stretch = `Profilhöhe anpassen`
+  TLX_EN.riserset.stretch = `Stretch profile to fit`
+  TLX_DE.riserset.stretchtt = `Wenn aktiv wird die Höhe des Profils auf die entsprechende Setzstufenhöhe gestretcht.`
+  TLX_EN.riserset.stretchtt = `Wenn aktiv wird die Höhe des Profils auf die entsprechende Setzstufenhöhe gestretcht.`
+  TLX_DE.riserset.refpt = `Referenzpunkt`
+  TLX_EN.riserset.refpt = `reference point`
+  TLX_DE.riserset.overtt1 = `Extrusionsoberfläche überschreiben`
+  TLX_EN.riserset.overtt1 = `Override surface of extrusion`
+  TLX_DE.riserset.overtt2 = `End- und Schnittoberfläche überschreiben`
+  TLX_EN.riserset.overtt2 = `Override cap and cut surfaces`
+  
+  TLX_DE.holeset.cut = `Löcher schneiden`
+  TLX_EN.holeset.cut = `Cut holes`
+  TLX_DE.holeset.count = `Anzahl Löcher`
+  TLX_EN.holeset.count = `Number of holes`
+  
+  TLX_DE.holeset.style.circle = `Kreis`
+  TLX_DE.holeset.style.oval = `Oval`
+  TLX_DE.holeset.style.rect = `Recteck`
+  TLX_DE.holeset.style.diamond = `Diamant`
+  TLX_DE.holeset.style.hex = `Hexagon liegend`
+  TLX_DE.holeset.style.hexup = `Hexagon stehend`
+  TLX_DE.holeset.style.tri = `Traverse/Dreieck`
+  TLX_DE.holeset.style.custom = `Profil`
+  
+  TLX_EN.holeset.style.circle = `Circle`
+  TLX_EN.holeset.style.oval = `Oval`
+  TLX_EN.holeset.style.rect = `Rectangle`
+  TLX_EN.holeset.style.diamond = `Diamond`
+  TLX_EN.holeset.style.hex = `Hexagon`
+  TLX_EN.holeset.style.hexup = `Hexagon upright`
+  TLX_EN.holeset.style.tri = `Truss-like`
+  TLX_EN.holeset.style.custom = `Profile`
+  
+  TLX_DE.holeset.note = `[ Achtung – Schnittprofil darf keine Löcher beinhalten! ]`
+  TLX_EN.holeset.note = `[ Caution – Cutting profile must not contain any holes! ]`
+  
+  TLX_DE.holeset.hole.diam = `Lochdurchmesser`
+  TLX_EN.holeset.hole.diam = `hole diameter`
+  TLX_DE.holeset.hole.circum = `Umkreisdurchmesser`
+  TLX_EN.holeset.hole.circum = `circumscribed diameter`
+  TLX_DE.holeset.hole.width = `Lochbreite`
+  TLX_EN.holeset.hole.width = `hole width`
+  TLX_DE.holeset.hole.ofsy = `Offset`
+  TLX_EN.holeset.hole.ofsy = `offset`
+  TLX_DE.holeset.hole.height = `Lochhöhe`
+  TLX_EN.holeset.hole.height = `hole height`
+  TLX_DE.holeset.hole.incrc = `Inkreisdurchmesser`
+  TLX_EN.holeset.hole.incrc = `incircle diameter`
+  TLX_DE.holeset.hole.dist = `Autom. Abstand`
+  TLX_EN.holeset.hole.dist = `auto distance`
+
+! set the language
+if TLX_CODE = "german" then
+    TLX = TLX_DE
+else
+    TLX = TLX_EN
+endif
+! ==============================================================================
+
+
+ui_dialog TLX.dialog, UI.width, UI.height
+
+! Page IDs
+TABID_ROOT				= -1
+TABID_RISERSETTINGS     = 100
+TABID_RISERHOLES   		= 120
+TABID_REPRESENTATION	= 200
+
+! Sizes and Positions
+pageStartY  = 4
+dy          = 24
+xGap        = 2
+
+inFldWdt1   = 217
+inFldHgt1   = 19
+inFldHgt2   = 26
+
+outFldWdt   = 90
+outFldHgt   = 15
+
+xPos1       = 1
+xPos2       = 228
+xPos3       = 288
+
+! ==============================================================================
+! UI Pages
+! ==============================================================================
+
+ui_page TABID_RISERSETTINGS, TABID_ROOT, TLX.tabid.riser, "uiTab_StairRiser_Style_hl(1)"
+    gosub "pageRiserSettings"
+
+ui_page TABID_RISERHOLES, TABID_ROOT, TLX.tabid.holes, "uiTab_ChimneyRect_hl(1)"
+	gosub "pageHolesSettings"
+
+ui_page TABID_REPRESENTATION, TABID_ROOT, TLX.tabid.repres, "uiTab_2DRepr_hl(1)"
+	gosub "pageRepresSettings"
+
+file_dependence	"uiTab_2DRepr_hl(1)"
+file_dependence "uiTab_ChimneyRect_hl(1)"
+file_dependence	"uiTab_StairRiser_Style_hl(1)"
+
+! ==============================================================================
+end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! en
+! ==============================================================================
+
+
+! ==============================================================================
+"pageRiserSettings":
+! ------------------------------------------------------------------------------
+    yCurr       = pageStartY
+
+	ui_style 0, 1
+	ui_outfield		TLX.riserset.prof,		xPos1,	yCurr,		inFldWdt1,	outFldHgt
+	yCurr = yCurr + dy
+
+	ui_style 0, 0
+	ui_infield{3}	"profileID",		xPos1,	yCurr - 4,	inFldWdt1,	inFldHgt2
+
+	yCurr = pageStartY + 2
+
+	! Get Format String
+	_stFormat = "%m"		! default meter
+	_reqUnit = request("Model_length_unit", "", _stFormat)
+
+	_result = REQUEST ("Profile_default_boundingbox",  profileID, _xMin, _yMin, _xMax, _yMax)
+
+	if _result then
+		_profileWidth	= abs(_xMax - _xMin)
+		_profileHeight	= abs(_yMax - _yMin)
+	else
+		_profileWidth	= 0
+		_profileHeight	= 0
+	endif
+
+	ui_pict	3,	xPos3-21,	yCurr,	21,			20,			1	! riserProfHeight_hl(1).svg
+
+    ui_outfield str(_stFormat, _profileHeight), xPos3 + xGap*2,  yCurr + 4,  outFldWdt/3,    outFldHgt, 1       ui_tooltip `Profilhöhe`
+
+    ui_infield{3} "b_stretch_height",  xPos3 + xGap*4 + 50,  yCurr + 1,   150, inFldHgt1,
+                    7, "", 2, 1,
+                    0,0,0,0,
+                    1, TLX.riserset.stretch, 0,
+                    2, TLX.riserset.stretch, 1\
+                    ui_tooltip TLX.riserset.stretchtt
+
+	yCurr = yCurr + dy
+
+	ui_pict	4,	xPos3-21,	yCurr,	21,			20,			1	! riserProfWidth_hl(1).svg
+
+	ui_outfield	str(_stFormat, _profileWidth),		xPos3 + xGap*2,	yCurr + 4,	outFldWdt/3,	outFldHgt, 1		ui_tooltip `Profilbreite`
+
+	yCurr = yCurr + dy + 2
+
+	ui_separator  0, yCurr,  UI.width, yCurr !---------
+
+	yCurr = yCurr + dy
+
+	ui_outfield		TLX.riserset.refpt,		xPos1 + 19,	yCurr,		inFldWdt1 - 19,	 outFldHgt	
+	ui_outfield		`Extrusion`,			xPos2,		yCurr,		inFldWdt1 - 19,	 outFldHgt	
+
+	yCurr = yCurr + 48
+
+	ui_pict	2,	xPos1 + 39,	yCurr,	81,		53,			1	! riserSide_hl(1).svg
+	ui_pict	1,	xPos2 + 39,	yCurr,	148,	53,			1	! riserFront_hl(1).svg
+
+	ui_outfield	str(_stFormat, RISER_THICKNESS), xPos1 + 39,	yCurr + 55,	outFldWdt,	outFldHgt		ui_tooltip `Setzstufe Dicke`
+
+	yCurr	= 265 - 56
+
+	ui_infield{3}	"bOverrideProfExtSurf", 	xPos2,	yCurr,	30,	25, 
+		6, 5, 1, 1,															! riserSurfExt_hl(1).svg
+		30, 25, 23, 23,
+		1,	"",				1,
+		1,	"",				0				ui_tooltip TLX.riserset.overtt1
+
+	ui_infield{3}	"profExtSurf", 	xPos2 + 30 + xGap,	yCurr,	182,	inFldHgt2
+
+	yCurr = yCurr + dy + 6
+
+	ui_infield{3}	"bOverrideProfEndSurf", 	xPos2,	yCurr,	30,	25,
+		6, 6, 1, 1,															! riserSurfEnd_hl(1).svg
+		30, 25, 23, 23,
+		1,	"",				1,
+		1,	"",				0				ui_tooltip TLX.riserset.overtt2
+
+
+	ui_infield{3}	"profEndSurf", 	xPos2 + 30 + xGap,	yCurr,	182,	inFldHgt2
+
+return
+
+! ==============================================================================
+"pageHolesSettings":
+! ------------------------------------------------------------------------------
+    yCurr       = 8
+    UI.pict.width  = 422
+    UI.pict.height = 106
+    UI.infld.width = 75
+
+    ui_style  0, 1
+    ui_infield{3} "b_cut_hole", 15, yCurr, 150, inFldHgt1 ,
+                    7, "",
+                    0, 0,
+                    0, 0, 0, 0,
+                    "", TLX.holeset.cut, 0,
+                    "", TLX.holeset.cut, 1
+    ui_style 0, 0
+
+    yCurr = 35
+    ui_outfield TLX.holeset.count, 15, yCurr+2, 105, outFldHgt
+    ui_infield "i_hole_count", 122, yCurr, 55, inFldHgt1    
+
+    ! popup select with pic
+    ui_infield{3} "i_hole_type", 190, 5, 200, 50,
+                    2, 7, 8, 8,
+                    80, 40, 80, 40,
+                    1, TLX.holeset.style.circle,  HOLE.round,
+                    2, TLX.holeset.style.oval,    HOLE.oval,
+                    3, TLX.holeset.style.rect,    HOLE.rect,
+                    4, TLX.holeset.style.diamond, HOLE.diamond,
+                    5, TLX.holeset.style.hex,     HOLE.hex,
+                    6, TLX.holeset.style.hexup,   HOLE.hexup,
+                    7, TLX.holeset.style.tri,     HOLE.tri,
+                    8, TLX.holeset.style.custom,  HOLE.custom
+
+    if i_hole_type = HOLE.custom then
+        ui_outfield , 410, 15, 160, 30, 4
+    endif
+
+    yCurr = 60
+    ui_separator  0, yCurr,  UI.width, yCurr !---------
+
+    yCurr = yCurr + inFldHgt1*2 + 20
+    ui_pict  UI.pict.id, 40, yCurr, UI.pict.width, UI.pict.height, 1
+
+    ui_top_y1  = yCurr - inFldHgt1*2 -6
+    ui_top_y2  = yCurr - inFldHgt1 -6
+    ui_base_y1 = yCurr + UI.pict.height + 10
+    ui_base_y2 = ui_base_y1 + 5 + inFldHgt1
+    ui_x_1  = 85
+    ui_x_2  = 215
+    ui_x_2b = ui_x_2-55
+    ui_x_3  = 340
+
+    if i_hole_type = HOLE.round then
+        UI.text.hole_width = TLX.holeset.hole.diam
+    else
+        if i_hole_type = HOLE.hex | i_hole_type = HOLE.hexup then
+            UI.text.hole_width = TLX.holeset.hole.circum 
+        else
+            UI.text.hole_width = TLX.holeset.hole.width
+        endif
+    endif
+
+    if i_hole_type # HOLE.custom then
+        ui_outfield TLX.holeset.hole.ofsy, ui_x_1, ui_top_y1, 90, outFldHgt
+        ui_infield "f_hole_ofs_y", ui_x_1, ui_top_y2, UI.infld.width, inFldHgt1
+
+        if i_hole_type # HOLE.round and i_hole_type # HOLE.hex and i_hole_type # HOLE.hexup then
+            ui_outfield TLX.holeset.hole.height,     ui_x_2, ui_top_y1, 120, outFldHgt
+            ui_infield "f_hole_height", ui_x_2, ui_top_y2, UI.infld.width, inFldHgt1
+        endif
+
+        if i_hole_type = HOLE.hex or i_hole_type = HOLE.hexup then
+            ui_infield{3} "b_hole_edit_hex_incircle", ui_x_2-20, ui_top_y1-3, 150, inFldHgt1,
+                            7, "",
+                            0, 0,
+                            0, 0, 0, 0,
+                            "", TLX.holeset.hole.incrc, 0,
+                            "", TLX.holeset.hole.incrc, 1
+            ui_infield "f_hole_hex_incircle", ui_x_2, ui_top_y2, UI.infld.width, inFldHgt1
+        endif
+
+        if i_hole_type # HOLE.tri then
+            ui_infield "f_hole_dist",      ui_x_2b, ui_base_y1, UI.infld.width, inFldHgt1
+            ui_infield{3} "b_hole_even_dist", ui_x_2b-20, ui_base_y2, 120, inFldHgt1,
+                            7, "",
+                            0, 0,
+                            0, 0, 0, 0,
+                            "", TLX.holeset.hole.dist, 0,
+                            "", TLX.holeset.hole.dist, 1 
+
+            ui_outfield UI.text.hole_width, ui_x_3, ui_base_y2+3, 135, outFldHgt
+            ui_infield "f_hole_width",      ui_x_3, ui_base_y1, UI.infld.width, inFldHgt1
+        endif
+    else
+        ui_infield{3}   "prof_hole_cut",    190,  ui_top_y1,  inFldWdt1,  inFldHgt2+5
+    endif
+
+return
+
+
+! ==============================================================================
+"pageRepresSettings":
+! ------------------------------------------------------------------------------
+	! Sizes and Positions
+	listFieldID	= TABID_REPRESENTATION
+
+	listFieldPosX	= 0
+	listFieldPosY	= 0
+
+	listFieldWidth	= 444 - listFieldPosX
+	listFieldHeight	= 266 - listFieldPosY
+! ------------------------------------------------------------------------------
+
+	ui_listfield listFieldID, listFieldPosX, listFieldPosY, listFieldWidth, listFieldHeight
+
+! ------------------------------------------------------------------------------
+
+	itemID		= 1
+
+	ui_listitem itemID, listFieldID, "gs_3D_representation",		0,	""									: itemID = itemID + 1
+
+	ui_listitem itemID, listFieldID, "gs_cont_pen",					1,	"ui_list_3DPen_hl(1)"				: itemID = itemID + 1
+	ui_listitem itemID, listFieldID, "gs_resol",					1,	"ui_list_resol_hl(1)"				: itemID = itemID + 1
+
+	ui_listitem itemID, listFieldID, "gs_material",					0,	""									: itemID = itemID + 1
+	ui_listitem itemID, listFieldID, "bOverrideProfExtSurf",		1,	"ui_list_SurfaceOverride_hl(1)"		: itemID = itemID + 1
+	ui_listitem itemID, listFieldID, "bOverrideProfEndSurf",		1,	"ui_list_SurfaceOverride_hl(1)"		: itemID = itemID + 1
+
+	if bOverrideProfExtSurf then
+		ui_listitem itemID, listFieldID, "profExtSurf",				1,	"ui_list_surface_hl(1)"
+	endif																									: itemID = itemID + 1
+
+	if bOverrideProfEndSurf then
+		ui_listitem itemID, listFieldID, "profEndSurf",				1,	"ui_list_surface_hl(1)"
+	endif																									: itemID = itemID + 1
+	
+	file_dependence	"ui_list_3DPen_hl(1)"
+	file_dependence	"ui_list_SurfaceOverride_hl(1)"
+	file_dependence	"ui_list_surface_hl(1)"
+
+return

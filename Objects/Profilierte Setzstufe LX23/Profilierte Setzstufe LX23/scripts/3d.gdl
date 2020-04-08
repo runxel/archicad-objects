@@ -1,0 +1,796 @@
+﻿! --- 3D script --- !
+
+if GLOB_FEEDBACK_MODE then
+    resol 8
+else
+    resol gs_resol
+endif
+
+_toler = 0.001
+
+pen gs_cont_pen
+
+! ===============================================================================
+! Check Riser Validity
+! ===============================================================================
+_bRiserExists       = 0
+_bDiffXCoordsNum    = 0
+_bDiffYCoordsNum    = 0
+
+for tt = 1 to vardim1(STAIR_RISER_GEOMETRY)
+    _currXCoord = STAIR_RISER_GEOMETRY[tt][1]
+    _currYCoord = STAIR_RISER_GEOMETRY[tt][2]
+    if tt > 1 then
+        if abs(_lastXCoord - _currXCoord) > eps then
+            _bDiffXCoordsNum = _bDiffXCoordsNum + 1
+        endif
+        if abs(_lastYCoord - _currYCoord) > eps then
+            _bDiffYCoordsNum = _bDiffYCoordsNum + 1
+        endif
+    endif
+    if _bDiffXCoordsNum + _bDiffYCoordsNum > eps then
+        _bRiserExists   = 1
+        tt = vardim1(STAIR_RISER_GEOMETRY)
+    endif
+    _lastXCoord = _currXCoord
+    _lastYCoord = _currYCoord
+next tt
+if _bRiserExists = 0 then end
+
+! ===============================================================================
+! Basic Calculations
+! ===============================================================================
+
+_vertexNum              = vardim1(STAIR_RISER_GEOMETRY)             !!! Number of Vertexes
+_edgeNum                = vardim1(STAIR_RISER_GEOMETRY)             !!! Number of Edges
+
+dim _archedEdgeData[][]         !!! [][1] - Index of Arched Edge,   [][2] - Number of Segments in Arched Edge
+dim _segmentData[][]            !!! [][1] - X coord of Segment,     [][2] - Y coord of Segment
+dim _riserEdgeIndexes[]         !!! Indexes/Order of Edges
+dim _currEdgeIndexes[]          !!! Indexes/Order of Edges
+
+for iii = 1 to _edgeNum
+    _riserEdgeIndexes[iii] = iii
+next iii
+
+! ===============================================================================
+! Calculation for Arched Segments
+! ===============================================================================
+gosub "archedSegmentsCalc"
+
+! ===============================================================================
+! Riser Cut Corrigation with Arch Segmetation
+! ===============================================================================
+dim _riserCut[2][2]
+gosub "corrigateRiserCut"
+
+! ===============================================================================
+! Get Riser Path
+! ===============================================================================
+dim _pathData[]
+gosub "getRiserPath"
+
+
+! ===============================================================================
+! Cut some juicy holes
+! ===============================================================================
+if b_cut_hole then gosub "cutHoles"
+
+! ===============================================================================
+! Draw Riser
+! ===============================================================================
+gosub "drawRiser"
+
+! cutend command after we drew the riser; we're done now! =======================
+if b_cut_hole then cutend
+
+! ===============================================================================
+! Texture Fitting
+! ===============================================================================
+gosub "textureFitting"
+
+! ==============================================================================
+end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! end ! en
+! ==============================================================================
+
+
+! ===============================================================================
+"archedSegmentsCalc":
+! Calculation for Arched Segments
+! Input values: 
+!   riser geometry global
+! Output values:
+!   _archedEdgeData[][]
+! ------------------------------------------------------------------------------
+    centerX         = 0
+    centerY         = 0
+    _actArchIdx     = 1
+    _actSegmentIdx  = 1
+
+    for ii = 1 to _edgeNum                      ! Last Vertex point has no angle
+        if abs(STAIR_RISER_GEOMETRY[ii][3]) > eps then
+
+            centerX = (STAIR_RISER_GEOMETRY[ii][1] + STAIR_RISER_GEOMETRY[ii + 1][1]) / 2
+            centerY = (STAIR_RISER_GEOMETRY[ii][2] + STAIR_RISER_GEOMETRY[ii + 1][2]) / 2
+
+            h = sqr ((STAIR_RISER_GEOMETRY[ii][1] - centerX)^2 + (STAIR_RISER_GEOMETRY[ii][2] - centerY)^2)
+            t = tan ( abs(STAIR_RISER_GEOMETRY[ii][3]) / 2.0)
+            if (abs (t) > eps) then
+                m = h / t
+            else
+                m = 0
+            endif
+
+            dirX = STAIR_RISER_GEOMETRY[ii + 1][1] - centerX
+            dirY = STAIR_RISER_GEOMETRY[ii + 1][2] - centerY
+            len = sqr (dirX^2 + dirY^2)
+
+            __archAngle = STAIR_RISER_GEOMETRY[ii][3]
+
+            normX = dirY * sgn(__archAngle)
+            normY = (-1) * dirX * sgn(__archAngle)
+
+            if abs(len) > eps then
+                normX = normX / len
+                normY = normY / len
+            endif
+
+            centerX = centerX - m * normX
+            centerY = centerY - m * normY
+
+            _edgeStartXCoord    = STAIR_RISER_GEOMETRY[ii][1]
+            _edgeStartYCoord    = STAIR_RISER_GEOMETRY[ii][2]
+            _edgeEndXCoord      = STAIR_RISER_GEOMETRY[ii + 1][1]
+            _edgeEndYCoord      = STAIR_RISER_GEOMETRY[ii + 1][2]
+            gosub "calculateEdgeAngleAndLength"
+
+            _radius =_edgeLength / 2 / (sin(abs(__archAngle) / 2))
+
+            gosub "segmentPointCollector"
+
+            _archedEdgeData[_actArchIdx][1] = ii 
+            _archedEdgeData[_actArchIdx][2] = _numOfSegments - 1
+
+            _actArchIdx = _actArchIdx + 1
+
+        endif
+    next ii
+
+return
+
+! ===============================================================================
+"segmentPointCollector":
+! Collect Segmented Point coords
+! Input values: 
+!   __archAngle
+!   _radius
+! Output values:
+!   _segmentData[][]
+! ------------------------------------------------------------------------------
+
+    _tubeResol      = ceil((360 / acs((_radius - _toler) / _radius)) / 2)
+    _numOfSegments  = abs(_tubeResol / 360 * (__archAngle))
+
+    if _numOfSegments - int(_numOfSegments) < 0.5 then
+        _numOfSegments = int(_numOfSegments)
+    else
+        _numOfSegments = int(_numOfSegments) + 1
+    endif
+    _numOfSegments = max(_numOfSegments, 1)
+
+    if _numOfSegments > 0 then
+        _edgeStartXCoord    = STAIR_RISER_GEOMETRY[ii][1]
+        _edgeStartYCoord    = STAIR_RISER_GEOMETRY[ii][2]
+        _edgeEndXCoord  = centerX
+        _edgeEndYCoord  = centerY
+        gosub "calculateEdgeAngleAndLength"
+
+        _segmentAngle = __archAngle / _numOfSegments
+        _actArchAngle = _edgeAngle + _segmentAngle
+
+        for ik = 1 to _numOfSegments - 1
+            _segmentData[_actSegmentIdx][1] = centerX - _radius * cos(_actArchAngle)
+            _segmentData[_actSegmentIdx][2] = centerY - _radius * sin(_actArchAngle)
+            _actArchAngle   = _actArchAngle + _segmentAngle
+            _actSegmentIdx  = _actSegmentIdx + 1
+        next ik
+    endif
+
+return
+
+! ===============================================================================
+"calculateEdgeAngleAndLength":
+! Calculate Current Edge Angle and Length
+! Input values: 
+!   Edge StartX, StartY, EndX, EndY Coordinates
+! Output values:
+!   _edgeLength
+!   _edgeAngle
+! ------------------------------------------------------------------------------
+
+    _edgeLength     = sqr((_edgeStartYCoord - _edgeEndYCoord)**2 + (_edgeStartXCoord - _edgeEndXCoord)**2)
+
+    if abs(_edgeStartXCoord - _edgeEndXCoord) < eps then
+        if _edgeStartYCoord > _edgeEndYCoord then
+            _edgeAngle  = -90
+        else
+            _edgeAngle  = 90
+        endif
+    else
+        if abs(_edgeStartYCoord - _edgeEndYCoord) < eps then
+            if _edgeStartXCoord > _edgeEndXCoord then
+                _edgeAngle  = 180
+            else
+                _edgeAngle  = 0
+            endif
+        else
+            if _edgeStartXCoord > _edgeEndXCoord then
+                _edgeAngle  = 180 + atn((_edgeStartYCoord - _edgeEndYCoord) / (_edgeStartXCoord - _edgeEndXCoord))      !!! 4
+            else
+                if _edgeStartYCoord > _edgeEndYCoord then
+                    _edgeAngle  = atn((_edgeEndYCoord - _edgeStartYCoord) / (_edgeEndXCoord - _edgeStartXCoord))            !!! 1
+                else
+                    _edgeAngle  = atn((_edgeStartYCoord - _edgeEndYCoord) / (_edgeStartXCoord - _edgeEndXCoord))            !!! 2
+                endif
+            endif
+        endif
+    endif
+
+return
+
+! ===============================================================================
+"corrigateRiserCut":
+! ------------------------------------------------------------------------------
+    for _iCut = 1 to 2
+        if _iCut = 1 then
+            iVertArc    = 1
+            iSegment    = 1
+        else
+            iVertArc    = _vertexNum-1
+            iSegment    = vardim1(_segmentData)
+        endif
+
+        if abs(STAIR_RISER_GEOMETRY[iVertArc][3]) > eps then        ! the first/last edge is Arched
+
+            dict _segment
+            _segment.begPoint.x = STAIR_RISER_GEOMETRY[iVertArc][1]
+            _segment.begPoint.y = STAIR_RISER_GEOMETRY[iVertArc][2]
+            _segment.endPoint.x = STAIR_RISER_GEOMETRY[iVertArc + 1][1]
+            _segment.endPoint.y = STAIR_RISER_GEOMETRY[iVertArc + 1][2]
+            _segment.type       = EDGE_CURVED
+            _segment.arcAngle   = STAIR_RISER_GEOMETRY[iVertArc][3]
+
+            dict _riserCutPoint
+            _riserCutPoint.x    = RISER_CUT[_iCut][1]
+            _riserCutPoint.y    = RISER_CUT[_iCut][2]
+            _riserCutPoint.z    = 0.0
+
+            dict _segmentPoint
+            _segmentPoint.x     = _segmentData[iSegment][1]
+            _segmentPoint.y     = _segmentData[iSegment][2]
+            _segmentPoint.z     = 0.0
+
+
+            dict _cutPointDirection
+            call "riserCutCorrigation_m" parameters bEndArc         = (_iCut = 2),
+                                                    segment         = _segment,
+                                                    riserCutPoint   = _riserCutPoint,
+                                                    segmentPoint    = _segmentPoint,
+                                returned_parameters _cutPointDirection
+    
+            _riserCut[_iCut][1] = STAIR_RISER_GEOMETRY[iVertArc + (_iCut = 2)][1] + _cutPointDirection.ux
+            _riserCut[_iCut][2] = STAIR_RISER_GEOMETRY[iVertArc + (_iCut = 2)][2] + _cutPointDirection.uy
+    
+        else
+            _riserCut[_iCut][1] = RISER_CUT[_iCut][1]
+            _riserCut[_iCut][2] = RISER_CUT[_iCut][2]
+        endif
+    next _iCut
+return
+
+! ===============================================================================
+"getRiserPath":
+! Get Riser Path, Store it into an array
+! Input values:
+!   RISER_CUT globals
+!   _riserEdgeIndexes[]
+!   _archedEdgeData[][] 
+! Output values:
+!   _pathData[]
+! ------------------------------------------------------------------------------
+
+    _currEdgesNum       = _edgeNum
+    _currEdgeIndexes    = _riserEdgeIndexes
+
+    put _riserCut[1][1], _riserCut[1][2], 0, 0
+
+    for zz = 1 to _currEdgesNum
+        _actualVertexNum = _currEdgeIndexes[zz]
+        put STAIR_RISER_GEOMETRY[_actualVertexNum][1], STAIR_RISER_GEOMETRY[_actualVertexNum][2], 0, 0
+
+        _startSegmIdx = 1
+        for ttt = 1 to vardim1(_archedEdgeData)
+            if  _currEdgeIndexes[zz] = _archedEdgeData[ttt][1] &\
+                _archedEdgeData[ttt][2] > 0 then
+
+                for vvv = 1 to ttt - 1
+                    _startSegmIdx = _startSegmIdx + _archedEdgeData[vvv][2]
+                next vvv
+
+                for kkk = _startSegmIdx to _startSegmIdx + _archedEdgeData[ttt][2] - 1
+                    put _segmentData[kkk][1], _segmentData[kkk][2], 0, 0
+                next kkk
+                ttt = vardim1(_archedEdgeData)
+            endif
+        next ttt
+    next zz
+
+    put _riserCut[2][1], _riserCut[2][2], 0, 0
+
+    for _i = 1 to nsp
+        _pathData[_i] = get(1)
+    next _i
+return
+
+! ===============================================================================
+"drawRiser":
+! Get Data from User defined profile, Draw Riser
+! 
+! ------------------------------------------------------------------------------
+    _nComponents = 0
+    dim _componentTypes[]
+
+    _result = REQUEST ("Profile_default_boundingbox",  profileID, _xMin, _yMin, _xMax, _yMax)
+    if _result then
+        _profileWidth   = abs(_xMax - _xMin)
+        _profileHeight  = abs(_yMax - _yMin)
+    else
+        _profileWidth   = 0
+        _profileHeight  = 0
+    endif
+
+    ! stretch the riser's height if wanted, so we don't need a new profile if the risers height changes
+    if b_stretch_height then
+        mulz  (RISER_HEIGHT / _profileHeight)
+    endif
+
+    n = REQUEST{2} ("Profile_components", profileID, _nComponents, _componentTypes)
+
+    if n then
+        dim _bShowPart[]
+        _needRequestDetails = 0
+    
+        for _i = 1 to _nComponents
+            _bShowPart[_i] = 1    
+              if GLOB_STRUCTURE_DISPLAY = 1 & _componentTypes[_i] <> COMPTYPE_CORE then _bShowPart[_i] = 0  
+              if GLOB_STRUCTURE_DISPLAY = 2 & _componentTypes[_i] = COMPTYPE_FINISH then _bShowPart[_i] = 0
+              if _bShowPart[_i] then _needRequestDetails = 1
+        next _i
+    
+        if _needRequestDetails then
+
+            dim _profileGeometryRawData[]
+            n = REQUEST ("Profile_default_geometry", profileID, _profileGeometryRawData)        ! n1, n2, ..., nn, x11, y11,s11 
+    
+            dim _contStartPoints[]
+            dim _contEndPoints[]
+
+            _contStartPoints[1] = _nComponents + 1
+
+            for _i = 2 to _nComponents
+                _contStartPoints[_i] = _contStartPoints[_i - 1] + _profileGeometryRawData[_i - 1] * 5
+                _contEndPoints[_i-1] = _contStartPoints[_i] - 1
+            next _i
+
+            _contEndPoints[_nComponents] = vardim1(_profileGeometryRawData)
+
+            for _iComp = 1 to _nComponents
+
+                if _bShowPart[_iComp] then
+                    dim _currSurfaces[]
+                    n = REQUEST{3} ("Profile_component_info", profileID, _iComp, "gs_profile_comp_surfaces", _currSurfaces)
+        
+                    if bOverrideProfExtSurf then
+                        for _surf = 1 to vardim1(_currSurfaces)
+                            _currSurfaces[_surf] = profExtSurf
+                        next _surf
+                    endif
+
+                    _bmat = 1
+                    _pen = 1
+                    n = REQUEST{3} ("Profile_component_info", profileID, _iComp, "gs_profile_bmat", _bmat)
+                    n = REQUEST{3} ("Profile_component_info", profileID, _iComp, "gs_profile_outlinepen", _pen)
+    
+                    building_material _bmat
+                    SECT_ATTRS{2} _pen
+
+                    _surface = 1
+                    if bOverrideProfEndSurf then
+                        _surface = profEndSurf
+                    else
+                        n = REQUEST{3} ("Profile_component_info", profileID, _iComp, "gs_profile_surface", _surface)
+                    endif
+
+                    _surfIdx = 1
+
+                    for _i = _contStartPoints[_iComp] to _contEndPoints[_iComp] step 5
+                        ! mirror profile, TUBE profile orientation is reverse of profile editor
+                        if _profileGeometryRawData[_i + 4] = 4000 then                          ! arcs are 900 and 4000 status codes only
+                            _profileGeometryRawData[_i + 1] = -_profileGeometryRawData[_i + 1]  ! negate angle
+                        else
+                            _profileGeometryRawData[_i] = -_profileGeometryRawData[_i]          ! negate x
+                        endif
+
+                        if _profileGeometryRawData[_i + 4] # -1 then
+                            _stat = _profileGeometryRawData[_i + 4] + 2
+                        else
+                            _stat = -1
+                        endif
+
+                        put _profileGeometryRawData[_i], 
+                            _profileGeometryRawData[_i + 1], 
+                            _stat,
+                            _currSurfaces[_surfIdx] 
+                            
+                        _surfIdx = _surfIdx + 1
+                    next _i
+
+                    for _iPath = 1 to vardim1(_pathData)
+                        put _pathData[_iPath]
+                    next _iPath
+
+                    tube{2} _surface, _surface, _surface,
+                            (_contEndPoints[_iComp] - _contStartPoints[_iComp] + 1) / 5,
+                            vardim1(_pathData) / 4, 1 + 2 + 16 + 32 + 256 + 512 + 1024 + 2048,
+                            get(nsp)
+                endif
+
+            next _iComp
+        endif
+    endif
+
+return
+
+! ===============================================================================
+"cutHoles":
+! Cut hole(s) into the riser of the stair.
+! ------------------------------------------------------------------------------
+    
+    _tx_del = 0
+    mask = 1+2+4  ! https://www.selfgdl.de/3d-basic/schnittbefehle/cutpolya/#Mask-Werte
+    hole_hw = f_hole_width/2
+    hole_hh = f_hole_height/2
+
+    ! Let's rotate our main axis (and thus our working plane):
+    ! now positive 'Z' will point in the direction
+    ! of the walking line, downwards.
+    ! cutting bodies are basically in 2D on the current working plane
+    rotx 90 : _tx_del=_tx_del +1
+
+    riser_total_len = abs(STAIR_RISER_GEOMETRY[1][1] - STAIR_RISER_GEOMETRY[_vertexNum][1])
+    if b_hole_even_dist | i_hole_type = HOLE.tri | i_hole_type = HOLE.custom then
+        hole_dist = ((riser_total_len - i_hole_count*f_hole_width) / (i_hole_count + 1))
+
+        ! The starting point of the local coordinate system
+        !  is always at the top center of the current riser!
+        ! So better start from the left side; it's easier for the loop after
+        addx STAIR_RISER_GEOMETRY[_vertexNum][1] : _tx_del=_tx_del+1
+    else
+        hole_dist = f_hole_dist
+
+        ! if the dist is custom set the start accordingly; this calculates half of the whole width (forms + gaps)
+        ! the subtraction in the end should make it easier to use with the later addx'es
+        addx (-(i_hole_count*f_hole_width + (i_hole_count-1)*hole_dist)/2)-hole_dist : _tx_del=_tx_del+1
+    endif
+
+    ! dont use naive `-riser_total_len/2`, it will break on custom sized risers
+    ! gosub "localCoor3D"
+    ! also start from the riser height center : BEWARE because of 'rotx' this is now Y
+    addy -RISER_HEIGHT/2 : _tx_del=_tx_del+1
+
+
+    if i_hole_type = HOLE.round OR i_hole_type = HOLE.oval then
+
+        if i_hole_type = HOLE.oval then muly f_hole_height / f_hole_width
+
+        for h = 1 to i_hole_count
+            ! the reference point is the midpoint
+            addx h*hole_dist + ((h*2)-1) * hole_hw
+            addy f_hole_ofs_y  ! custom offset
+            cutpolya  2, 1, 0,
+                      0, 0, mask+900, ! center
+                      hole_hw, 360, mask+4000
+            del 2
+        next h
+        if i_hole_type = HOLE.oval then del 1
+    endif
+
+    if i_hole_type = HOLE.rect then
+        for h = 1 to i_hole_count
+            addx h*hole_dist + ((h*2)-1) * hole_hw
+            addy f_hole_ofs_y  ! custom offset
+            cutpolya  5, 1, 0,
+                      -hole_hw,  hole_hh, mask,
+                      -hole_hw, -hole_hh, mask,
+                       hole_hw, -hole_hh, mask,
+                       hole_hw,  hole_hh, mask,
+                       0, 0, mask+700
+            del 2
+        next h
+    endif
+
+    if i_hole_type = HOLE.diamond then
+        for h = 1 to i_hole_count
+            addx h*hole_dist + ((h*2)-1) * hole_hw
+            addy f_hole_ofs_y  ! custom offset
+            cutpolya  5, 1, 0,
+                      0,  hole_hh, mask,
+                      -hole_hw, 0, mask,
+                      0, -hole_hh, mask,
+                      hole_hw, 0, mask,
+                      0, 0, mask+700
+            del 2
+        next h
+    endif
+
+    if i_hole_type = HOLE.hex OR i_hole_type = HOLE.hexup then
+        nsp_at_begin = nsp
+        dim posx[], posy[]
+        n_vertices = 6
+        _angle = 360/n_vertices
+        for i = 0 to n_vertices-1
+            theta = _angle * i  ! get the current heading angle
+            posx[i+1] = hole_hw * cos(theta)
+            posy[i+1] = hole_hw * sin(theta)
+            put  posx[i+1], posy[i+1], mask
+        next i
+        put  0, 0, mask+700
+
+        nsp_used = nsp - nsp_at_begin  ! important; see comment below
+
+        hex_incircle = ((sqr(3)/2)*hole_hw) *2
+        if b_hole_edit_hex_incircle and i_hole_type = HOLE.hex then muly f_hole_hex_incircle / hex_incircle
+
+        for h = 1 to i_hole_count
+            addx h*hole_dist + ((h*2)-1) * hole_hw
+            addy f_hole_ofs_y  ! custom offset
+            if b_hole_edit_hex_incircle and i_hole_type = HOLE.hexup then mulx f_hole_hex_incircle / hex_incircle
+            if i_hole_type = HOLE.hexup then rotz 360/n_vertices/2
+
+            cutpolya  nsp_used/3, 1, 0,
+                      use(nsp_used)
+
+            if i_hole_type = HOLE.hexup then del 1
+            if b_hole_edit_hex_incircle and i_hole_type = HOLE.hexup then del 1
+            del 2
+        next h
+        ! you have to be very careful what you do with the stack
+        ! be sure to clear the things you have put on it
+        ! you just can't do `_delete = get(nsp)`, because variables can't hold multiple values
+        ! also you can't use `nsp` in general, since you must not assume the stack was empty to begin with
+        for k = 1 to nsp_used
+            __empty__ = get(1)  ! cleanses the stack from our values
+        next k
+        
+        if b_hole_edit_hex_incircle and i_hole_type = HOLE.hex then del 1
+    endif
+
+    if i_hole_type = HOLE.tri then
+
+        rad_circum = 2*f_hole_height/3
+        rad_incirc = f_hole_height/(3*sqr(3)) -0.002
+        ! no custom distance
+        hole_dist = riser_total_len / (i_hole_count+1)
+
+        nsp_at_begin = nsp
+        dim posx[], posy[]
+        n_vertices = 3
+        _angle = 360/n_vertices
+        for i = 0 to n_vertices-1
+            theta = _angle * i  ! get the current heading angle
+            posx[i+1] = rad_circum * cos(theta)
+            posy[i+1] = rad_circum * sin(theta)
+            put  posx[i+1], posy[i+1], mask
+        next i
+        put  0, 0, mask+700
+
+        nsp_used = nsp - nsp_at_begin
+
+        b_hole_tri_reverse = 1
+        for h = 1 to i_hole_count
+            addx h*hole_dist
+            if h MOD 2 then
+                addy -rad_incirc
+                rotz 90 * b_hole_tri_reverse
+            else 
+                addy rad_incirc
+                rotz -90 * b_hole_tri_reverse
+            endif
+            addy f_hole_ofs_y  ! custom offset
+            cutpolya  nsp_used/3, 1, 0,
+                      use(nsp_used)
+            del 4
+        next h
+
+        for k = 1 to nsp_used
+            __empty__ = get(1)  ! cleanses the stack from our values
+        next k
+    endif
+
+    if i_hole_type = HOLE.custom then
+        ! IF you have selected to cut with a profile
+        
+        n_components_cut = 0
+        dim _unused[], _prof_cut_GeometryRawData[]
+        dim _cutStartPoints[], _cutEndPoints[]
+
+        _n = REQUEST{2} ("Profile_components", prof_hole_cut, n_components_cut, _unused)
+        _n = REQUEST ("Profile_default_geometry", prof_hole_cut, _prof_cut_GeometryRawData)
+        _bb = REQUEST ("Profile_default_boundingbox", prof_hole_cut, _xmin_cut, _ymin_cut, _xmax_cut, _ymax_cut)
+        
+        hole_custom_width = abs(_xmin_cut-_xmax_cut)
+        hole_hw = hole_custom_width/2
+
+        if i_hole_count = 1 then
+            ! delete all transformations, so we end up at the walking line center again
+            del 2 : _tx_del=_tx_del-2
+        else
+            del 1 : _tx_del=_tx_del-1
+            if b_hole_even_dist then
+                hole_dist = ((riser_total_len - i_hole_count*hole_custom_width) / (i_hole_count + 1))
+            else
+                hole_dist = f_hole_dist
+            endif
+        endif
+
+        _cutStartPoints[1] = n_components_cut + 1
+
+        for _i = 2 to n_components_cut
+            _cutStartPoints[_i] = _cutStartPoints[_i - 1] + _prof_cut_GeometryRawData[_i - 1] * 5
+            _cutEndPoints[_i-1] = _cutStartPoints[_i] - 1
+        next _i
+
+        _cutEndPoints[n_components_cut] = vardim1(_prof_cut_GeometryRawData)
+    
+        for p = i to i_hole_count
+            if i_hole_count > 1 then addx p*hole_dist + ((p*2)-1) * hole_hw
+        
+            if _n then
+                for i_curr_comp = 1 to n_components_cut
+
+                    nsp_at_begin = nsp
+
+                    for m = _cutStartPoints[i_curr_comp] to _cutEndPoints[i_curr_comp] step 5
+                        put _prof_cut_GeometryRawData[m],       ! x coor
+                            _prof_cut_GeometryRawData[m + 1],   ! y coor
+                            mask
+                    next m
+
+                    nsp_used = nsp - nsp_at_begin
+
+
+                    ! use the profile to cut
+                    cutpolya (nsp_used/3), 1, 0,
+                             get(nsp_used)
+
+                next i_curr_comp
+            endif
+            if i_hole_count > 1 then del 1
+        next p
+        ! for i = 1 to i_hole_count
+        !     addX 0
+        ! next i
+    endif
+    
+
+    ! rather be explicit instead of NTR() just so we never have to fear
+    ! we ever deleted any transformations not under our ownership (= this sub)
+    del _tx_del !+ i_hole_count
+
+return
+
+! ===============================================================================
+"textureFitting":
+    ! Fit texture to first and last point riser point
+! ===============================================================================
+    ! --------------------------------------------------------------------------
+    ! Get the Simplified Riser Edge vector and Length
+    ! --------------------------------------------------------------------------
+    Point1x     = STAIR_RISER_GEOMETRY[1][1]
+    Point1y     = STAIR_RISER_GEOMETRY[1][2]
+    Point1z     = 0
+    Point2x     = STAIR_RISER_GEOMETRY[_vertexNum][1]
+    Point2y     = STAIR_RISER_GEOMETRY[_vertexNum][2]
+    Point2z     = 0
+
+    ! Calculate distance
+    Distance = Sqr((Point1x - Point2x)^2 + (Point1y - Point2y)^2 + (Point1z - Point2z)^2)
+
+    ! direction vector from Point2 to Point1
+    if Distance > EPS then
+        DirectionVx = (Point1x - Point2x)/Distance
+        DirectionVy = (Point1y - Point2y)/Distance
+        DirectionVz = (Point1z - Point2z)/Distance
+    else
+        DirectionVx = 0
+        DirectionVy = 0
+        DirectionVz = 0
+    endif
+    
+    ! --------------------------------------------------------------------------
+    ! Texture Fitting
+    ! --------------------------------------------------------------------------
+    add STAIR_RISER_GEOMETRY[_vertexNum][1], STAIR_RISER_GEOMETRY[_vertexNum][2], 0
+    coor{3} 2,
+            4,
+            0,              0,                  0,  ! origo
+            DirectionVx,    DirectionVy,        0,  ! x
+            -DirectionVy,   DirectionVx,        0,  ! y
+            0,              0,                  1   ! z
+    del 1
+    body 1
+return
+
+
+! ===============================================================================
+"localCoor3D":
+! Can be used to display the axis of the current
+! coordinate system. Useful if you're lost in 3D.
+! ===============================================================================
+
+    dict LOCOOR  ! local coordinate system
+    LOCOOR.size = 0.15
+    LOCOOR.sphere  = 0.005
+    LOCOOR.red = req("pen_of_rgb 1 0 0")
+    LOCOOR.green = req("pen_of_rgb 0 1 0")
+    LOCOOR.blue = req("pen_of_rgb 0 0 1")
+
+    sphere LOCOOR.sphere
+
+    pen LOCOOR.red   ! RED – X axis
+    lin_ 0, 0, 0, LOCOOR.size, 0, 0
+    pen LOCOOR.green  ! GREEN – Y axis
+    lin_ 0, 0, 0, 0, LOCOOR.size, 0
+    pen LOCOOR.blue   ! BLUE – Z axis
+    lin_ 0, 0, 0, 0, 0, LOCOOR.size
+return
+
+! ===============================================================================
+"riserDebug":
+! VISUAL DEBUGGING !
+! shows riser coors in 3D
+! ===============================================================================
+    _coordSize  = 0.1
+    _shapeSize  = 0.01
+    _smallThk   = 0.001
+    for _vert = 1 to vardim1(STAIR_RISER_GEOMETRY)
+        add STAIR_RISER_GEOMETRY[_vert][1], STAIR_RISER_GEOMETRY[_vert][2], 0
+        sphere _shapeSize
+
+        roty 90
+        cylind _coordSize/2, _smallThk
+
+        rotz 90
+        addz _coordSize/2 - _shapeSize
+        roty 90
+        if STAIR_RISER_GEOMETRY[_vert][3] < EPS then 
+            mulz -1
+        endif
+
+        elbow _coordSize/2 - _shapeSize, abs(STAIR_RISER_GEOMETRY[_vert][3]), _smallThk
+
+        if STAIR_RISER_GEOMETRY[_vert][3] < EPS then
+            del 1
+        endif
+        del 4
+
+        rotz STAIR_RISER_GEOMETRY[_vert][3]
+        roty 90
+        cylind _coordSize/2, _smallThk
+
+        addz _coordSize/2
+        cone _shapeSize * 2, _smallThk * 4, 0, 90, 90
+
+        del 4
+    next _vert
+return

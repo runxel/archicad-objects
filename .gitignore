@@ -1,7 +1,9 @@
 # .gitignore
 ideas/
 
-Objects/*/img/
+# no big binaries / proprietary image files in git
+Objects/*/img/*.psd
+Objects/*/img/*.ai
 
 # sublime text stuff
 *.sublime-project

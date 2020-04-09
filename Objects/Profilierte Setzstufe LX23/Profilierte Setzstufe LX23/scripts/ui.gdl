@@ -30,7 +30,7 @@ dict TLX, TLX_DE, TLX_EN
   TLX_DE.riserset.stretch = `Profilhöhe anpassen`
   TLX_EN.riserset.stretch = `Stretch profile to fit`
   TLX_DE.riserset.stretchtt = `Wenn aktiv wird die Höhe des Profils auf die entsprechende Setzstufenhöhe gestretcht.`
-  TLX_EN.riserset.stretchtt = `Wenn aktiv wird die Höhe des Profils auf die entsprechende Setzstufenhöhe gestretcht.`
+  TLX_EN.riserset.stretchtt = `When true the profile will be stretched to the riser height.`
   TLX_DE.riserset.refpt = `Referenzpunkt`
   TLX_EN.riserset.refpt = `reference point`
   TLX_DE.riserset.overtt1 = `Extrusionsoberfläche überschreiben`

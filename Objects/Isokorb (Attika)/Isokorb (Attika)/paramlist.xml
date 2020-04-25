@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Value>0.7</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Value>0.12</Value>
+		</Length>
+		<Boolean Name="b_default_insulation_thk">
+			<Description><![CDATA["Standard Schöck Dämmstärke (120mm)"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Stift Bewehrung"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="gs_line_type">
+			<Description><![CDATA["Linienart Bewehrung"]]></Description>
+			<Value>4</Value>
+		</LineType>
+
+		<!-- b_fill: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="b_fill">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<BuildingMaterial Name="bmat_fill">
+			<Description><![CDATA["Schraffur (BMat)"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>59</Value>
+		</BuildingMaterial>
+		<Boolean Name="b_fill_cont">
+			<Description><![CDATA["Schraffurkontur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<PenColor Name="pen_fill_cont">
+			<Description><![CDATA["Stift Schraffurkontur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="lt_fill_cont">
+			<Description><![CDATA["Linienart Schraffurkontur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<Length Name="rebarTopDist">
+			<Description><![CDATA["Abstand oben"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.45</Value>
+		</Length>
+		<Boolean Name="__debug">
+			<Description><![CDATA["Debug"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+	</Parameters>
+</ParamSection>

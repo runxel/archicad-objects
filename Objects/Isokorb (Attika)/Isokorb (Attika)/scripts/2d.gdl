@@ -1,0 +1,179 @@
+﻿! ––– 2D script ––– !
+
+uID = 1
+
+! hotspots for WIDTH, bottom
+hotspot2   0, 0, uID, A, 1+256 : uID=uID+1 !base
+hotspot2   A, 0, uID, A, 2+256 : uID=uID+1 !move
+hotspot2  -1, 0, uID, A, 3     : uID=uID+1 !ref
+! hotspots for WIDTH, top
+hotspot2   0, B, uID, A, 1+256 : uID=uID+1 !base
+hotspot2   A, B, uID, A, 2+256 : uID=uID+1 !move
+hotspot2  -1, B, uID, A, 3     : uID=uID+1 !ref
+
+! hotspots for HEIGHT, bottom
+hotspot2   0,  0, uID, B, 1+256 : uID=uID+1 !base
+hotspot2   0,  B, uID, B, 2+256 : uID=uID+1 !move
+hotspot2   0, -1, uID, B, 3     : uID=uID+1 !ref
+! hotspots for HEIGHT, top
+hotspot2   A,  0, uID, B, 1+256 : uID=uID+1 !base
+hotspot2   A,  B, uID, B, 2+256 : uID=uID+1 !move
+hotspot2   A, -1, uID, B, 3     : uID=uID+1 !ref
+
+! get the info for the fill from the bmat set
+n = request{2}("Building_Material_info", bmat_fill, "gs_bmat_cutFill_properties", fill_bmat, pen_bmat, pen_bmat_bg)
+
+fill       fill_bmat
+line_type  lt_fill_cont
+pen        pen_fill_cont
+! visible + contour
+status = 1+32
+! draw contour, draw fill, filltype=cut
+flags = 1*b_fill_cont + 2*b_fill + 32
+
+poly2_b  5, flags,
+         pen_bmat, pen_bmat_bg,
+         0, 0, status,
+         A, 0, status,
+         A, B, status,
+         0, B, status,
+         0, 0, 700+status
+
+hotline2   0, 0,  A, 0,  uID : uID=uID+1
+hotline2   A, 0,  A, B,  uID : uID=uID+1
+hotline2   A, B,  0, B,  uID : uID=uID+1
+hotline2   0, B,  0, 0,  uID : uID=uID+1
+
+
+! Reinforcement
+line_type   gs_line_type
+pen         gs_cont_pen
+
+dict rebar
+rebar.dist.A = 0.02
+rebar.dist.self = 0.015
+rebar.dist.top = rebarTopDist
+rebar.dist.tilt = 0.02 + B/3.2
+rebar.circle = B - (2*rebar.dist.A)
+
+rebar.width = A-2*rebar.dist.A
+rebar.height = rebar.dist.top + B + 0.4*rebar.circle
+
+add2  rebar.dist.A,  B + rebar.dist.top
+    hotspot2   0, 0, uID : uID=uID+1
+
+    hotspot2   rebar.width, -rebarTopDist, uID, rebarTopDist, 1+128 : uID=uID+1 !base
+    hotspot2   rebar.width, 0, uID, rebarTopDist, 2 : uID=uID+1 !move
+    hotspot2   rebar.width, -1, uID, rebarTopDist, 3 : uID=uID+1 !ref
+
+    hotline2   0, 0,  0, -rebar.height,  uID : uID=uID+1
+    hotline2   rebar.width, 0,  rebar.width, -rebar.height,  uID : uID=uID+1
+
+    ! caps
+    line2   0, 0,  rebar.dist.self, 0
+    line2   rebar.width, 0,  rebar.width-rebar.dist.self, 0
+    gosub "rebar"
+    add2  rebar.dist.self, 0
+        rebar.width = rebar.width - 2*rebar.dist.self
+        gosub "rebar"
+del 2
+
+
+! lets do some math
+! (essentially the problem of an inner tangent between two circles)
+! tangent goes through midpoint of line connecting the circle centers
+! make a circle from midpoint between midpoint of the two circles and one circle center
+! the intersection of this very circle with the given circle determines the tangent
+rebar.bendrad = 0.04 + rebar.circle/4
+dict _intersection1, _intersection2, _circleA, _circleM1, _M0, _circleM2, _circleB
+
+_circleA.center.x = rebar.dist.A + rebar.bendrad
+_circleA.center.y = B + rebar.dist.tilt
+_circleA.radius   = rebar.bendrad
+
+_circleB.center.x = A - rebar.dist.A - rebar.bendrad - rebar.dist.self
+_circleB.center.y = -rebar.dist.tilt
+_circleB.radius   = rebar.bendrad
+
+! midpoint between circle centers
+_M0.x = (_circleA.center.x + _circleB.center.x)*0.5
+_M0.y = (_circleA.center.y + _circleB.center.y)*0.5
+
+! one quarter
+_circleM1.center.x = _circleA.center.x*(1-0.25) + _circleB.center.x*0.25
+_circleM1.center.y = _circleA.center.y*(1-0.25) + _circleB.center.y*0.25
+! distance formula:  √(x2-x1)² + (y2-y1)²
+_circleM1.radius   = sqr((_circleM1.center.x - _circleA.center.x)^2 + (_circleM1.center.y - _circleA.center.y)^2)
+
+! three quarters
+_circleM2.center.x = _circleA.center.x*(1-0.75) + _circleB.center.x*0.75
+_circleM2.center.y = _circleA.center.y*(1-0.75) + _circleB.center.y*0.75
+_circleM2.radius   = _circleM1.radius
+
+
+! see http://gdl.graphisoft.com/tips-and-tricks/using-basicgeometry-macro#IFUNCTION10
+! using  BasicGeometry.INTERSECT_CIRCLE_CIRCLE_2D
+call "BasicGeometry" parameters iFunction = 10,
+                                  circleA = _circleA,
+                                  circleB = _circleM1,
+                     returned_parameters    _intersection1
+
+call "BasicGeometry" parameters iFunction = 10,
+                                  circleA = _circleB,
+                                  circleB = _circleM2,
+                     returned_parameters    _intersection2
+
+! { Visual debug
+if __debug then
+    line_type 1
+    circle2 _circleA.center.x, _circleA.center.y, _circleA.radius
+    circle2 _circleB.center.x, _circleB.center.y, _circleB.radius
+    circle2 _circleM1.center.x, _circleM1.center.y, _circleM1.radius
+    circle2 _circleM2.center.x, _circleM2.center.y, _circleM2.radius
+    hotspot2  _M0.x, _M0.y
+    hotspot2  _circleM1.center.x, _circleM1.center.y
+    hotspot2  _circleM2.center.x, _circleM2.center.y
+    line2  _circleA.center.x, _circleA.center.y, _circleB.center.x, _circleB.center.y
+
+    hotspot2 _intersection1.points[1].x, _intersection1.points[1].y
+    hotspot2 _intersection1.points[2].x, _intersection1.points[2].y
+    hotspot2 _intersection2.points[1].x, _intersection2.points[1].y
+    hotspot2 _intersection2.points[2].x, _intersection2.points[2].y
+endif
+! Visual debug end }
+
+! now put everything together
+put  rebar.dist.A, B+rebar.dist.tilt, 1,
+     rebar.dist.A, -1, 801,  ! tangent direction
+     min(_intersection1.points[1].x, _intersection1.points[2].x), min(_intersection1.points[1].y, _intersection1.points[2].y), 1001,
+     max(_intersection2.points[1].x, _intersection2.points[2].x), max(_intersection2.points[1].y, _intersection2.points[2].y), 1,
+     A - rebar.dist.A - rebar.dist.self, -rebar.dist.tilt, 1001
+
+gosub "rebarTilt"
+add2 rebar.dist.self, min(A/60 + B/60, 0.0055)
+    gosub "rebarTilt"
+del 1
+add2 A, 0
+mul2 -1, 1
+    gosub "rebarTilt"
+    add2 rebar.dist.self, min(A/60 + B/60, 0.0055)
+    gosub "rebarTilt"
+del 3
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
+
+"rebar":
+    poly2_b 4, 1,
+            1, 0,
+            0, 0, 1,
+            0, -rebar.height, 1,
+            rebar.width, -rebar.height, 1001,
+            rebar.width, 0, 1
+return
+
+"rebarTilt":
+    poly2_b nsp/3, 1,
+            1, 0,
+            use(nsp)
+return

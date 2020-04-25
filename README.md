@@ -96,6 +96,25 @@ DIN 824:
 
 <br>
 
+### [Isokorb (Attika)](Objects/Isokorb%20(Attika))
+
+<img align="right" width=180 src="Objects/Isokorb%20(Attika)/Isokorb%20(Attika)/images/Picture_0.png">
+
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
+![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-"BasicGeometry"_macro-ff7979?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
+
+(DE) Isokorb zur 2D Detaillierung von Attiken im Schnitt.  
+(EN) Isokorb for 2D detailing of parapet wall.  
+
+<br>
+
+DIN 824:  
+<img width=300 src="https://i.imgur.com/G5TzGH7.png">
+
+<br>
+
 ### [Polygon](Objects/Polygon)
 
 <img align="right" width=180 src="Objects/Polygon/Polygon/images/Picture_0.png">

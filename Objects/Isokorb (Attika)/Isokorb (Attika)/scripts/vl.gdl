@@ -1,0 +1,26 @@
+﻿! ––– PARAM script ––– !
+
+values  "A",  range [0.18, 0.7]
+values  "B",  range [0.1, 0.5]
+values "rebarTopDist", range [0.12, 2]
+
+! disallow the "evil" pens
+values "pen_fill_cont", range [1, 255]
+values "gs_cont_pen",   range [1, 255]
+
+if b_default_insulation_thk then
+    ! the standard insulation Thickness as sold by Schöck
+    B = 0.12
+    parameters B = B
+    lock "B"
+endif
+
+
+if not(b_fill) then
+    lock "bmat_fill"
+endif
+
+if not(b_fill_cont) then
+    lock "pen_fill_cont", "lt_fill_cont"
+endif
+

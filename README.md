@@ -110,11 +110,6 @@ DIN 824:
 
 <br>
 
-DIN 824:  
-<img width=300 src="https://i.imgur.com/G5TzGH7.png">
-
-<br>
-
 ### [Polygon](Objects/Polygon)
 
 <img align="right" width=180 src="Objects/Polygon/Polygon/images/Picture_0.png">

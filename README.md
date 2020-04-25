@@ -102,7 +102,7 @@ DIN 824:
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-"BasicGeometry"_macro-ff7979?style=flat-square)
+[![Dependencies](https://img.shields.io/badge/dependencies-"BasicGeometry"_macro-ff7979?style=flat-square)](http://gdl.graphisoft.com/tips-and-tricks/using-basicgeometry-macro)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
 (DE) Isokorb zur 2D Detaillierung von Attiken im Schnitt.  

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Length"]]></Description>
+			<Fix/>
+			<Value>0.9144</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Depth"]]></Description>
+			<Fix/>
+			<Value>0.1016</Value>
+		</Length>
+		<Boolean Name="doubleBreak">
+			<Description><![CDATA["Double Break Lines"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Length Name="yAmplitude">
+			<Description><![CDATA["Zigzag Height"]]></Description>
+			<Value>0.0762</Value>
+		</Length>
+		<RealNum Name="xyRatio">
+			<Description><![CDATA["Height to Width Ratio"]]></Description>
+			<Value>1.5</Value>
+		</RealNum>
+		<Length Name="xPeriod">
+			<Description><![CDATA["Zigzag Width"]]></Description>
+			<Value>0.1143</Value>
+		</Length>
+		<Length Name="xCenter1Pos">
+			<Description><![CDATA["Center Position"]]></Description>
+			<Value>0</Value>
+		</Length>
+		<Boolean Name="parallel">
+			<Description><![CDATA["Sides Parallel"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="xCorner2Pos">
+			<Description><![CDATA["(Right) Corner Offset"]]></Description>
+			<Value>0</Value>
+		</Length>
+		<Length Name="xCorner1Pos">
+			<Description><![CDATA["Left Corner Offset"]]></Description>
+			<Value>0</Value>
+		</Length>
+
+		<!-- gs_2D_representation: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_2D_representation">
+			<Description><![CDATA["2D Representation"]]></Description>
+		</Title>
+		<LineType Name="gs_line_type">
+			<Description><![CDATA["Line Type"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Line Pen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>117</Value>
+		</PenColor>
+
+		<!-- mask: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Boolean Name="mask">
+			<Description><![CDATA["Masking Fill"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<FillPattern Name="gs_fill_type">
+			<Description><![CDATA["Masking Fill Type"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Mask Forground Pen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Mask Background Pen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>-1</Value>
+		</PenColor>
+	</Parameters>
+</ParamSection>

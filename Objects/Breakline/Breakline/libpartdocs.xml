@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<libpartdocs>
+	<CommentSection>
+		<![CDATA[A break line following the American National CAD Standard
+  •includes a masking fill that can be turned on and off
+  •stretchable with editable hotspots
+  •includes double break line option
+  •can be offset-stretched for use diagonally on stairs]]>
+	</CommentSection>
+
+	<Copyright SectVersion="1" SectionFlags="0" SubIdent="0">
+		<Author>Ransom Ratcliff, Graphisoft</Author>
+		<License>
+			<Type>CC BY-ND</Type>
+			<Version>3.0</Version>
+		</License>
+	</Copyright>
+	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0">
+		<![CDATA[breakline, cutline, cut line, detailing, 2D, section, stair, symbol, NCS]]>
+	</Keywords>
+</libpartdocs>

@@ -1,0 +1,1 @@
+﻿VALUES "xCenter1Pos" RANGE [-A/2+xPeriod/2, A/2-xPeriod/2]VALUES "yAmplitude" RANGE [0, 2*B]PARAMETERS xPeriod = yAmplitude * xyRatioLOCK "xPeriod"IF mask THEN 	PARAMETERS gs_back_pen=-1ELSE 	PARAMETERS gs_fill_type=65, gs_back_pen=0ENDIFIF parallel THEN	PARAMETERS xCorner1Pos = xCorner2Pos	LOCK "xCorner1Pos"ENDIF

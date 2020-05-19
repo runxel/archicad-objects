@@ -1,0 +1,411 @@
+﻿! ––– UI script ––– !
+
+dict UI
+UI.dialog.width = 555
+UI.dialog.height = 245
+UI.gap.x = 15
+UI.gap.y = 15
+UI.rowheight = 24
+
+UI.in.height = 20
+UI.in.width = 130
+UI.in.bool.h = 22
+UI.in.bool.cell = 16
+UI.in.pen = 40
+UI.out.height = 16
+
+o_d = 4 ! height difference of oufields
+
+ui_dialog `Locator LX Settings`, UI.dialog.width, UI.dialog.height
+ui_current_page  gs_ui_current_page
+
+! ---------------------------------------------------------------------- !
+TABID_ROOT      = -1
+TABID_DISPLAY   = 1
+TABID_STYLE     = 2
+TABID_VIEW      = 3
+TABID_INFO      = 4
+
+if TABID_DISPLAY > 0 then
+    ui_page TABID_DISPLAY, TABID_ROOT, `Text Display`, "uiTab_ZoneCustomText_hl(1)"
+    gosub "Page_Display"
+endif
+
+if TABID_STYLE > 0 then
+    ui_page TABID_STYLE, TABID_ROOT, `Style`, "uiTab_2DRepr_hl(1)"
+    gosub "Page_Style"
+endif
+
+if TABID_VIEW > 0 then
+    ui_page TABID_VIEW, TABID_ROOT, `View Options`, "uiTab_Silhouettes_hl(1)"
+    gosub "Page_View"
+endif
+
+if TABID_INFO > 0 then
+    ui_page TABID_INFO, TABID_ROOT, `Info`, "ui_InfoIcon_hl(1)"
+    gosub "Page_Info"
+endif
+
+file_dependence "uiTab_ZoneCustomText_hl(1)"
+file_dependence "uiTab_2DRepr_hl(1)"
+file_dependence "uiTab_Silhouettes_hl(1)"
+file_dependence "ui_InfoIcon_hl(1)"
+
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
+
+
+! ---------------------------------------------------------------------- !
+"Page_Display":
+
+    ! ---------------------------------------------------------------------- !
+    UI.column.i = 4
+    UI.column.width = (UI.dialog.width - (UI.gap.x * UI.column.i))/ UI.column.i
+    dim _colstart[]
+    _colstart[1] = 0
+    for k = 2 to UI.column.i
+        p=k-1
+        _colstart[k] = UI.column.width*p + UI.gap.x*p
+    next k
+    UI.column.start = _colstart
+    ! ---------------------------------------------------------------------- !
+
+    ui_style  0, 0
+    UI.opt.greyout = 0
+    if not(b_custom_text) then
+        UI.opt.greyout = 4
+    endif
+
+    ui_outfield  `Prefix`, UI.column.start[2], UI.rowheight, UI.column.width, UI.out.height, 0+UI.opt.greyout
+    ui_outfield  `Suffix`, UI.column.start[4], UI.rowheight, UI.column.width, UI.out.height, 0+UI.opt.greyout
+
+    ! options
+    ui_infield{3}  "b_custom_text", UI.column.start[3], UI.rowheight-4, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Custom Prefix/Suffix`, 0,
+            2, `Custom Prefix/Suffix`, 1
+
+    ui_infield{3}  "b_show_locID", 0, UI.rowheight*2, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Show Identifier`, 0,
+            2, `Show Identifier`, 1
+
+    ui_infield{3}  "b_show_coor_z", 0, UI.rowheight*5, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Show Z coordinate`, 0,
+            2, `Show Z coordinate`, 1
+
+    ui_infield{3}  "b_base_coor_custom", 0, UI.rowheight*7, 24, UI.in.bool.h,
+            6, "", 2,
+            1, 24, 24, UI.in.bool.cell, UI.in.bool.cell,
+            "ui_lock_closed_hl(1)", `Custom {0,0}`, 0,
+            "ui_lock_open_hl(1)", `Custom {0,0}`, 1        ui_tooltip `Click to unlock/lock`
+
+    ui_outfield  `Custom {0,0}`, 24+5, UI.rowheight*7+o_d, UI.column.width-29, UI.out.height, 0
+
+    ! inputs
+    if b_show_locID then
+        ui_infield  "custom_pre_id", UI.column.start[2], UI.rowheight*2, UI.column.width, UI.in.height ui_tooltip `Custom Id prefix`
+        ui_infield  "locID_sel",     UI.column.start[3], UI.rowheight*2, UI.column.width, UI.in.height ui_tooltip `Identifier`
+        ui_infield  "custom_suf_id", UI.column.start[4], UI.rowheight*2, UI.column.width, UI.in.height ui_tooltip `Custom Id suffix`
+    endif
+
+    ui_infield  "custom_pre_x",  UI.column.start[2], UI.rowheight*3, UI.column.width, UI.in.height ui_tooltip `Prefix for X coor`
+    ui_infield  "posX",          UI.column.start[3], UI.rowheight*3, UI.column.width, UI.in.height ui_tooltip `X coor`
+    ui_infield  "custom_suf_x",  UI.column.start[4], UI.rowheight*3, UI.column.width, UI.in.height ui_tooltip `Suffix for X coor`
+
+    ui_infield  "custom_pre_y",  UI.column.start[2], UI.rowheight*4, UI.column.width, UI.in.height ui_tooltip `Prefix for Y coor`
+    ui_infield  "posY",          UI.column.start[3], UI.rowheight*4, UI.column.width, UI.in.height ui_tooltip `Y coor`
+    ui_infield  "custom_suf_y",  UI.column.start[4], UI.rowheight*4, UI.column.width, UI.in.height ui_tooltip `Suffix for Y coor`
+
+    if b_show_coor_z then
+        ui_infield  "custom_pre_z",  UI.column.start[2], UI.rowheight*5, UI.column.width, UI.in.height ui_tooltip `Prefix for Z coor`
+        ui_infield  "posZ",          UI.column.start[3], UI.rowheight*5, UI.column.width, UI.in.height ui_tooltip `Z coor`
+        ui_infield  "custom_suf_z",  UI.column.start[4], UI.rowheight*5, UI.column.width, UI.in.height ui_tooltip `Suffix for Z coor`
+    endif
+
+    ! -------------------- !
+    curr_sep_h = UI.rowheight*6+12
+    ui_separator  0, curr_sep_h,  UI.dialog.width, curr_sep_h
+
+    short_w = 16
+    short_d = short_w + 4
+
+    ui_outfield  `X`, UI.column.start[2], UI.rowheight*7+o_d, short_w, UI.out.height, 0
+    ui_infield  "base_coor_x",    UI.column.start[2]+short_d, UI.rowheight*7, UI.column.width-short_d, UI.in.height ui_tooltip `Archicad x=0 is...`
+
+    ui_outfield  `Y`, UI.column.start[3], UI.rowheight*7+o_d, short_w, UI.out.height, 0
+    ui_infield  "base_coor_y",    UI.column.start[3]+short_d, UI.rowheight*7, UI.column.width-short_d, UI.in.height ui_tooltip `Archicad y=0 is...`
+
+    if b_show_coor_z then
+        ui_outfield  `Z`, UI.column.start[4], UI.rowheight*7+o_d, short_w, UI.out.height, 0
+        ui_infield  "n_height_ref",   UI.column.start[4]+short_d, UI.rowheight*7, UI.column.width-short_d, UI.in.height ui_tooltip `Reference Level`
+    endif
+
+    ! -------------------- !
+    curr_sep_h = UI.rowheight*8+12
+    ui_separator  0, curr_sep_h,  UI.dialog.width, curr_sep_h
+
+    ui_outfield  `Decimals to display`, 0, UI.rowheight*9+o_d, UI.column.width, UI.out.height, 0
+    ui_infield   "i_decimals",  UI.column.start[2], UI.rowheight*9, UI.column.width/3, UI.in.height ui_tooltip `The number of decimal places to display`
+
+    ui_outfield  `Decimal delimiter`, UI.column.start[3], UI.rowheight*9+o_d, UI.column.width, UI.out.height, 0
+    ui_infield   "str_delimiter",     UI.column.start[4], UI.rowheight*9, UI.column.width/3, UI.in.height ui_tooltip `The delimiter of a number: Dot or Comma`
+
+return
+
+
+! ---------------------------------------------------------------------- !
+"Page_Style":
+
+    UI.column.i = 3
+    UI.column.width = (UI.dialog.width - (UI.gap.x * UI.column.i))/ UI.column.i
+    dim _colstart[]
+    _colstart[1] = 50
+    for k = 2 to UI.column.i
+        p=k-1
+        _colstart[k] = UI.column.width*p + UI.gap.x*p
+    next k
+    UI.column.start = _colstart
+    ! ---------------------------------------------------------------------- !
+
+    ! ui pictures
+    ui_pict "ui_font_style_hl(1)", 0, UI.rowheight+2,   24,  17, 1
+    ui_pict "ui_FontSize_hl(1)",   0, UI.rowheight*2+3, 27,  14, 1
+    ui_pict "ui_text_pen_hl(1)",   0, UI.rowheight*5+2, 24,  17, 1
+    ui_pict "ui_surface_hl(1)",    0, UI.rowheight*7+15,12,  17, 1
+    
+    ui_style  0, 1
+    ui_outfield `Coordinates`, UI.column.start[2], o_d, UI.column.width, UI.out.height
+    ui_outfield `Identifier`,  UI.column.start[3]+35, o_d, UI.column.width, UI.out.height
+
+    ui_outfield  `Font`,     UI.column.start[1], UI.rowheight+o_d, UI.column.width-UI.column.start[1], UI.out.height
+    ui_style  0, 0
+    ui_infield   "fontCoor", UI.column.start[2], UI.rowheight, UI.in.width, UI.in.height   ui_tooltip `Font of the coordinates`
+    ui_infield{3}  "b_link_font", UI.column.start[3]-20, UI.rowheight, 24, UI.in.bool.h,
+            6, "", 2,
+            1, 24, 24, UI.in.bool.cell, UI.in.bool.cell,
+            "ui_lock_open_hl(1)", "", 0,
+            "ui_lock_closed_hl(1)",   "", 1        ui_tooltip `Link/unlink fonts`
+    ui_infield "fontId",   UI.column.start[3]+35, UI.rowheight, UI.in.width, UI.in.height   ui_tooltip `Font of the Identifier`
+
+    ui_style  0, 1
+    ui_outfield `Font size`,       UI.column.start[1], UI.rowheight*2+o_d, UI.column.width/2, UI.out.height
+    ui_style  0, 0
+    ui_infield  "font_size_coor", UI.column.start[2],    UI.rowheight*2,     UI.column.width/3, UI.in.height
+    ui_infield{3}  "b_link_size", UI.column.start[3]-20, UI.rowheight*2, 24, UI.in.bool.h,
+            6, "", 2,
+            1, 24, 24, UI.in.bool.cell, UI.in.bool.cell,
+            "ui_lock_open_hl(1)", "", 0,
+            "ui_lock_closed_hl(1)",   "", 1        ui_tooltip `Link/unlink font sizes`
+    ui_infield  "font_size_id",    UI.column.start[3]+35, UI.rowheight*2,     UI.column.width/3, UI.in.height
+
+    ui_outfield `X coor`, UI.column.start[1]+20,  UI.rowheight*3+o_d, 50, UI.out.height
+    ui_outfield `Y coor`, UI.column.start[1]+120, UI.rowheight*3+o_d, 50, UI.out.height
+    ui_outfield `Z coor`, UI.column.start[1]+220, UI.rowheight*3+o_d, 50, UI.out.height
+
+    ! font options
+    opt_dist = 25
+    dist = 100
+    ui_infield{3} "fontopt_bold_coor_x", UI.column.start[1], UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_bold_hl(1)", "", 0,
+            "ui_bold_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_italic_coor_x", UI.column.start[1]+opt_dist, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_italic_hl(1)", "", 0,
+            "ui_italic_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_underline_coor_x", UI.column.start[1]+opt_dist*2, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_underline_hl(1)", "", 0,
+            "ui_underline_hl(1)", "", 1
+
+    ui_infield{3} "fontopt_bold_coor_y", UI.column.start[1]+dist, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_bold_hl(1)", "", 0,
+            "ui_bold_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_italic_coor_y", UI.column.start[1]+dist+opt_dist, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_italic_hl(1)", "", 0,
+            "ui_italic_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_underline_coor_y", UI.column.start[1]+dist+opt_dist*2, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_underline_hl(1)", "", 0,
+            "ui_underline_hl(1)", "", 1
+
+    ui_infield{3} "fontopt_bold_coor_z", UI.column.start[1]+dist*2, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_bold_hl(1)", "", 0,
+            "ui_bold_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_italic_coor_z", UI.column.start[1]+dist*2+opt_dist, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_italic_hl(1)", "", 0,
+            "ui_italic_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_underline_coor_z", UI.column.start[1]+dist*2+opt_dist*2, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_underline_hl(1)", "", 0,
+            "ui_underline_hl(1)", "", 1
+
+    ! font options for the Identifier
+    ui_infield{3} "fontopt_bold_id", UI.column.start[3]+20+35, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_bold_hl(1)", "", 0,
+            "ui_bold_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_italic_id", UI.column.start[3]+20+opt_dist+35, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_italic_hl(1)", "", 0,
+            "ui_italic_hl(1)", "", 1
+    
+    ui_infield{3} "fontopt_underline_id", UI.column.start[3]+20+opt_dist*2+35, UI.rowheight*4, 24, 24,
+            6, "", 2,
+            1, 16, 16, 16, 16,
+            "ui_underline_hl(1)", "", 0,
+            "ui_underline_hl(1)", "", 1
+    
+    
+    ui_infield  "pen_text_coor_x", UI.column.start[1]+18,  UI.rowheight*5, UI.in.pen, UI.in.height
+    ui_infield  "pen_text_coor_y", UI.column.start[1]+117, UI.rowheight*5, UI.in.pen, UI.in.height
+    ui_infield  "pen_text_coor_z", UI.column.start[1]+216, UI.rowheight*5, UI.in.pen, UI.in.height
+    ui_infield{3}  "b_link_pen",  UI.column.start[3]-20,  UI.rowheight*5, 24, UI.in.bool.h,
+            6, "", 2,
+            1, 24, 24, UI.in.bool.cell, UI.in.bool.cell,
+            "ui_lock_open_hl(1)", "", 0,
+            "ui_lock_closed_hl(1)",   "", 1        ui_tooltip `Link/unlink pens`
+    ui_infield  "pen_text_id",     UI.column.start[3]+37+35,  UI.rowheight*5, UI.in.pen, UI.in.height
+
+
+    ! -------------------- !
+    curr_sep_h = UI.rowheight*6+12
+    ui_separator  0, curr_sep_h,  UI.dialog.width, curr_sep_h
+
+    ui_style  0, 1
+    ui_outfield `Symbol pen 2D`,  UI.column.start[1], UI.rowheight*7+o_d, UI.column.width/2, UI.out.height
+    ui_infield  "pen_symbol2d",     UI.column.start[2], UI.rowheight*7,     UI.in.pen, UI.in.height
+
+    ui_outfield `Symbol pen 3D`,  UI.column.start[1], UI.rowheight*8+o_d, UI.column.width/2, UI.out.height
+    ui_infield  "pen_symbol3d",     UI.column.start[2], UI.rowheight*8,     UI.in.pen, UI.in.height
+    
+return
+
+
+! ---------------------------------------------------------------------- !
+"Page_View":
+
+    ! ---------------------------------------------------------------------- !
+    UI.column.i = 2
+    UI.column.width = (UI.dialog.width - (UI.gap.x * UI.column.i))/ UI.column.i
+    dim _colstart[]
+    _colstart[1] = 0
+    for k = 2 to UI.column.i
+        p=k-1
+        _colstart[k] = UI.column.width*p + UI.gap.x*p
+    next k
+    UI.column.start = _colstart
+    ! ---------------------------------------------------------------------- !
+    UI.opt.greyout = 0
+    if not(b_display3d) then
+        UI.opt.greyout = 4
+    endif
+    ui_inset = 50
+
+    ui_style  0, 1
+
+    ui_infield{3}  "b_disregard_viewrot", 0, UI.rowheight, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Disregard the rotation of the viewport`, 0,
+            2, `Disregard the rotation of the viewport`, 1
+
+    ui_infield{3}  "b_display3d", 0, UI.rowheight*2, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Show the Locator in 3D`, 0,
+            2, `Show the Locator in 3D`, 1
+
+    ui_style  0, 0
+
+    ui_infield{3}  "b_show_text3d", ui_inset, UI.rowheight*3, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Show the text in 3D`, 0,
+            2, `Show the text in 3D`, 1
+
+    ui_infield{3}  "b_show_lines3d", ui_inset, UI.rowheight*4, UI.column.width, UI.in.bool.h,
+            7, "", 2,
+            1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+            1, `Show the Locator lines in 3D`, 0,
+            2, `Show the Locator lines in 3D`, 1
+
+    ui_outfield  `3D symbol type`, ui_inset, UI.rowheight*5+o_d, 120, UI.out.height, 0+UI.opt.greyout
+    ui_infield  "type_symbol_3d",  ui_inset+120+5, UI.rowheight*5, 120, UI.in.height
+
+    if type_symbol_3d = 1 then
+        ! sphere
+        ui_outfield  `Diameter (3D)`, ui_inset, UI.rowheight*6+o_d, 120, UI.out.height, 0+UI.opt.greyout
+        ui_infield  "symb3d_sphere_diam",  ui_inset+120+5, UI.rowheight*6, 120, UI.in.height
+    else
+        ! cone
+        ui_infield{3}  "b_symb3d_cone_reverse", ui_inset, UI.rowheight*6, UI.column.width, UI.in.bool.h,
+                7, "", 2,
+                1, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell, UI.in.bool.cell,
+                1, `Reverse cone`, 0,
+                2, `Reverse cone`, 1  ui_tooltip `Determine if the cone will point downwards or upwards`
+
+    endif
+
+return
+
+
+! ---------------------------------------------------------------------- !
+"Page_Info":
+
+    ! center alignment
+    txt_a = 2
+    center = UI.dialog.width / 2
+    out_w = UI.dialog.width - 300
+    start_ = center - (out_w/2)
+    bt_w = 160  ! button width
+    box_x = 100
+    box_h = UI.rowheight*6
+
+    ui_style  0, 0
+
+    str_info = "»" + OBJ.NAME + "«" + ` by ` + OBJ.AUTHOR
+    str_ver = "Version " + OBJ.VERSION
+    str_uptodate = `Object up-to-date?`
+    str_button = `Runxels's Archicad Library`
+
+    ui_outfield  str_info,     start_, UI.rowheight+o_d,      out_w, UI.out.height, txt_a
+    ui_outfield  str_ver,      start_, UI.rowheight*2+o_d,    out_w, UI.out.height, txt_a
+
+    ui_style  0, 2
+    ui_outfield  str_uptodate, start_, UI.rowheight*3.5+o_d,  out_w, UI.out.height, txt_a
+
+    ui_style  0, 0
+    ui_button  ui_link, str_button, center-(bt_w/2), UI.rowheight*4.5,  bt_w, 22, 0, OBJ.WEB
+
+    ui_separator  box_x, UI.rowheight-5,  UI.dialog.width-box_x, box_h
+
+return

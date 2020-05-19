@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_UIDefault/>
+			<STBit_UIUseHierarchicalPages/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0.5</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0.5</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsin3D">
+			<Description><![CDATA["Show Hotspots from 2d in 3D"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+
+		<!-- __title_textcontent: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__title_textcontent">
+			<Description><![CDATA["Text"]]></Description>
+		</Title>
+		<Boolean Name="b_show_locID">
+			<Description><![CDATA["Show Identifier"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<String Name="locID_sel">
+			<Description><![CDATA["Identifier"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value><![CDATA["Archicad ID"]]></Value>
+		</String>
+		<String Name="locID">
+			<Description><![CDATA["Identifier [used]"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_BoldName/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<Boolean Name="b_show_coor_z">
+			<Description><![CDATA["Show Z coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_custom_text">
+			<Description><![CDATA["Custom Prefix/Suffix"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<String Name="custom_pre_id">
+			<Description><![CDATA["Prefix ID"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="custom_pre_x">
+			<Description><![CDATA["Prefix X"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["X="]]></Value>
+		</String>
+		<String Name="custom_pre_y">
+			<Description><![CDATA["Prefix Y"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Y="]]></Value>
+		</String>
+		<String Name="custom_pre_z">
+			<Description><![CDATA["Prefix Z"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Z="]]></Value>
+		</String>
+		<String Name="custom_suf_id">
+			<Description><![CDATA["Suffix ID"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="custom_suf_x">
+			<Description><![CDATA["Suffix X"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="custom_suf_y">
+			<Description><![CDATA["Suffix Y"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="custom_suf_z">
+			<Description><![CDATA["Suffix Z"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="str_delimiter">
+			<Description><![CDATA["Decimal delimiter"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[","]]></Value>
+		</String>
+
+		<!-- __title_display: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__title_display">
+			<Description><![CDATA["Display"]]></Description>
+		</Title>
+		<Boolean Name="b_disregard_viewrot">
+			<Description><![CDATA["Disregard the rotation of the current view"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<PenColor Name="pen_symbol2d">
+			<Description><![CDATA["Symbol pen 2D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_symbol3d">
+			<Description><![CDATA["Symbol pen 3D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_text_id">
+			<Description><![CDATA["Pen of Identifier"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_text_coor_x">
+			<Description><![CDATA["Pen of X coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_text_coor_y">
+			<Description><![CDATA["Pen of Y coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_text_coor_z">
+			<Description><![CDATA["Pen of Z coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<Integer Name="i_decimals">
+			<Description><![CDATA["Decimal places"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2</Value>
+		</Integer>
+		<Boolean Name="b_display3d">
+			<Description><![CDATA["Show in 3D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_show_lines3d">
+			<Description><![CDATA["Show Lines in 3D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_show_text3d">
+			<Description><![CDATA["Show Text in 3D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Integer Name="type_symbol_3d">
+			<Description><![CDATA["Type 3D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Length Name="symb3d_sphere_diam">
+			<Description><![CDATA["Sphere diameter 3D"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.05</Value>
+		</Length>
+		<Boolean Name="b_symb3d_cone_reverse">
+			<Description><![CDATA["Reverse Cone"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+
+		<!-- __title_font: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__title_font">
+			<Description><![CDATA["Font"]]></Description>
+		</Title>
+		<String Name="fontId">
+			<Description><![CDATA["Font of Identifier"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Arial"]]></Value>
+		</String>
+		<String Name="fontCoor">
+			<Description><![CDATA["Font of Coordinates"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Arial"]]></Value>
+		</String>
+		<Length Name="font_size_id">
+			<Description><![CDATA["Font size for Identifier (mm)"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1.5</Value>
+		</Length>
+		<Length Name="font_size_coor">
+			<Description><![CDATA["Font size for coordinates (mm)"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1.5</Value>
+		</Length>
+		<Boolean Name="fontopt_bold_id">
+			<Description><![CDATA["ID Bold"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_italic_id">
+			<Description><![CDATA["ID Italic"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_underline_id">
+			<Description><![CDATA["ID Underlined"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_bold_coor_x">
+			<Description><![CDATA["X Coor Bold"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_italic_coor_x">
+			<Description><![CDATA["X Coor Italic"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_underline_coor_x">
+			<Description><![CDATA["X Coor Underlined"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_bold_coor_y">
+			<Description><![CDATA["Y Coor Bold"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_italic_coor_y">
+			<Description><![CDATA["Y Coor Italic"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_underline_coor_y">
+			<Description><![CDATA["Y Coor Underlined"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_bold_coor_z">
+			<Description><![CDATA["Z Coor Bold"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_italic_coor_z">
+			<Description><![CDATA["Z Coor Italic"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="fontopt_underline_coor_z">
+			<Description><![CDATA["Z Coor Underlined"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_link_font">
+			<Description><![CDATA["Link fonts"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_link_size">
+			<Description><![CDATA["Link sizes"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_link_pen">
+			<Description><![CDATA["Link pens"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+
+		<!-- __title_base_coor: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__title_base_coor">
+			<Description><![CDATA["Base Coordinates"]]></Description>
+		</Title>
+		<Boolean Name="b_base_coor_custom">
+			<Description><![CDATA["Custom Coordinates for {0,0}"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<RealNum Name="base_coor_x">
+			<Description><![CDATA["Coor value for X"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<RealNum Name="base_coor_y">
+			<Description><![CDATA["Coor value for Y"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<Integer Name="n_height_ref">
+			<Description><![CDATA["Reference Height"]]></Description>
+			<Value>1</Value>
+		</Integer>
+		<Length Name="posX">
+			<Description><![CDATA["X Coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="posY">
+			<Description><![CDATA["Y Coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="posZ">
+			<Description><![CDATA["Z Coordinate"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Separator Name="__div__">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+		</Separator>
+		<Integer Name="uID">
+			<Description><![CDATA["Unique Hotspot ID"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="gs_ui_current_page">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Length Name="x_coor_text">
+			<Description><![CDATA["X Coordinate of text"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.125</Value>
+		</Length>
+		<Length Name="y_coor_text">
+			<Description><![CDATA["Y Coordinate of text"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.125</Value>
+		</Length>
+	</Parameters>
+</ParamSection>

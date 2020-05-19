@@ -1,0 +1,158 @@
+﻿! ––– 2D script ––– !
+
+
+PAPER_TO_MODEL = GLOB_SCALE / 1000
+
+rr = request ("View_Rotangle", "", ang_view_rotation)
+
+rs = request("Height_of_style", "txt_style_coor_x_l", text_height)
+text_height = text_height * PAPER_TO_MODEL  ! only used for 'add2'
+
+
+if rr and b_disregard_viewrot then
+    rot2  -ang_view_rotation
+endif
+
+! 2D symbol // we can define more possibilities later
+gosub "Symb_Base"
+
+! text
+gosub "Text2D"
+
+del ntr()
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
+
+
+! ---------------------------------------------------------------------- !
+"Symb_Base":
+    pen    pen_symbol2d
+    line2  -A/2, 0,   A/2, 0
+    line2  0, -B/2,   0, B/2
+    hotspot2  0, 0, uID : uID=uID+1
+    circle2  0, 0, 0.05
+return
+
+
+! ---------------------------------------------------------------------- !
+"Text2D":
+    
+    tr_total = 0
+    tr_y = 0
+    pen   pen_text_general
+    
+    !! let the text be movable
+    ! horizontal
+    hotspot2   0, y_coor_text,           uID, x_coor_text, 1+128  : uID=uID+1 !base
+    hotspot2   x_coor_text, y_coor_text, uID, x_coor_text, 2      : uID=uID+1 !move
+    hotspot2   -1, y_coor_text,          uID, x_coor_text, 3      : uID=uID+1 !ref
+    ! vertical
+    hotspot2  x_coor_text, 0,            uID, y_coor_text, 1+128  : uID=uID+1 !base
+    hotspot2  x_coor_text, y_coor_text,  uID, y_coor_text, 2      : uID=uID+1 !move
+    hotspot2  x_coor_text, -1,           uID, y_coor_text, 3      : uID=uID+1 !ref
+
+    add2  x_coor_text, y_coor_text
+    tr_total=tr_total+1
+
+    ! alignment process
+    str_zz = str(zz, i_decimals+1, i_decimals)
+    str_yy = str(yy, i_decimals+1, i_decimals)
+    str_xx = str(xx, i_decimals+1, i_decimals)
+
+    ! split strings
+    pos_sep_zz = strstr(str_zz, str_delimiter)
+    str_left_zz = strsub(str_zz, 0, pos_sep_zz-1)
+    str_right_zz = strsub(str_zz, pos_sep_zz, strlen(str_zz))
+
+    pos_sep_yy = strstr(str_yy, str_delimiter)
+    str_left_yy = strsub(str_yy, 0, pos_sep_yy-1)
+    str_right_yy = strsub(str_yy, pos_sep_yy, strlen(str_yy))
+
+    pos_sep_xx = strstr(str_xx, str_delimiter)
+    str_left_xx = strsub(str_xx, 0, pos_sep_xx-1)
+    str_right_xx = strsub(str_xx, pos_sep_xx, strlen(str_xx))
+
+    ! mitigate issue of no delimiter
+    if i_decimals < 1 then
+        str_left_zz = str_zz
+        str_right_zz = ""
+
+        str_left_yy = str_yy
+        str_right_yy = ""
+
+        str_left_xx = str_xx
+        str_right_xx = ""
+    endif
+    
+    ! calculate widths:
+    ! 'stw()' uses current style 
+      style "txt_style_coor_z_l"
+      len_intpart_zz = stw(str_left_zz)
+      len_pre_zz = stw(custom_pre_z)
+
+      style "txt_style_coor_y_l"
+      len_intpart_yy = stw(str_left_yy)
+      len_pre_yy = stw(custom_pre_y)
+
+      style "txt_style_coor_x_l"
+      len_intpart_xx = stw(str_left_xx)
+      len_pre_xx = stw(custom_pre_x)
+    
+
+    _gap = 1
+
+    if b_show_coor_z then
+        pre_max = max(len_pre_zz, len_pre_yy, len_pre_xx)
+        max_len = max(len_intpart_zz, len_intpart_yy, len_intpart_xx)
+        indent = (pre_max + _gap + max_len) * PAPER_TO_MODEL
+    else
+        pre_max = max(len_pre_yy, len_pre_xx)
+        max_len = max(len_intpart_yy, len_intpart_xx) 
+        indent = (pre_max + _gap + max_len) * PAPER_TO_MODEL
+    endif
+
+
+    if b_show_coor_z then
+        ! Z coor
+        pen    pen_text_coor_z
+        style "txt_style_coor_z_l"
+        text2  0, 0, custom_pre_z
+        style "txt_style_coor_z_r"
+        text2  indent, 0, str_left_zz
+        style "txt_style_coor_z_l"
+        text2  indent, 0, str_right_zz + custom_suf_z
+
+        add2 0, text_height
+        tr_y=tr_y+1
+    endif
+
+    ! Y coor
+    pen    pen_text_coor_y
+    style "txt_style_coor_y_l"
+    text2  0, 0, custom_pre_y
+    style "txt_style_coor_y_r"
+    text2  indent, 0, str_left_yy
+    style "txt_style_coor_y_l"
+    text2  indent, 0, str_right_yy + custom_suf_y
+
+    add2 0, text_height
+    tr_y=tr_y+1
+
+    ! X coor
+    pen    pen_text_coor_x
+    style "txt_style_coor_x_l"
+    text2  0, 0, custom_pre_x
+    style "txt_style_coor_x_r"
+    text2  indent, 0, str_left_xx
+    style "txt_style_coor_x_l"
+    text2  indent, 0, str_right_xx + custom_suf_x
+
+    if b_show_locID then
+        add2  0, text_height
+        tr_y=tr_y+1
+        pen   pen_text_id
+        style "txt_style_id"
+        text2 0, 0, custom_pre_id + locID + custom_suf_id
+    endif
+return

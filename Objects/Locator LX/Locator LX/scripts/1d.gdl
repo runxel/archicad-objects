@@ -1,0 +1,59 @@
+﻿! ––– MASTER script ––– !
+! Inspired by the work of Roberto Corona and Natalie McEvoy.
+! TODO:
+!  - marker line, when text is far away from marker
+!  - 3d Text (XY plane | upright)
+!  - more 2d styles
+!  - frame w/ bg-fill in 2d for text w/ id as opt. headline
+!  - opt. link 2d and 3d symbol pen
+! ---------------------------------------------------------------------- !
+dict OBJ
+  OBJ.NAME    = "Locator LX"
+  OBJ.AUTHOR  = "Lucas Becker"
+  OBJ.VERSION = "1.0"
+  OBJ.DATE    = "2020-05-19"
+  OBJ.WEB     = "https://github.com/runxel/ArchiCAD-Objects"
+! ---------------------------------------------------------------------- !
+
+r = request("REFERENCE_LEVEL_DATA", "", level_name1, elev1, level_name2, elev2, level_name3, elev3, level_name4, elev4)
+
+dim ref_level_names[4], ref_level_values[4], ref_level_i[4]
+
+ref_level_names[1] = level_name1   : ref_level_values[1] = elev1   : ref_level_i[1] = 1
+ref_level_names[2] = level_name2   : ref_level_values[2] = elev2   : ref_level_i[2] = 2
+ref_level_names[3] = level_name3   : ref_level_values[3] = elev3   : ref_level_i[3] = 3
+ref_level_names[4] = level_name4   : ref_level_values[4] = elev4   : ref_level_i[4] = 4
+
+if not(b_base_coor_custom) then
+    ! overwrite values
+    base_coor_x = 0
+    base_coor_y = 0
+endif
+
+reference_height = ref_level_values[n_height_ref]
+
+xx = SYMB_POS_X + GLOB_WORLD_ORIGO_OFFSET_X + base_coor_x
+yy = SYMB_POS_Y + GLOB_WORLD_ORIGO_OFFSET_Y + base_coor_y
+zz = SYMB_POS_Z + reference_height
+
+parameters  posX = xx,
+            posY = yy,
+            posZ = zz
+
+
+! --- Font styles ------------------------------------------------------------ !
+stlye_x = 1*fontopt_bold_coor_x + 2*fontopt_italic_coor_x + 4*fontopt_underline_coor_x
+define style "txt_style_coor_x_l"   fontCoor, font_size_coor, 7, stlye_x
+define style "txt_style_coor_x_r"   fontCoor, font_size_coor, 9, stlye_x
+
+stlye_y = 1*fontopt_bold_coor_y + 2*fontopt_italic_coor_y + 4*fontopt_underline_coor_y
+define style "txt_style_coor_y_l"   fontCoor, font_size_coor, 7, stlye_y
+define style "txt_style_coor_y_r"   fontCoor, font_size_coor, 9, stlye_y
+
+stlye_z = 1*fontopt_bold_coor_z + 2*fontopt_italic_coor_z + 4*fontopt_underline_coor_z
+define style "txt_style_coor_z_l"   fontCoor, font_size_coor, 7, stlye_z
+define style "txt_style_coor_z_r"   fontCoor, font_size_coor, 9, stlye_z
+
+stlye_id = 1*fontopt_bold_coor_id + 2*fontopt_italic_coor_id + 4*fontopt_underline_coor_id
+define style "txt_style_id"         fontId,   font_size_id,   7, stlye_id
+

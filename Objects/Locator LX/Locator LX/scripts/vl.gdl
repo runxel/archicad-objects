@@ -1,0 +1,145 @@
+﻿! ––– PARAM script ––– !
+
+values  "gs_ui_current_page"  1, 2, 3, 4
+
+dim fontNames[]
+n = request("FONTNAMES_LIST", "", fontNames)
+values  "fontId"   fontNames, custom
+values  "fontCoor" fontNames, custom
+
+! Identifier text
+values  "locID_sel"  "Archicad ID", custom
+if locID_sel = "Archicad ID" then
+    locID = GLOB_ID
+    parameters  locID = locID
+else
+    locID = locID_sel
+    parameters  locID = locID
+endif
+
+if not(b_show_locID) then
+	lock "locID_sel"
+endif
+
+
+values  "A", range [0.1,]
+values  "B", range [0.1,]
+values  "i_decimals", range [0,9]
+values  "font_size_coor", range [0.2,]
+values  "font_size_id",   range [0.2,]
+
+values  "pen_symbol2d",    range [1,255]
+values  "pen_symbol3d",    range [1,255]
+values  "pen_text_id",     range [1,255]
+values  "pen_text_coor_x", range [1,255]
+values  "pen_text_coor_z", range [1,255]
+values  "pen_text_coor_y", range [1,255]
+
+values  "str_delimiter"  ",", "."
+
+
+lock  "posX", "posY", "posZ"
+
+values "custom_pre_x"  "X=", custom
+values "custom_pre_y"  "Y=", custom
+values "custom_pre_z"  "Z=", custom
+
+if not(b_custom_text) then
+    lock  "custom_pre_id", "custom_pre_x", "custom_pre_y", "custom_pre_z",
+          "custom_suf_id", "custom_suf_x", "custom_suf_y", "custom_suf_z"
+endif
+
+
+if not(b_base_coor_custom) then
+    ! we don't write zero values back into the parameter, because we want the user
+    ! to have these data to persist
+    lock  "base_coor_x", "base_coor_y"
+endif
+
+
+values{2} "n_height_ref",   ref_level_i, ref_level_names
+
+values{2} "type_symbol_3d",  1, "Sphere",
+                             2, "Cone"
+
+if type_symbol_3d = 1 then
+    hideparameter "b_symb3d_cone_reverse"
+else
+    hideparameter "symb3d_sphere_diam"
+endif
+
+
+if not(b_display3d) then
+    lock  "b_show_text3d",
+          "b_show_lines3d",
+          "type_symbol_3d",
+          "symb3d_sphere_diam",
+          "b_symb3d_cone_reverse"
+endif
+
+
+! --> UI
+hideparameter  all
+
+! TODO: remove when feature implemented
+lock "b_show_text3d"
+
+
+! parameter linking
+if b_link_font then
+    if GLOB_MODPAR_NAME = "fontId" then
+        fontCoor = fontId
+        parameters fontCoor = fontCoor
+    endif
+    if GLOB_MODPAR_NAME = "fontCoor" then
+        fontId = fontCoor
+        parameters fontId = fontId
+    endif
+endif
+
+if b_link_size then
+    if GLOB_MODPAR_NAME = "font_size_coor" then
+        font_size_id = font_size_coor
+        parameters font_size_id = font_size_id
+    endif
+    if GLOB_MODPAR_NAME = "font_size_id" then
+        font_size_coor = font_size_id
+        parameters font_size_coor = font_size_coor
+    endif
+endif
+
+if b_link_pen then
+    if GLOB_MODPAR_NAME = "pen_text_coor_x" then
+        pen_text_coor_y = pen_text_coor_x
+        pen_text_coor_z = pen_text_coor_x
+        pen_text_id = pen_text_coor_x
+        parameters pen_text_coor_y = pen_text_coor_y,
+                   pen_text_coor_z = pen_text_coor_y,
+                   pen_text_id = pen_text_id
+    endif
+    if GLOB_MODPAR_NAME = "pen_text_coor_y" then
+        pen_text_coor_x = pen_text_coor_y
+        pen_text_coor_z = pen_text_coor_y
+        pen_text_id = pen_text_coor_y
+        parameters pen_text_coor_x = pen_text_coor_x,
+                   pen_text_coor_z = pen_text_coor_z,
+                   pen_text_id = pen_text_id
+    endif
+    if GLOB_MODPAR_NAME = "pen_text_coor_z" then
+        pen_text_coor_x = pen_text_coor_z
+        pen_text_coor_y = pen_text_coor_z
+        pen_text_id = pen_text_coor_z
+        parameters pen_text_coor_x = pen_text_coor_x,
+                   pen_text_coor_y = pen_text_coor_y,
+                   pen_text_id = pen_text_id
+    endif
+    if GLOB_MODPAR_NAME = "pen_text_id" then
+        pen_text_coor_x = pen_text_id
+        pen_text_coor_y = pen_text_id
+        pen_text_coor_z = pen_text_id
+        parameters pen_text_coor_x = pen_text_coor_x,
+                   pen_text_coor_y = pen_text_coor_y,
+                   pen_text_coor_z = pen_text_coor_z
+    endif
+endif
+

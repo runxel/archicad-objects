@@ -1,0 +1,60 @@
+﻿! ––– 3D script ––– !
+
+
+if b_display3d then
+
+    hotspot 0, 0, 0, uID
+    shadow  off
+    pen     pen_symbol3d
+
+	height = (A+B)/2
+
+    if b_show_lines3d then
+        gosub "Lines"
+    endif
+
+    if type_symbol_3d = 1 then
+        resol 8
+        gosub "Sphere"
+    else
+        resol  36
+        if b_symb3d_cone_reverse then mulz -1
+        gosub "Cone"
+        if b_symb3d_cone_reverse then del 1
+    endif
+
+    ! TODO:
+    ! gosub "Text3D"
+    
+endif
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
+
+! ---------------------------------------------------------------------- !
+"Lines":
+    lin_  -A/2, 0, 0,       A/2, 0, 0
+    lin_  0, -B/2, 0,       0, B/2, 0 
+    lin_  0, 0, -height/2,  0, 0, height/2
+return
+
+! ---------------------------------------------------------------------- !
+! Small Sphere 
+"Sphere":
+    sphere  symb3d_sphere_diam/2
+return
+
+! ---------------------------------------------------------------------- !
+! Cone
+"Cone":
+    cone  0.35, 0, 0.15, 90, 90
+return
+
+! ---------------------------------------------------------------------- !
+"Text3D":
+    ! dummy !
+    style "default_text_style"
+    pen 1
+    material "mat"
+    text  0, 0, "text in 3d"
+return 

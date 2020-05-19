@@ -115,7 +115,7 @@ DIN 824:
 
 ### [Locator LX](Objects/Locator%20LX)
 
-<img align="right" width=180 src="Objects/Locator%20LX/Isokorb%20(Attika)/images/Picture_0.png">
+<img align="right" width=180 src="Objects/Locator%20LX/Locator%20LX/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-ENG-lightgrey?style=flat-square)

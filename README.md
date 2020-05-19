@@ -4,13 +4,16 @@ ArchiCAD Objects made (or modified) by me.
 ---
 
 ### How to use?
-Files are uploaded as `.gsm` (ArchiCAD library part / "object") and in the new HSF format introduced in Archicad 23.   
+Files are uploaded as `.gsm` (ArchiCAD library part / "object") and in the new [HSF](http://gdl.graphisoft.com/tips-and-tricks/hsf-source-format) format introduced in Archicad 23.   
 Thus they are easier to maintain and also you can see the source code directly. Converting can be done by using the [LP_XMLConverter](http://gdl.graphisoft.com/tips-and-tricks/how-to-use-the-lp_xmlconverter-tool/).  
 The `.gsm` can be used directly and hasslefree. Please have a look at the compatibility down below.
 
 #### Why are you not using the XML exchange format?
-I did for a while, but it's plain useless now that we have the HSF format available thru the LP_XMLConverter. If you want to use it right away, there is `.gsm`; if you want to get a grasp of the code, the `.gdl` files are much more legible (And also you can go and edit it in an instant by cloning the repo unto your PC).
+I did for a while, but it's plain useless now that we have the HSF format available through the LP_XMLConverter. If you want to use the object right away, there is a `.gsm` provided; if you want to get a grasp of the code, the `.gdl` files are much more legible than the XML garbage (And also you can go and edit it in an instant by cloning the repo unto your PC).
 
+<br>
+
+_For more fun hop over to the [playground](https://github.com/runxel/GDL-playground)._
 
 ---
 
@@ -55,7 +58,7 @@ Credit to Esteban Ramos for his polyline code.
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-ff7979?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-0086d1?style=flat-square)
 ![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
 
 (DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
@@ -102,7 +105,7 @@ DIN 824:
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-[![Dependencies](https://img.shields.io/badge/dependencies-"BasicGeometry"_macro-ff7979?style=flat-square)](http://gdl.graphisoft.com/tips-and-tricks/using-basicgeometry-macro)
+[![Dependencies](https://img.shields.io/badge/dependencies-"BasicGeometry"_macro-0086d1?style=flat-square)](http://gdl.graphisoft.com/tips-and-tricks/using-basicgeometry-macro)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
 
 (DE) Isokorb zur 2D Detaillierung von Attiken im Schnitt.  
@@ -132,7 +135,7 @@ DIN 824:
 ![Language](https://img.shields.io/badge/language-MULTILANG-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0-2980b9?style=flat-square)
-[![License](https://img.shields.io/badge/license-Attribution_4.0-ffd46b?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
+[![License](https://img.shields.io/badge/license-Attribution_4.0-0086d1?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 (DE) Modifikation der 'Profilierten Setzstufe 23' von Graphisoft. Man kann nun zum einen das Setzstufenprofil auf die Höhe der Setzstufe strecken, sodass man bei Änderungen nicht unbedingt stets auch das Profil anpassen muss. Zum anderen ist es nun möglich Löcher in Lauflinienrichtung in die Setzstufe zu schneiden. Das Objekt bietet dabei viele Anpassungsmöglichkeiten.  
 (EN) Modifiction of the 'Profiled Riser 23', provided by Graphisoft. You are now able to stretch the profile to fit the riser height. Also it is possible to cut holes orthogonally with many settings to customize.  
@@ -149,7 +152,7 @@ DIN 824:
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 [![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](objects/Stiftfarben/CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-Attribution_4.0-ffd46b?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
+[![License](https://img.shields.io/badge/license-Attribution_4.0-0086d1?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 (DE) Erweiterung des mitgelieferten 'Stiftfarben' Objekts. Dabei wurden die Standardeinstellungen etwas geändert, Schreibfehler ausgebessert und unsinnige Eingaben ausgeschlossen.  
 (EN) An extension to the default supplied 'pen color test' object (the one you ought to print and check your pen colors).  
@@ -164,7 +167,7 @@ DIN 824:
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
 [![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](objects/Nummerierung/CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-Attribution_4.0-ffd46b?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
+[![License](https://img.shields.io/badge/license-Attribution_4.0-0086d1?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 (DE) Zur schnellen, linearen Nummerierung im 2D. Unterstützt numerisch (1, 2, 3, …), römisch (I, II, III, …) und Buchstaben (a, b, c, …).  
 (EN) Let's you quickly enumerate linearly in the floorplan.  

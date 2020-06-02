@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Länge"]]></Description>
+			<Fix/>
+			<Value>0.55</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Value>0.55</Value>
+		</Length>
+		<Length Name="ZZYZX">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Value>0.99</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsIn3D">
+			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="ac_bottomlevel">
+			<Description><![CDATA["Untere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="ac_toplevel">
+			<Description><![CDATA["Obere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.99</Value>
+		</Length>
+
+		<!-- ___div_2d: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="___div_2d">
+			<Description><![CDATA["2D Darstellung"]]></Description>
+		</Title>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Stift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="gs_linetype">
+			<Description><![CDATA["Linienart"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<FillPattern Name="gs_fill">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Schraffurvordergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Schraffurhintergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</PenColor>
+
+		<!-- ___div_3d: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="___div_3d">
+			<Description><![CDATA["3D Darstellung"]]></Description>
+		</Title>
+		<Boolean Name="b_show_arms">
+			<Description><![CDATA["Mit Armen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_shadow">
+			<Description><![CDATA["Wirft Schatten"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Integer Name="gs_resol">
+			<Description><![CDATA["Auflösung"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>36</Value>
+		</Integer>
+		<BuildingMaterial Name="mat_chair">
+			<Description><![CDATA["Baustoff"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>122</Value>
+		</BuildingMaterial>
+		<Boolean Name="b_override_mat">
+			<Description><![CDATA["Oberfläche überschreiben"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Material Name="override_mat">
+			<Description><![CDATA["Oberflächenmaterial"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>17</Value>
+		</Material>
+	</Parameters>
+</ParamSection>

@@ -1,0 +1,567 @@
+﻿! ––– 3D script ––– !
+
+! basic sizes -------
+chair_width = 0.51
+center = chair_width/2
+leg_thickness = 0.025
+armrest_thickness = 0.045
+seat_width = chair_width - 2*leg_thickness  !46cm
+inner_width = chair_width - 4*leg_thickness
+back_stripe_width = 0.04
+
+
+bmat_srf = 0
+r = REQUEST{2} ("Building_Material_info", mat_chair, "gs_bmat_surface", bmat_srf)
+if b_override_mat then
+	srf_material = override_mat
+else
+	srf_material = bmat_srf
+endif
+
+define material "mat_simple_grey" 2, 0.5, 0.5, 0.5
+
+body    -1
+model solid
+resol    gs_resol
+pen      gs_cont_pen
+sect_attrs{2}      gs_cont_pen, 1
+building_material  mat_chair
+
+if b_shadow then
+	shadow auto
+else
+	shadow off
+endif
+
+! --- start geometry -----------------------
+group 	"group_leg_small"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                21,        leg_thickness,
+            -8.101009594038E-18, -7.127158467192E-18,            0,     15, srf_material,
+            0.08676206334353, -7.127158467192E-18,            0,     15, srf_material,
+            0.5367723526908, 0.4260651265629,            0,     15, srf_material,
+            0.5376020559738, 0.4273758173243,            0,     79, srf_material,
+            0.538781054301, 0.4302455270976,            0,     79, srf_material,
+            0.5394438211218, 0.4332763704423,            0,     79, srf_material,
+            0.5395702186018, 0.436376256717,            0,     79, srf_material,
+            0.5391564062175, 0.4394509974458,            0,     79, srf_material,
+            0.5382149574488, 0.4424071681876,            0,     79, srf_material,
+            0.5367744777401, 0.4451549471903,            0,     79, srf_material,
+            0.5348787353385, 0.4476108445794,            0,     79, srf_material,
+            0.5325853314175, 0.4497002391553,            0,     79, srf_material,
+            0.5299639498948, 0.4513596457213,            0,     79, srf_material,
+            0.5270942401215, 0.4525386440485,            0,     79, srf_material,
+            0.5240633967768, 0.4532014108693,            0,     79, srf_material,
+            0.5209635105021, 0.4533278083493,            0,     79, srf_material,
+            0.5178887697733, 0.452913995965,            0,     79, srf_material,
+            0.5149325990315, 0.4519725471963,            0,     79, srf_material,
+            0.5121848200288, 0.4505320674876,            0,     79, srf_material,
+            0.5110323446622, 0.4496421327325,            0,     79, srf_material,
+            -8.101009594038E-18, -7.127158467192E-18,            0,     -1, srf_material
+    base
+    vert    -0.01649990050194, 7.790008357803E-7,          0.3
+    vert    0.6806850204124, -3.213681196257E-5,          0.3
+    vert    -0.01649719325781, 0.05734251305085,          0.3
+    vert    -0.01649990050194, 7.790008357803E-7,          0.5
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_leg_big"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                45,        leg_thickness,
+            -0.4094204013976, 0.9735039268627,            0,     79, srf_material,
+            -0.4093924391827, 0.9748243964159,            0,     79, srf_material,
+            -0.4097959586338, 0.9774349248985,            0,     79, srf_material,
+            -0.4106466612314, 0.9799357231703,            0,     79, srf_material,
+            -0.4119186988077, 0.9822508057413,            0,     79, srf_material,
+            -0.4135734211445, 0.984309829999,            0,     79, srf_material,
+            -0.4155605503411, 0.9860502335332,            0,     79, srf_material,
+            -0.4178197084822, 0.9874191350634,            0,     79, srf_material,
+            -0.4202822521909, 0.9883749412091,            0,     79, srf_material,
+            -0.4228733583228, 0.9888886102844,            0,     79, srf_material,
+            -0.4255142974293, 0.9889445347143,            0,     79, srf_material,
+            -0.4281248259119, 0.9885410152632,            0,     79, srf_material,
+            -0.4306256241836, 0.9876903126656,            0,     79, srf_material,
+            -0.4329407067546, 0.9864182750893,            0,     79, srf_material,
+            -0.4349997310123, 0.9847635527524,            0,     79, srf_material,
+            -0.4367401345466, 0.9827764235559,            0,     79, srf_material,
+            -0.4381090360767, 0.9805172654148,            0,     79, srf_material,
+            -0.4390648422225, 0.9780547217061,            0,     79, srf_material,
+            -0.4395785112977, 0.9754636155741,            0,     79, srf_material,
+            -0.4396015994058, 0.9733242803272,            0,     79, srf_material,
+            -0.437536011423, 0.9108995546381,            0,     79, srf_material,
+            -0.4361651595381, 0.8548766929931,            0,     79, srf_material,
+            -0.4232459526589, 0.7435445092334,            0,     79, srf_material,
+            -0.4002562952874, 0.6338483985409,            0,     79, srf_material,
+            -0.367386686965, 0.5266973374363,            0,     79, srf_material,
+            -0.3249094956179, 0.4229792133578,            0,     79, srf_material,
+            -0.2731767006314, 0.323553467346,            0,     79, srf_material,
+            -0.2126169762373, 0.2292439724454,            0,     79, srf_material,
+            -0.1437321393844, 0.1408322068321,            0,     79, srf_material,
+            -0.06709299152528, 0.05905077824018,            0,     79, srf_material,
+                       0, 0,            0,     15, srf_material,
+            0.08069834978682, 4.669453414794E-17,            0,     15, srf_material,
+            0.08069834978682, 0.01088374015659,            0,     15, srf_material,
+            0.05016659849421, 0.03337981183216,            0,     79, srf_material,
+            -0.03359101180474, 0.108073327467,            0,     79, srf_material,
+            -0.1103159634679, 0.1899741232701,            0,     79, srf_material,
+            -0.179390512298, 0.2784227821904,            0,     79, srf_material,
+            -0.240258510643, 0.3727071676333,            0,     79, srf_material,
+            -0.2924298851701, 0.4720681571656,            0,     79, srf_material,
+            -0.3354845826479, 0.5757057545228,            0,     79, srf_material,
+            -0.369075951968, 0.682785530709,            0,     79, srf_material,
+            -0.392933535176, 0.7924453423282,            0,     79, srf_material,
+            -0.4068652450401, 0.9038022730561,            0,     79, srf_material,
+            -0.408812078332, 0.9598810077098,            0,     79, srf_material,
+            -0.4094204013976, 0.9735039268627,            0,     -1, srf_material
+    base
+    vert    0.03754284178839, 0.9792448229423, 0
+    vert    -0.4723025152542, 1.967664727637, 0
+    vert    -0.1214559195622, 0.8972303067786, 0
+    vert    0.03754284178839, 0.9792448229423, leg_thickness
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group   "group_support"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                24,        leg_thickness,
+            0.02395822459365, 0.05246001498546,            0,     79, srf_material,
+            0.02186762920355, 0.05246614587694,            0,     79, srf_material,
+            0.01774783087011, 0.05175216521641,            0,     79, srf_material,
+            0.01381460297108, 0.05033363605346,            0,     79, srf_material,
+            0.01018745464587, 0.04825365967889,            0,     79, srf_material,
+            0.006976594960909, 0.04557543512234,            0,     79, srf_material,
+            0.004279584262955, 0.0423803388817,            0,     79, srf_material,
+            0.00217836985731, 0.03876545233945,            0,     79, srf_material,
+            0.0007367960804245, 0.03484061199395,            0,     79, srf_material,
+            -1.335577962568E-6, 0.03072507213304,            0,     79, srf_material,
+            -1.359736092375E-5, 0.02654388135283,            0,     79, srf_material,
+            0.0007003832996115, 0.02242408301939,            0,     79, srf_material,
+            0.002118912462564, 0.01849085512037,            0,     79, srf_material,
+            0.004198888837129, 0.01486370679516,            0,     79, srf_material,
+            0.006877113393683, 0.0116528471102,            0,     79, srf_material,
+            0.01007220963432, 0.008955836412242,            0,     79, srf_material,
+            0.01377121876295, 0.006916004331073,            0,     15, srf_material,
+            0.06416867399168, 0.0009595891066865,            0,     79, srf_material,
+            0.1301322962957, 0,                             0,     79, srf_material,
+            0.1792336786279, 0.001042487337212,            0,     79, srf_material,
+            0.2767015772496, 0.01321371757097,            0,     79, srf_material,
+            0.3728894581958, 0.03679801109924,            0,     15, srf_material,
+            0.3395704358155, 0.05947701484713,            0,     15, srf_material,
+            0.02395822459365, 0.05246001498546,            0,     -1, srf_material
+    base
+    vert    0.02869695955749, 0.384904111879, 0
+    vert    -0.04109947046477, 0.01846821389048, 0
+    vert    0.08264366131945, 0.3746286797635, 0
+    vert    0.02869695955749, 0.384904111879, leg_thickness
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group   "group_armrest"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                38,        armrest_thickness,
+            -1.741069347722E-9, 0.02638076960868,            0,     15, srf_material,
+            0.0004299759897241, 0.0236764389515,            0,     79, srf_material,
+            0.002216070976394, 0.0184992770545,            0,     79, srf_material,
+            0.004874035895786, 0.0137109200193,            0,     79, srf_material,
+            0.008323109828817, 0.009456859651401,            0,     79, srf_material,
+            0.01245849440935, 0.005866353422422,            0,     79, srf_material,
+            0.01715453806951, 0.003048497047247,            0,     79, srf_material,
+            0.02226855389899, 0.00108890966593,            0,     79, srf_material,
+            0.02764515511464, 4.713234945453E-5,            0,     79, srf_material,
+            0.03312097640921, -4.518102558359E-5,            0,     79, srf_material,
+            0.03440102093406, 0.0001917574901948,            0,     79, srf_material,
+            0.1873271235432, 0.01735276503306,            0,     79, srf_material,
+            0.2988460669793, 0.02619413600019,            0,     79, srf_material,
+            0.3582912358406, 0.02525176809528,            0,     79, srf_material,
+            0.4113667545452, 0.02203375299974,            0,     79, srf_material,
+            0.4404696067103, 0.01476624161081,            0,     15, srf_material,
+            0.4423014545396, 0.01484905567226,            0,     79, srf_material,
+            0.4458807294071, 0.01564836160647,            0,     79, srf_material,
+            0.449266829028, 0.01705705884562,            0,     79, srf_material,
+            0.4523568684787, 0.01903234483696,            0,     79, srf_material,
+            0.455056958474, 0.02151420151516,            0,     79, srf_material,
+            0.4572850581458, 0.02442721892095,            0,     79, srf_material,
+            0.4589734678131, 0.0276828864945,            0,     79, srf_material,
+            0.4600708860025, 0.03118228242405,            0,     79, srf_material,
+            0.4605439682176, 0.03481907933504,            0,     79, srf_material,
+            0.4603783400947, 0.03848277499366,            0,     79, srf_material,
+            0.4595790341605, 0.04206204986123,            0,     79, srf_material,
+            0.4581703369213, 0.04544814948211,            0,     79, srf_material,
+            0.45619505093, 0.04853818893275,            0,     79, srf_material,
+            0.4537131942518, 0.05123827892809,            0,     79, srf_material,
+            0.450800176846, 0.05346637859993,            0,     79, srf_material,
+            0.4475445092724, 0.05515478826722,            0,     79, srf_material,
+            0.4434912946638, 0.05628477724745,            0,     79, srf_material,
+            0.4205626364775, 0.06083009007094,            0,     79, srf_material,
+            0.388196255691, 0.06136377951195,            0,     79, srf_material,
+            0.318720871834, 0.06068382403602,            0,     79, srf_material,
+            0.1775404382385, 0.04771633483496,            0,     79, srf_material,
+            0, 0.02638076960868,            0,            -1, srf_material
+    base
+    vert    0.02971523537156, 0.008833358052729, 0
+    vert    0.2926217606432, 0.3870567921587, 0
+    vert    -0.02078485163318, 0.04393642466126, 0
+    vert    0.02971523537156, 0.008833358052729, armrest_thickness
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group   "group_armrest_support"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                29,        leg_thickness,
+            0.0002880145038081, 0.2052342398615,            0,     15, srf_material,
+            0.008872662082227, 0.1666924602608,            0,     79, srf_material,
+            0.03595649500423, 0.09250940431396,            0,     79, srf_material,
+            0.07249145380103, 0.02249614427651,            0,     79, srf_material,
+            0.08403916874096, 0.006608460752363,            0,     79, srf_material,
+            0.08499242588569, 0.005409841983399,            0,     79, srf_material,
+            0.08728625186906, 0.003380086602295,            0,     79, srf_material,
+            0.08989769280459, 0.001779486468164,            0,     79, srf_material,
+            0.09274740138089, 0.0006566750061375,            0,     79, srf_material,
+            0.09574879064491, 4.57682743204E-5,            0,     79, srf_material,
+            0.09881066490262, -3.467163537505E-5,            0,     79, srf_material,
+            0.1018399906541, 0.0004177994030027,            0,     79, srf_material,
+            0.1047447233693, 0.001389433285914,            0,     79, srf_material,
+            0.1074366042145, 0.002850707409497,            0,     79, srf_material,
+            0.1098338417524, 0.004757221698946,            0,     79, srf_material,
+            0.1118635971335, 0.007051047682321,            0,     79, srf_material,
+            0.1134641972677, 0.009662488617848,            0,     79, srf_material,
+            0.1145870087297, 0.01251219719415,            0,     79, srf_material,
+            0.1151979154615, 0.01551358645817,            0,     79, srf_material,
+            0.1152783553712, 0.01857546071588,            0,     79, srf_material,
+            0.1148258843328, 0.02160478646736,            0,     79, srf_material,
+            0.1138542504499, 0.02450951918255,            0,     79, srf_material,
+            0.1123929763263, 0.02720140002777,            0,     79, srf_material,
+            0.1110010740513, 0.02892985612413,            0,     79, srf_material,
+            0.07158768871476, 0.09172527718798,            0,     79, srf_material,
+            0.03835770018335, 0.1655495289059,            0,     79, srf_material,
+            0.02650003620173, 0.2042530025844,            0,     15, srf_material,
+            0.003949001191945, 0.2051810587766,            0,     79, srf_material,
+            0.0002880145038081, 0.2052342398615,            0,     -1, srf_material
+    base
+    vert    -9.46543613352E-5, 0.4101266101311, 0
+    vert    0.07573817950254, 0.1952648614218, 0
+    vert    0.0455487339289, 0.4262358873849, 0
+    vert    -9.46543613352E-5, 0.4101266101311, leg_thickness
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_seat_1"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                16,        seat_width,
+            0.04569503049042, 0.03340800930845,            0,     79, srf_material,
+                       0, 0.0328290098678,            0,     15, srf_material,
+            2.900002754222E-5, 0.02267900705156,            0,     15, srf_material,
+            0.03334802262963, -3.469446951954E-18,            0,     15, srf_material,
+            0.04598803019726, 0.01053300301192,            0,     15, srf_material,
+            0.06541704364119, 0.01256800366731,            0,     15, srf_material,
+            0.06553270785573, 0.01427181932558,            0,     79, srf_material,
+            0.06516879291789, 0.01766785082565,            0,     79, srf_material,
+            0.06422069198439, 0.02094909581061,            0,     79, srf_material,
+            0.06271721262231, 0.02401585531199,            0,     79, srf_material,
+            0.06070403729129, 0.02677494739419,            0,     79, srf_material,
+            0.05824233530504, 0.02914253844046,            0,     79, srf_material,
+            0.05540690423274, 0.03104669039491,            0,     79, srf_material,
+            0.0522838972127, 0.03242954656396,            0,     79, srf_material,
+            0.04896820523293, 0.03324908956268,            0,     79, srf_material,
+            0.04569503049042, 0.03340800930845,            0,     -1, srf_material
+    base
+    vert    0.06512085742482, 0.04380452368582, 0
+    vert    -0.0001285941785307, 0.04297775115551, 0
+    vert    0.06554211865249, 0.01055830047492, 0
+    vert    0.06512085742482, 0.04380452368582, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group   "group_seat_2"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 7,         0.01,
+            0.035,         0.23,            0,     15, srf_material,
+                       0, 0.2218685954748,            0,     15, srf_material,
+                       0,            0,            0,     13, srf_material,
+                       0, -0.2218685954748,            0,     15, srf_material,
+            0.035,        -0.23,            0,     15, srf_material,
+            0.035,            0,            0,     13, srf_material,
+            0.035,         0.23,            0,     -1, srf_material
+    base
+    vert    0.3960698891038, -0.242052444905, 0
+    vert    0.3960698891038, 0.2198740600125, 0
+    vert    0.3333798634365, -0.242052444905, 0
+    vert    0.3960698891038, -0.242052444905, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_seat_3"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 7,         0.01,
+            0.035, 0.2195453334129,            0,     15, srf_material,
+                       0, 0.2114139237155,            0,     15, srf_material,
+                       0,            0,            0,     13, srf_material,
+                       0, -0.2114139237155,            0,     15, srf_material,
+            0.035, -0.2195453334129,            0,     15, srf_material,
+            0.035,            0,            0,     13, srf_material,
+            0.035, 0.2195453334129,            0,     -1, srf_material
+    base
+    vert    0.3960698891038, -0.272052444905, 0
+    vert    0.3960698891038, 0.1898740600125, 0
+    vert    0.3333798634365, -0.272052444905, 0
+    vert    0.3960698891038, -0.272052444905, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_seat_4"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 7,         0.01,
+            0.035, 0.2090906668259,            0,     15, srf_material,
+                       0, 0.2009592592594,            0,     15, srf_material,
+                       0,            0,            0,     13, srf_material,
+                       0, -0.2009592592594,            0,     15, srf_material,
+            0.035, -0.2090906668259,            0,     15, srf_material,
+            0.035,            0,            0,     13, srf_material,
+            0.035, 0.2090906668259,            0,     -1, srf_material
+    base
+    vert    0.3960698891038, -0.272052444905, 0
+    vert    0.3960698891038, 0.1898740600125, 0
+    vert    0.3333798634365, -0.272052444905, 0
+    vert    0.3960698891038, -0.272052444905, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_seat_s"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 5,         0.01,
+                     0,    -0.198636,            0,     15, srf_material,
+                 0.035,    -0.198636,            0,     15, srf_material,
+                 0.035,     0.198636,            0,     15, srf_material,
+                     0,     0.198636,            0,     15, srf_material,
+                     0,    -0.198636,            0,     -1, srf_material
+    base
+    vert    0.3960698891038, -0.272052444905, 0
+    vert    0.3960698891038, 0.1898740600125, 0
+    vert    0.3333798634365, -0.272052444905, 0
+    vert    0.3960698891038, -0.272052444905, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_below_back"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 5,         seat_width,
+                0,            0,            0,     15, srf_material,
+            0.025,            0,            0,     15, srf_material,
+            0.025,        0.035,            0,     15, srf_material,
+                0,        0.035,            0,     15, srf_material,
+                0,            0,            0,     -1, srf_material
+    base
+    vert    0.025,            0, 0
+    vert    0.025,        0.035, 0
+    vert               0,     0, 0
+    vert    0.025,            0, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_below_front"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 5,         inner_width,
+                0,            0,            0,     15, srf_material,
+            0.025,            0,            0,     15, srf_material,
+            0.025,        0.035,            0,     15, srf_material,
+                0,        0.035,            0,     15, srf_material,
+                0,            0,            0,     -1, srf_material
+    base
+    vert    0.025,            0, 0
+    vert    0.025,        0.035, 0
+    vert               0,     0, 0
+    vert    0.025,            0, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_holder"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 5,        chair_width,
+            0.01848239658778, 0.01749894365806,            0,     15, srf_material,
+                       0, 0,            0,     15, srf_material,
+            0.01006611517958, -0.01288947075154,            0,     15, srf_material,
+            0.02967564278558, 0.005676629279407,            0,     15, srf_material,
+            0.01848239658778, 0.01749894365806,            0,     -1, srf_material
+    base
+    vert    0.02854851176736, 0.004609472906517, 0
+    vert    0.0481580394012, 0.02317557296382,   0
+    vert    0.01735526539241, 0.01643178741654,  0
+    vert    0.02854851176736, 0.004609472906517,        0.485
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_back_hz"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                 5,         inner_width,
+                       0,            0,            0,     15, srf_material,
+                    0.02,            0,            0,     15, srf_material,
+                    0.02,        0.045,            0,     15, srf_material,
+                       0,        0.045,            0,     15, srf_material,
+                       0,            0,            0,     -1, srf_material
+    base
+    vert            0.02,            0, 0
+    vert            0.02,        0.045, 0
+    vert               0,            0, 0
+    vert            0.02,            0,         0.51
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group 	"group_back_vt"
+    cprism_{4} srf_material, srf_material, srf_material, 7,
+                11,         back_stripe_width,
+            -0.05788468978133, 0.3374083378877,            0,     15, srf_material,
+            -0.0565156839175, 0.285026766275,            0,     79, srf_material,
+            -0.04383170023982, 0.180998263235,            0,     79, srf_material,
+            -0.02131661273246, 0.07864649861299,            0,     79, srf_material,
+            0.004007668960291, 0.00130217058118,            0,     15, srf_material,
+            0.01362856764872, 0.004428190060512,            0,     15, srf_material,
+            -0.01089334258, 0.0791861399663,            0,     79, srf_material,
+            -0.03353535670155, 0.1815099010544,            0,     79, srf_material,
+            -0.04634835416503, 0.2855225925045,            0,     79, srf_material,
+            -0.04778232632314, 0.3379024258903,            0,     15, srf_material,
+            -0.05788468978133, 0.3374083378877,            0,     -1, srf_material
+    base
+    vert    -0.1289021291036, 0.6723983421508,  0
+    vert    -0.06700977036196, 0.3362921748443, 0
+    vert    -0.105907258569, 0.6766327386445,   0
+    vert    -0.1289021291036, 0.6723983421508, 0.025
+    coor{2}     20,    224,     -1,     -2,     -3,     -4
+endgroup
+group "group_cylind"
+	set material "mat_simple_grey"
+	cylind 0.003, 0.007
+endgroup
+! --- end geometry --------------
+
+global_trx = ntr()
+rotx 90
+
+! Beine klein
+placegroup ("group_leg_small")
+addz -chair_width+leg_thickness
+placegroup ("group_leg_small")
+killgroup ("group_leg_small")
+del 1
+
+! Beine, groß rund
+add 0.45, 0, -leg_thickness
+placegroup ("group_leg_big")
+addz -chair_width+leg_thickness*3
+placegroup ("group_leg_big")
+killgroup ("group_leg_big")
+del 2
+
+! Support
+add 0.15, 0.375, -leg_thickness*2
+placegroup ("group_support")
+addz -chair_width+leg_thickness*5
+placegroup ("group_support")
+killgroup ("group_support")
+del 2
+
+if b_show_arms then
+	! Armrest
+	add 0.065, 0.6, 0
+	placegroup ("group_armrest")
+	addz -chair_width + leg_thickness*2 - armrest_thickness
+	placegroup ("group_armrest")
+	killgroup ("group_armrest")
+	del 2
+
+	! Armrest support
+	add 0.425, 0.42, leg_thickness/2
+	placegroup ("group_armrest_support")
+	addz -chair_width
+	placegroup ("group_armrest_support")
+	killgroup ("group_armrest_support")
+	del 2
+endif
+
+seat_trx = ntr()
+! seating
+! seat edge
+add  0.4895, 0.4118, -chair_width+leg_thickness*2
+placegroup ("group_seat_1")
+killgroup  ("group_seat_1")
+
+addz center-leg_thickness
+! switch back to XY plane
+rotx -90
+addz 0.0227
+roty -1.27  ! seating is slightly sloped
+
+seat_dist = 0.01 + 0.035
+addx -seat_dist
+placegroup ("group_seat_2")
+killgroup  ("group_seat_2")
+
+addx -seat_dist
+placegroup ("group_seat_3")
+killgroup  ("group_seat_3")
+
+addx -seat_dist
+placegroup ("group_seat_4")
+killgroup  ("group_seat_4")
+
+for k = 1 to 4
+	addx -seat_dist
+	placegroup ("group_seat_s")
+next k
+killgroup  ("group_seat_s")
+
+del ntr()-seat_trx
+
+
+! foot rest
+add 0.06, 0.03, -chair_width+leg_thickness*2
+rotz -45
+placegroup ("group_below_back")
+killgroup  ("group_below_back")
+del 2
+
+add 0.4, 0.065, -chair_width+leg_thickness*3
+rotz 45
+placegroup ("group_below_front")
+killgroup  ("group_below_front")
+del 2
+
+add 0.3175, 0.21845, -chair_width+leg_thickness
+placegroup ("group_holder")
+killgroup  ("group_holder")
+del 1
+
+! cylinders
+gosub "go_cylind"
+addz  -seat_width
+mulz  -1
+gosub "go_cylind"
+del 2
+killgroup  ("group_cylind")
+
+! back
+add 0.017, 0.92, -chair_width+leg_thickness*3
+rotz  2.8
+placegroup ("group_back_hz")
+del 1
+
+add 0.076, -0.38, 0
+rotz  18
+placegroup ("group_back_hz")
+killgroup  ("group_back_hz")
+del 1
+
+! back plate
+add -0.014, 0.043, 0
+n_bs = 7
+add_dist = (inner_width - (n_bs * back_stripe_width)) / (n_bs+1)
+addz add_dist
+for j = 1 to n_bs
+	placegroup ("group_back_vt")
+	addz back_stripe_width + add_dist
+next j
+
+! reset the transformation stack
+del ntr()-global_trx
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
+
+
+! ---------------------------------------------------------------------- !
+"go_cylind":
+	add  0.17, 0.4, 0
+	placegroup ("group_cylind")
+	del 1
+	add  0.524, 0.437, leg_thickness*1.5
+	placegroup ("group_cylind")
+	del 1
+	add  0.09, 0.615, armrest_thickness
+	placegroup ("group_cylind")
+	del 1
+return

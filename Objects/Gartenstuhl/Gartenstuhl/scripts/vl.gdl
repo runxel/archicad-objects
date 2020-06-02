@@ -1,0 +1,17 @@
+﻿! ––– PARAM script ––– !
+
+ac_bottomlevel = SYMB_POS_Z
+ac_toplevel = ac_bottomlevel + ZZYZX
+parameters   ac_bottomlevel = ac_bottomlevel,
+			 ac_toplevel = ac_toplevel
+
+values "gs_cont_pen", range [1,255]
+values "gs_fill_pen", range [1,255]
+
+values "gs_resol", range [6,48]
+
+lock  "A", "B", "ZZYZX"
+
+if not(b_override_mat) then
+	lock  "override_mat"
+endif

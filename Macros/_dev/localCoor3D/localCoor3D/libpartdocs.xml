@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<libpartdocs>
+	<Copyright SectVersion="1" SectionFlags="0" SubIdent="0">
+		<Author>Lucas Becker</Author>
+		<License>
+			<Type>CC0</Type>
+			<Version>1.0</Version>
+		</License>
+	</Copyright>
+	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0">
+		<![CDATA[]]>
+	</Keywords>
+	<CommentSection>
+		<![CDATA[Can be used to display the axis of the current coordinate system.
+Useful if you're lost in 3D.
+-----------------------------------------------------------------------------------
+Lucas Becker // runxel.xyz // v1.0 for AC23]]>
+	</CommentSection>
+
+</libpartdocs>

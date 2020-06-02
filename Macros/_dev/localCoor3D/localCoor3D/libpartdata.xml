@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LibpartData Owner="1196638531" Signature="1196644685" Version="40">
+	<Identification>
+		<MainGUID>787E30D2-FF33-4075-B6C3-9EA3A8747FB6</MainGUID>
+		<IsPlaceable>false</IsPlaceable>
+		<IsArchivable>false</IsArchivable>
+		<MigrationValue>Normal</MigrationValue>
+		<IsTemplate>false</IsTemplate>
+	</Identification>
+	<Ancestry SectVersion="1" SectionFlags="0" SubIdent="0"/>
+	<CalledMacros SectVersion="2" SectionFlags="0" SubIdent="0"/>
+	<Script_3D SectVersion="20" SectionFlags="0" SubIdent="0"/>
+	<ParamSection SectVersion="27" SectionFlags="0" SubIdent="0"/>
+	<Copyright SectVersion="1" SectionFlags="0" SubIdent="0"/>
+	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0"/>
+	<Comment SectVersion="20" SectionFlags="0" SubIdent="0"/>
+</LibpartData>

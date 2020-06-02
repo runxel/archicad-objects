@@ -1,0 +1,25 @@
+﻿! --- DEV-MACRO --- !
+! "localCoor3D"
+! Can be used to display the axis of the current
+! coordinate system. Useful if you're lost in 3D.
+! ===============================================
+
+
+dict LOCOOR  ! local coordinate system
+LOCOOR.size = 0.15
+LOCOOR.sphere  = 0.005
+LOCOOR.red = req("pen_of_rgb 1 0 0")
+LOCOOR.green = req("pen_of_rgb 0 1 0")
+LOCOOR.blue = req("pen_of_rgb 0 0 1")
+
+sphere LOCOOR.sphere
+
+pen LOCOOR.red   ! RED – X axis
+lin_ 0, 0, 0, LOCOOR.size, 0, 0
+pen LOCOOR.green  ! GREEN – Y axis
+lin_ 0, 0, 0, 0, LOCOOR.size, 0
+pen LOCOOR.blue   ! BLUE – Z axis
+lin_ 0, 0, 0, 0, 0, LOCOOR.size
+
+END  ! -- END -- END -- END !
+! ------------------------- !

@@ -1,139 +1,158 @@
-﻿
-!
-!   Name     : Spannrichtung.gsm
-!   Datum    : 2016-02-24
-!   Version  : 2.0
-!   Autor    : Lucas Becker
-!
+﻿! ––– 2D script ––– !
 
-!! Im Tragwerksplan anzeigen, sonst nicht
-rr = REQUEST('floor_plan_option', "", floorPlanOption)
-IF floorPlanOption=0 THEN END !! 1=Deckenspiegel / RCP
+if i_display_type = 2 then
+    ! show in RCP only
+    rr = request("floor_plan_option", "", floorPlanOption)
+    if floorPlanOption # 1 then END  ! 1 = RCP
+endif
 
+if b_dynamicArrows then
+    _q = (A+B)/2
+    lengthArrows = 0.0014 * _q^2 + 0.0432 * _q + 0.3461 ! parabola fnc
+endif
 
-IF b_dynamicArrows THEN
-	_q = (A+B)/2
-	lengthArrows = 0.0014 * _q^2 + 0.0432 * _q + 0.3461	! Parabelfunktion
-ENDIF
-
-
-pen 			pen_line	! Stiftfarbe
-line_type		lt_line		! Linienart
-line_property 	0			! allgemeine Linie
-
+pen             pen_line
+line_type       lt_line
+line_property   0
 unID = 1
-! HOTSPOTS
-hotspot2	0, 0, 	unID
-	unID = unID+1
-hotspot2	0, B/2, unID
-	unID = unID+1
-hotspot2	0, 0, 	unID, B, 1+128 			! Basisfangpunkt
-	unID = unID+1
-hotspot2	0, B, 	unID, B, 2 				! beweglicher Punkt
-	unID = unID+1
-hotspot2	0, -1,	unID, B, 3 				! Referenzvektor
-	unID = unID+1
+b_one_head = 0
 
-IF symbolStyles_m = 1 AND b_pointsusp THEN
-	GOSUB 'point'
-ELSE
-	nasty_caller = B
-	GOSUB 'axis'									! eine Achse
-ENDIF
+! vierseitig gelagert
+if i_symbol_styles = 1 then
+    
+    hotspot2  A/2, B/2, unID : unID = unID+1  ! mid point
+    gosub "hotspotsAll"
 
-IF symbolStyles_m = 1 THEN							! vierseitig gelagert
-	hotspot2	-A_half, B/2, 	unID
-		unID = unID+1
-	hotspot2	0, 		 B/2, 	unID, A_half, 1+128 	! Basisfangpunkt
-		unID = unID+1
-	hotspot2	A_half,  B/2, 	unID, A_half, 2		! beweglicher Punkt
-		unID = unID+1
-	hotspot2	(-A)-1,  B/2, 	unID, A_half, 3		! Referenzvektor
-		unID = unID+1
+    if b_pointsusp then
+        gosub "point"
+        END  ! -- END -- END -- !
+    endif
 
-	add2	-A_half,	B/2
-	rot2	-90
+    add2    A/2, 0
+    axis_length = B
+    gosub "axis"
+    del 1
+    
+    add2   0, B/2
+    rot2    -90
+    axis_length = A
+    gosub "axis"
+    del 2
+endif
 
-	nasty_caller = A
-	GOSUB 'axis'
-ENDIF
+! zweiseitig gelagert
+if i_symbol_styles = 2 or i_symbol_styles = 4 then
+    gosub "hotspotsLinear"
+    rot2  -90
+    axis_length = A
+    if i_symbol_styles = 4 then b_one_head = 1
+    gosub "axis"
+    del 1
+endif
 
+! dreiseitig gelagert
+if i_symbol_styles = 3 then
+    gosub "hotspotsAll"
 
-IF symbolStyles_m = 3 THEN 					! dreiseitig gelagert
-	hotspot2	0, 		 B/2, 	unID, A_half, 1+128 	! Basisfangpunkt
-		unID = unID+1
-	hotspot2	A_half,  B/2, 	unID, A_half, 2		! beweglicher Punkt
-		unID = unID+1
-	hotspot2	(-A )-1,  B/2, 	unID, A_half, 3		! Referenzvektor
-		unID = unID+1
-	GOSUB 'halfaxis'
-ENDIF
+    rot2  -90
+    axis_length = A
+    gosub "axis"
+    del 1
+    add2  A/2, 0
+    axis_length = B
+    b_one_head = 1
+    gosub "axis"
+    del 1
+endif
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
 
 
 ! ---------------------------------------------------------------------- !
-END ! ------------------------------------------------------------------ !
-! ---------------------------------------------------------------------- !
+! Draws one axis.
+"axis":
+    line2     0,  0,  0,  axis_length
+    hotline2  0,  0,  0,  axis_length
 
-! ---------------------------------------------------------------------- !
-! ---------------------------------------------------------------------- !
-'axis': 										! eine Achse zeichnen
-	line2		0,	0,	0,	nasty_caller
-	hotline2	0,	0,	0,	nasty_caller
-	add2		0,	nasty_caller
-	rot2		210 							! Pfeil
-	GOSUB 'arrow'
-	del 2										! 0punkt reset
-	IF NOT(symbolStyles_m = 4) THEN
-		rot2		30							! Pfeil 2
-		GOSUB 'arrow'
-		del top 								! 0punkt reset
-	ENDIF
+    add2  0,  axis_length
+    rot2  210
+    gosub "arrow"
+    del 2
+
+    if not(b_one_head) then
+        rot2  30 
+        gosub "arrow"
+        del 1
+    endif
+
+    b_one_head = 0  ! reset !
 return
 
 ! ---------------------------------------------------------------------- !
-! ---------------------------------------------------------------------- !
-'point': 										! punktgelagert
-	line2 		0,	0,	A,	B
-	hotline2 	0,	0,	A,	B
-	line2 		A,	0,	0,	B
-	hotline2 	A,	0,	0,	B
+! punktgelagert / point suspended
+"point":
+    line2     0, 0,  A, B
+    hotline2  0, 0,  A, B
+    line2     0, B,  A, 0
+    hotline2  0, B,  A, 0
 
-	GOSUB 'arrow'
-	add2		0, B
-	rot2		270	 							! Pfeil
-	GOSUB 'arrow'
-	add2		0, A
-	rot2		270 							! Pfeil
-	GOSUB 'arrow'
-	add2 		0, B
-	rot2 		270
-	GOSUB 'arrow'
-	del 6
+    gosub "arrow"
+    add2  0, B
+    rot2  270
+    gosub "arrow"
+    add2  0, A
+    rot2  270
+    gosub "arrow"
+    add2  0, B
+    rot2  270
+    gosub "arrow"
+    del 6
 
-	CALL 'Resize_A_B_ZZYZX' Parameters ALL
-
-	EXIT
 return
 
-
 ! ---------------------------------------------------------------------- !
-! ---------------------------------------------------------------------- !
-'halfaxis': 									! dreiseitig gelagert
-	add2		0,	B/2
-	rot2		-90
-	
-	line2		0,	0,	0,	A_half
-	hotline2	0,	0,	0,	A_half
-	add2		0,	A_half
-	rot2		210
-	GOSUB 'arrow'
-	del 4
+! Draws the arrow heads
+"arrow":
+    line2       0,  0,  0,  lengthArrows
+    hotline2    0,  0,  0,  lengthArrows
 return
 
+! ---------------------------------------------------------------------- !
+"hotspotsAll":
+    ! Hotspots for height only (@ mid)
+    hotspot2  A/2, 0,  unID, B, 1+256  : unID=unID+1  !base
+    hotspot2  A/2, B,  unID, B, 2      : unID=unID+1  !mov
+    hotspot2  A/2, -1, unID, B, 3+128  : unID=unID+1  !ref
+    ! Hotspots for width  only (@ mid)
+    hotspot2   0, B/2, unID, A, 1+256  : unID=unID+1  !base
+    hotspot2   A, B/2, unID, A, 2      : unID=unID+1  !mov
+    hotspot2  -1, B/2, unID, A, 3+128  : unID=unID+1  !ref
+
+    ! Corner Hotspots
+    ! upper right, width
+    hotspot2   0, B, unID, A, 1+256  : unID=unID+1  !base
+    hotspot2   A, B, unID, A, 2      : unID=unID+1  !mov
+    hotspot2  -1, B, unID, A, 3+128  : unID=unID+1  !ref
+    ! upper right, height
+    hotspot2  A, 0,  unID, B, 1+256  : unID=unID+1  !base
+    hotspot2  A, B,  unID, B, 2      : unID=unID+1  !mov
+    hotspot2  A, -1, unID, B, 3+128  : unID=unID+1  !ref
+    ! lower left, width
+    hotspot2   0, 0, unID, A, 1+256  : unID=unID+1  !base
+    hotspot2   A, 0, unID, A, 2      : unID=unID+1  !mov
+    hotspot2  -1, 0, unID, A, 3+128  : unID=unID+1  !ref
+    ! lower left, height
+    hotspot2   0, 0,  unID, B, 1+256  : unID=unID+1  !base
+    hotspot2   0, B,  unID, B, 2      : unID=unID+1  !mov
+    hotspot2   0, -1, unID, B, 3+128  : unID=unID+1  !ref
+return
 
 ! ---------------------------------------------------------------------- !
-! ---------------------------------------------------------------------- !
-'arrow': 									! Pfeile
-	line2		0,	0,	0,	lengthArrows
-	hotline2	0,	0,	0,	lengthArrows
-Return
+! Hotspots for width
+"hotspotsLinear":
+    hotspot2  A/2, 0, unID           : unID=unID+1  !center
+    hotspot2   0, 0, unID, A, 1+256  : unID=unID+1  !base
+    hotspot2   A, 0, unID, A, 2      : unID=unID+1  !mov
+    hotspot2  -1, 0, unID, A, 3+128  : unID=unID+1  !ref
+return

@@ -18,33 +18,13 @@
 		<Length Name="A">
 			<Description><![CDATA["Breite"]]></Description>
 			<Fix/>
-			<Flags>
-				<ParFlg_BoldName/>
-			</Flags>
-			<Value>1</Value>
+			<Value>2</Value>
 		</Length>
 		<Length Name="B">
 			<Description><![CDATA["Länge"]]></Description>
 			<Fix/>
-			<Flags>
-				<ParFlg_BoldName/>
-			</Flags>
-			<Value>1</Value>
+			<Value>2</Value>
 		</Length>
-		<Length Name="A_half">
-			<Description><![CDATA[""]]></Description>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value>0.5</Value>
-		</Length>
-		<Integer Name="iHS">
-			<Description><![CDATA[""]]></Description>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value>1</Value>
-		</Integer>
 		<PenColor Name="pen_line">
 			<Description><![CDATA["Linienstift"]]></Description>
 			<Value>1</Value>
@@ -65,15 +45,12 @@
 			<Description><![CDATA["Punktgelagert"]]></Description>
 			<Value>0</Value>
 		</Boolean>
-		<String Name="symbolStyles">
-			<Description><![CDATA["Symbol Typ"]]></Description>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value><![CDATA["vierseitig gelagert"]]></Value>
-		</String>
-		<Integer Name="symbolStyles_m">
-			<Description><![CDATA["Symbol Typ"]]></Description>
+		<Integer Name="i_symbol_styles">
+			<Description><![CDATA["Symboltyp"]]></Description>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="i_display_type">
+			<Description><![CDATA["Anzeige"]]></Description>
 			<Value>1</Value>
 		</Integer>
 	</Parameters>

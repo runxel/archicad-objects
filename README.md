@@ -56,13 +56,14 @@ Credit to Esteban Ramos for his polyline code.
 
 <img align="right" width=100 src="Objects/Spannrichtung/Spannrichtung/images/Picture_0.png">
 
-![Compatibility](https://img.shields.io/badge/compatibility-v19_build_5005_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
+![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
-![Dependencies](https://img.shields.io/badge/dependencies-"Resize__A__B__ZZYZX"_macro-0086d1?style=flat-square)
-![Version](https://img.shields.io/badge/version-2.0-2980b9?style=flat-square)
+![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
+[![Version](https://img.shields.io/badge/version-3.0-0086d1?style=flat-square)](objects/Spannrichtung/CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-Attribution_4.0-0086d1?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
-(DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Sichtbarkeit richtet sich nach der Modelldarstellung. Darstellung gemäß DIN 1356-1 (12.4).  
-(EN) Shows the direction of stress in ceiling slabs in the structural plan. Visibility depends on the MVO. Representation according to DIN 1356-1.  
+(DE) Zeigt die Spannrichtung von Deckenplatten im Tragwerksplan an. Darstellung gemäß DIN 1356-1 (12.4).  
+(EN) Shows the direction of stress in ceiling slabs in the structural plan. Representation according to DIN 1356-1.  
 
 <br>
 

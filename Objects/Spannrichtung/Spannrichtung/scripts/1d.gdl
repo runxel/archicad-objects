@@ -1,0 +1,29 @@
+﻿! ––– MASTER script ––– !
+! Spannrichtung.gsm
+! author: Lucas Becker
+! version: 3.0
+! date: 2020-06-06
+
+dict TLX_DE, TLX
+
+  TLX_DE.dialog = `Einstellungen Spannrichtungssymbol`
+
+  TLX_DE.symbtype.four       = `Vierseitig gelagert`
+  TLX_DE.symbtype.two        = `Zweiseitig gelagert`
+  TLX_DE.symbtype.three      = `Dreiseitig gelagert`
+  TLX_DE.symbtype.cantilever = `Auskragend`
+
+  TLX_DE.opt.point = `Punktgelagert`
+  TLX_DE.opt.dynarrow = `Dynamische Pfeilspitzenlänge`
+  TLX_DE.ui.out.arrowlen = `Länge Pfeilspitzen`
+  TLX_DE.ui.dynarr_tooltip = `Pfeilspitzen ändern ihre Länge abhängig von der Plattengröße`
+
+  TLX_DE.ui.out.disp = `Anzeige`
+  TLX_DE.ui.disp_tooltip = `Wann soll das Objekt zu sehen sein?`
+  TLX_DE.opt.disp.always = `Immer`
+  TLX_DE.opt.disp.rcp    = `Nur im Deckenspiegel (nach MVO)`
+
+  TLX_DE.ui.linetype = `Linienart`
+
+
+TLX = TLX_DE

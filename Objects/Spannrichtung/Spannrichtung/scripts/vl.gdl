@@ -1,47 +1,25 @@
-﻿
-HIDEPARAMETER ALL "A", "B"
+﻿! ––– PARAM script ––– !
 
-DIM stSymbolStyles[4]
-	stSymbolStyles[1] = 'vierseitig gelagert'
-	stSymbolStyles[2] = 'zweiseitig gelagert'
-	stSymbolStyles[3] = 'dreiseitig gelagert'
-	stSymbolStyles[4] = 'auskragend'
+hideparameter  all  "A", "B"
 
-VALUES "symbolStyles" stSymbolStyles
-VALUES "symbolStyles_m" 1,2,3,4
+values{2} "i_symbol_styles",
+          1, TLX_DE.symbtype.four,
+          2, TLX_DE.symbtype.two,
+          3, TLX_DE.symbtype.three,
+          4, TLX_DE.symbtype.cantilever
 
-VALUES "A" range [1,50]
-VALUES 'A_half' range [0.5,25]
-VALUES "B" range [1,50]
+values{2} "i_display_type",
+          1, TLX_DE.opt.disp.always,
+          2, TLX_DE.opt.disp.rcp
 
-IF b_dynamicArrows THEN LOCK "lengthArrows" ELSE VALUES "lengthArrows" range [0.6,6]
+values "A"      range [1,50]
+values "A_half" range [0.5,25]
+values "B"      range [1,50]
 
-IF symbolStyles_m % 2 = 0 THEN LOCK 'A'
+if b_dynamicArrows then 
+    lock "lengthArrows" 
+else 
+    values "lengthArrows" range [0.6,6]
+endif
 
-
-IF ( GLOB_MODPAR_NAME = 'symbolStyles_m' AND symbolStyles_m = 3 ) THEN
-	PARAMETERS A = A_half
-ENDIF
-
-IF ( GLOB_MODPAR_NAME = 'symbolStyles_m' AND symbolStyles_m = 1 ) THEN
-	PARAMETERS A = A_half * 2
-ENDIF
-
-IF NOT(symbolStyles_m = 3) THEN
-	IF GLOB_MODPAR_NAME = 'A' THEN
-		PARAMETERS A_half = A/2
-	ENDIF
-
-	IF GLOB_MODPAR_NAME = 'A_half' THEN
-		PARAMETERS A = A_half * 2
-	ENDIF
-ELSE
-	IF GLOB_MODPAR_NAME = 'A' THEN
-		PARAMETERS A_half = A
-	ENDIF
-
-	IF GLOB_MODPAR_NAME = 'A_half' THEN
-		PARAMETERS A = A_half
-	ENDIF
-ENDIF
-
+if i_symbol_styles % 2 = 0 then hideparameter "B"

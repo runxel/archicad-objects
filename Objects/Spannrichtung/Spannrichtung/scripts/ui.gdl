@@ -1,69 +1,75 @@
-﻿
-uiDialogWidth = 444 						! px
-xOfs = 10									! Offset X-Richtung
-yOfs = 5									! dynamischer Abstand Y-Richtung
-linespace = 25								! Zeilenabstand
-lengthOut = (uiDialogWidth/2)*0.6 - xOfs	! Länge UI_OUTFIELD
-inOfs = lengthOut + xOfs 					! Offset UI_INFIELD
-lengthIn = uiDialogWidth/2 - inOfs - xOfs 	! Länge UI_INFIELD
-heightOutIn = 16
-heightInPen = 20
-heightInMat = 24
+﻿! ––– UI script ––– !
 
-xOfs2 = uiDialogWidth/2 + xOfs 				! Offset 2. Spalte
-inOfs2 = lengthOut + xOfs2 + xOfs
+! Setup
+! Sizes and Positions
+dict UI
+  UI.dialog.width = 555
+  UI.dialog.height = 222
+  UI.gap.x = 25
+  UI.gap.y = 15
+  
+  UI.in.height = 20
+  UI.in.width = 130
+  UI.in.bool.h = 22
+  UI.in.bool.cell = 16
+  UI.in.pen = 40
+  UI.out.height = 16
 
+  UI.rowheight = UI.in.height + UI.gap.y
+o_d = 4 ! height difference of oufields
 
+! ---------------------------------------------------------------------- !
+  UI.column.n = 3
+  UI.column.width = (UI.dialog.width - (UI.gap.x * UI.column.n-1))/ UI.column.n
+  dim _colstart[]
+  _colstart[1] = 0
+  for k = 2 to UI.column.n
+      p=k-1
+      _colstart[k] = UI.column.width*p + UI.gap.x*p
+  next k
+  UI.column.start = _colstart
+! ---------------------------------------------------------------------- !
 
-UI_DIALOG "Symboleinstellungen", uiDialogWidth, 266
+! ---------------------------------------------------------------------- !
+ui_dialog  TLX.dialog, UI.dialog.width, UI.dialog.height
+ui_style   0,0	! small normal
 
-UI_STYLE 2,1	! groß, fett
+ui_outfield  TLX_DE.ui.out.disp, UI.column.start[1], UI.rowheight+o_d, UI.column.width, UI.out.height, 1
+ui_infield   "i_display_type",   UI.column.start[2], UI.rowheight,     UI.column.width, UI.in.height\
+             ui_tooltip TLX.ui.disp_tooltip
 
-UI_OUTFIELD "Achtung! Die Spannrichtung ist nur im Deckenspiegel zu sehen.\n(siehe Modelldarstellung)", 0, yOfs, uiDialogWidth, 32, 0\
-			UI_TOOLTIP "Dokumentation > Modelldarstellung > Erstellen >> Verschiedene Einstellungen der Bibliothekselemente"
-UI_SEPARATOR 0,36,uiDialogWidth,36 ! waagerechte Linie
+ui_outfield  TLX.ui.out.disp, UI.column.start[1], UI.rowheight*2+o_d, UI.column.width,   UI.out.height, 1
+ui_infield   "pen_line",      UI.column.start[2], UI.rowheight*2,     UI.in.pen,         UI.in.height
 
-yOfs = 25 + linespace
+ui_outfield  TLX.ui.linetype, UI.column.start[1], UI.rowheight*3+o_d, UI.column.width, UI.out.height, 1
+ui_infield   "lt_line",       UI.column.start[2], UI.rowheight*3,     UI.column.width, UI.in.height+10
 
-UI_STYLE 0,0	! klein, normal
-UI_OUTFIELD "Stift", 0, yOfs, lengthOut, heightOutIn, 0
-UI_INFIELD 'pen_line', inOfs, yOfs-6, 40, heightInPen
-
-yOfs = yOfs + linespace
-
-UI_OUTFIELD "Linientyp", 0, yOfs, lengthOut, heightOutIn, 0
-UI_INFIELD 'lt_line', inOfs, yOfs-7, lengthIn, heightInMat
-
-yOfs = yOfs + linespace
-
-UI_INFIELD{3} 'b_dynamicArrows', 0, yOfs, 200, heightOutIn,
+ui_infield{3} "b_dynamicArrows", UI.column.start[1]+UI.column.width/2, UI.rowheight*5, UI.column.width*1.5, UI.in.bool.h,
 					7, "", 2, 1,
-					0,0,0,0,
-					1, "Dynamische Pfeilspitzen", 0,
-					2, "Dynamische Pfeilspitzen", 1\
-					UI_TOOLTIP "Pfeilspitzen ändern ihre Länge abhängig von der Plattengröße"
+					0, 0, 0, 0,
+					1, TLX.opt.dynarrow, 0,
+					2, TLX.opt.dynarrow, 1\
+					ui_tooltip TLX.ui.dynarr_tooltip
 
-yOfs = yOfs + linespace
 
-UI_OUTFIELD "Länge Pfeilspitzen", 0, yOfs, lengthOut, heightOutIn, 0
-UI_INFIELD 'lengthArrows', inOfs, yOfs, 62, 15
+ui_outfield  TLX.ui.out.arrowlen,  UI.column.start[1], UI.rowheight*6+o_d, UI.column.width,   UI.out.height, 1
+ui_infield   "lengthArrows",       UI.column.start[2], UI.rowheight*6,     UI.column.width/2, UI.in.height
 
-yOfs = yOfs + linespace
+! big selection with picture
+!
+ui_infield{3} "i_symbol_styles", UI.column.start[3], UI.rowheight-3, 125, 118,
+                    2, 1, 4, 4,
+                    110, 110, 109, 110,
+                    1, TLX.symbtype.four,  1,
+                    2, TLX.symbtype.two,   2,
+                    3, TLX.symbtype.three, 3,
+                    4, TLX.symbtype.cantilever, 4
 
-IF symbolStyles_m = 1 THEN
-	UI_INFIELD{3} 'b_pointsusp', 0, yOfs, 200, heightOutIn,
+! Option punktgelagert
+if i_symbol_styles = 1 then  ! vierseitig gelagtert
+	ui_infield{3} "b_pointsusp", UI.column.start[3]+12, UI.rowheight*5+o_d, UI.column.width, UI.out.height,
 					7, "", 2, 1,
-					0,0,0,0,
-					1, "Punktgelagert", 0,
-					2, "Punktgelagert", 1\
-					UI_TOOLTIP "Decke ist punktgelagert."
-ENDIF
-
-! rechts:
-UI_INFIELD{3} 'symbolStyles_m', 270, 50, 120, 114,
-					2, 1, 4, 4,
-					110, 110, 109, 110,
-					1, "vierseitig gelagert", 1,
-					2, "zweiseitig gelagert", 2,
-					3, "dreiseitig gelagert", 3,
-					4, "auskragend", 4
+					0, 0, 0, 0,
+					1, TLX.opt.point, 0,
+					2, TLX.opt.point, 1
+endif

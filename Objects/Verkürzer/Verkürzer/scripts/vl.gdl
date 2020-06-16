@@ -1,0 +1,13 @@
+﻿! ––– PARAM script ––– !
+
+values "gs_cont_pen", range [1,255]
+values "gs_fill_pen", range [1,255]
+
+values "fill_over_height", range [A/2/6.5,]
+values "side_lines_len",   range [A/2/6.5,]
+
+if not(b_fill_cut) then
+   lock "gs_filltype",
+        "gs_fill_pen",
+        "gs_back_pen"
+endif

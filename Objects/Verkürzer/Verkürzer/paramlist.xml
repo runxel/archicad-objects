@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Stift"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="gs_linetype">
+			<Description><![CDATA["Linienart"]]></Description>
+			<Value>1</Value>
+		</LineType>
+		<Boolean Name="b_fill_cut">
+			<Description><![CDATA["Schnittschraffur"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<FillPattern Name="gs_filltype">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Vordergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Hintergrundstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>-1</Value>
+		</PenColor>
+		<Boolean Name="b_fill_over">
+			<Description><![CDATA["Überdeckungsschraffur"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<FillPattern Name="fill_over">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<Length Name="fill_over_height">
+			<Description><![CDATA["Größe Überdeckung"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.2</Value>
+		</Length>
+		<Boolean Name="b_side_lines">
+			<Description><![CDATA["Seitenlinien"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="side_lines_len">
+			<Description><![CDATA["Länge"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.2</Value>
+		</Length>
+	</Parameters>
+</ParamSection>

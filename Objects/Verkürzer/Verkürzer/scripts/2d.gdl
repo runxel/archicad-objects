@@ -1,0 +1,80 @@
+﻿! ––– 2D script ––– !
+
+uID = 1
+gap = 0.005
+
+pen        gs_cont_pen
+fill       gs_filltype
+line_type  gs_linetype
+
+hotspot2  A/2, 0, uID : uID=uID+1  ! center
+
+hotspot2   0, 0, uID, A, 1+256 : uID=uID+1 !base
+hotspot2   A, 0, uID, A, 2     : uID=uID+1 !move
+hotspot2  -1, 0, uID, A, 3     : uID=uID+1 !ref
+
+if b_side_lines then
+	line2  0, 0,  0, side_lines_len
+	line2  A, 0,  A, side_lines_len
+
+	hotspot2 A/2, 0, uID, side_lines_len, 1+128           : uID=uID+1 !base
+	hotspot2 A/2, side_lines_len, uID, side_lines_len, 2  : uID=uID+1 !move
+	hotspot2 A/2, -1, uID, side_lines_len, 3              : uID=uID+1 !ref
+endif
+! Kreisberechnung über die Sehne
+! https://www.arndt-bruenner.de/mathe/scripts/kreissehnen.htm
+! Sehnenlänge s := A/2
+! Stichhöhe a := Sehnenlänge/6.5
+! Radius r := (4a² + s²)/8a
+! Winkel alpha := 2asin(s/2r)
+! Höhe unter Sehne := r-a
+
+arc_chord = A/2
+arc_height = arc_chord/6.5
+arc_rad = (4*arc_height*arc_height + arc_chord*arc_chord)/(8*arc_height)
+arc_ang = 2*asn(arc_chord/(2*arc_rad))
+
+arc_x = arc_chord/2
+arc_y = arc_rad - arc_height
+
+! arcs go CCW
+arc_start = 90 - arc_ang/2
+arc_end = arc_start + arc_ang
+
+if b_fill_cut then
+	poly2_b  5, 2+4,
+			 gs_fill_pen, gs_back_pen,
+			 0, 0, 1,
+			 arc_x, -arc_y, 901,
+			 arc_chord, 0, 3001,
+			 arc_x,  arc_y, 901,
+			 0, 0, 3001
+endif
+
+if b_fill_over then
+	hotspot2 arc_chord, 0, uID, fill_over_height, 1+128 			 : uID=uID+1 !base
+	hotspot2 arc_chord, -fill_over_height, uID, fill_over_height, 2  : uID=uID+1 !move
+	hotspot2 arc_chord, 1, uID, fill_over_height, 3     			 : uID=uID+1 !ref
+	fill       fill_over
+	poly2_b  10, 2+4,
+			 1, -1,
+			 0, 0, 1,
+			 arc_x, arc_y, 901,
+			 arc_chord, 0, 3001,
+			 arc_x+arc_chord, arc_y, 901,
+			 A, 0, 3001,
+			 A+gap, 0, 1,
+			 A+gap, -fill_over_height, 1,
+			 -gap, -fill_over_height, 1,
+			 -gap, 0, 1,
+			 -1, -1, 701
+endif
+
+arc2  arc_x, -arc_y, arc_rad, arc_start, arc_end
+add2 arc_chord, 0
+mul2 -1,-1
+	arc2  arc_x, -arc_y, arc_rad, arc_start, arc_end
+del 1
+mul2 1, -1
+	arc2  arc_x, -arc_y, arc_rad, arc_start, arc_end
+del 2

@@ -1,0 +1,12 @@
+﻿! ––– PARAM script ––– !
+
+values "gs_cont_pen", range [1,255]
+
+values{2} "obj_mode"  1, `Aufteilen`,
+					  2, `Verteilen`
+
+
+values "rad_in", range [0.001,rad_out-0.001]
+values "rad_out", range [rad_in+0.001,]
+
+values "n_diff", range [3,]

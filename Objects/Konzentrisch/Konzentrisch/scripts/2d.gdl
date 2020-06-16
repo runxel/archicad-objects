@@ -1,0 +1,60 @@
+﻿! ––– 2D script ––– !
+! author: @runxel
+! date:   2020-06-09
+! Displays concentric rings.
+! Think like "Multiply", but with size in situ.
+! Can be exploded in 2D and then used.
+! ––– ––– ––– ––– ––– !
+
+uID = 1
+pen  gs_cont_pen
+
+! center hotspot
+hotspot2 0, 0, uID : uID=uID+1
+
+! --- inner circle -----------------
+hotspot2  0, 0,      uID, rad_in, 1+128   : uID=uID+1 !base
+hotspot2  rad_in, 0, uID, rad_in, 2       : uID=uID+1 !move
+hotspot2  -1, 0,     uID, rad_in, 3       : uID=uID+1 !ref
+curr_rad = rad_in
+gosub "circle"
+
+! --- outer circle -----------------
+hotspot2  0, 0,       uID, rad_out, 1+128  : uID=uID+1 !base
+hotspot2  rad_out, 0, uID, rad_out, 2      : uID=uID+1 !move
+hotspot2  -1, 0,      uID, rad_out, 3      : uID=uID+1 !ref
+curr_rad = rad_out
+gosub "circle"
+
+
+rad_diff = abs(rad_out - rad_in)
+
+if obj_mode = 1 then
+	! "Aufteilen" – user specifies the total distance
+
+	rad_diff_case = rad_diff / (n_diff-1)
+
+	for i = 1 to n_diff-2
+		curr_rad = rad_in + i*rad_diff_case
+		gosub "circle"
+	next i
+
+else
+	! "Verteilen" – user specifies the distance between two adjacent rings
+
+	for i = 2 to n_diff-2
+		curr_rad = rad_in + i*rad_diff
+		gosub "circle"
+	next i
+	
+endif
+
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !
+
+! ---------------------------------------------------------------------- !
+"circle":
+	hotarc2 0, 0, curr_rad, 0, 360, uID : uID=uID+1
+	circle2 0, 0, curr_rad
+return

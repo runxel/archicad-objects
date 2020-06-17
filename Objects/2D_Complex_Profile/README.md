@@ -1,3 +1,6 @@
+---
+title: 2D Complex Profile
+---
 # 2D Complex Profile
 
 <img align="right" width=200 src="Objects/2D_Complex_Profile/2D_Complex_Profile/images/Picture_0.png">

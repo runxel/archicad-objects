@@ -1,0 +1,39 @@
+# Achieve auto-updating docs (actually generating the webpage via Jekyll) on every push.
+
+name: docs
+
+# Run everytime we push to Master AND push a md
+on:
+  push:
+    branches: [ master ]
+    paths: 'Objects/*/README.md'
+
+
+jobs:
+  docit:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: actions/checkout@master
+      #with:
+        #persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        #fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+    - name: Create local changes
+      run: |
+        find ./Objects/ -type f -name "README.md" | while read fname; do
+          dirname=`dirname "$fname"`
+          foldername=`basename "$dirname"`
+          filename=`basename "$fname"`
+          newname=`echo "$dirname" | sed -e "s/ /_/g"`
+          cp "${dirname}/$filename" "./docs/_objects/${foldername}.md"
+        done
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}

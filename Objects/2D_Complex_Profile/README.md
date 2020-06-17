@@ -13,4 +13,3 @@
 
 _Anmerkung: Profilmodifikatoren können nicht verwendet werden. Es kann jedoch über `A` und `B` Stretchfaktoren eingegeben werden._  
 _Note: Profile modifiers can not be used. However you may use `A` and `B` as stretch factors._
-to be filled

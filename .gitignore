@@ -5,6 +5,14 @@ ideas/
 Objects/*/img/*.psd
 Objects/*/img/*.ai
 
+
+docs/_img/
+# no jekyll stuff
+docs/_site/
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+
 # sublime text stuff
 *.sublime-project
 *.sublime-workspace

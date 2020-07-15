@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+{% include head.html %}
+<body>
+		<header class="noise">
+			<div class="wrapper">
+				<div class="logo">{% include logo.html %}</div>
+				<section class="hero_search">
+					<h1>Archicad Objekte</h1>
+					<p>Batteries included.</p>
+					<!-- % include search.html %} -->
+				</section>
+			</div>
+
+		</header>
+		<div class="wrapper">
+			{{ content }}
+		</div>
+
+		{% include footer.html %}
+	</body>
+</html>

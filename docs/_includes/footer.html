@@ -1,0 +1,15 @@
+<footer class="noise">
+	<ul class="footer-links">
+		{% for link in site.data.footer %}
+			<li><a {% if link.new_window %}target="_blank"{% endif %} href="{{ link.link }}" class="{{ link.title | slugify }}-flink">
+				{% if link.icon %}
+				<img class="icon" height="18" width="18"
+					src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/{{ link.icon }}.svg" alt="icon" />
+				{% elsif link.emoji %}
+					<span class="emoji">{{ link.emoji }}</span>
+				{% endif %}
+				{{ link.title }}</a></li>
+		{% endfor %}
+	</ul>
+	<p class="copyright">&copy; {{ site.time | date: "%Y" }} {{ site.author }}</p>
+</footer>

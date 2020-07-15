@@ -1,0 +1,23 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{ site.title }}</title>
+	{% if site.plugins.jekyll-seo == nil %}
+		{% if page.description %}
+			<meta name="Description" content="{{ page.description }}">
+		{% endif %}
+	{% endif %}
+
+	<!-- <link rel="apple-touch-icon" href="{{ site.baseurl }}/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="{{ site.baseurl }}/touch-icon.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="{{ site.baseurl }}/images/favicon.png"> -->
+
+	<link rel="stylesheet" href="{{ '/css/style.css' | absolute_url }}">
+
+	{%- seo title=false -%}
+	
+	<!-- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> -->
+	<!-- <script defer src="{{ '/js/isoinit.js' | absolute_url }}"></script> -->
+
+</head>

@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+// Breakpoints
+$tablet: "(min-width: 450px)";
+$mid-point: "(min-width: 750px)";
+$desktop: "(min-width: 900px)";
+
+$content-width:    800px !default;
+
+// Typography
+$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$base-font-family-mono: 'Space Mono', monospace !default;
+$base-font-size:   16px !default;
+$base-font-weight: 400 !default;
+$small-font-size:  $base-font-size * 0.875 !default;
+$base-line-height: 1.5 !default;
+
+$spacing-unit:     30px !default;
+
+// Colors
+$text-color:          #2c2c2c !default;
+$background-color:    #eeeeee !default;
+$dark-grey: #222;
+$medium-grey: #666;
+$light-grey: #ccc;
+$header-color: #23a4c5;
+$selection-color: hsla(337, 75%, 51%, 0.5);
+
+$link-color: #4A4A4A;
+$link-hover-color: #111;
+
+// MIXINS
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+@mixin transition($time: 0.5s, $what: all) {
+  transition: $time $what ease-in-out;
+}
+
+@mixin border-radius($radius: 7px) {
+  border-radius: $radius;
+}
+
+@mixin box-shadow {
+  box-shadow:
+    0 0.7px 2.4px -16px rgba(0, 0, 0, 0.001),
+    0 1.7px 5.4px -16px rgba(0, 0, 0, 0.003),
+    0 3px 9.3px -16px rgba(0, 0, 0, 0.005),
+    0 5px 15px -16px rgba(0, 0, 0, 0.008),
+    0 8.2px 24px -16px rgba(0, 0, 0, 0.013),
+    0 14.3px 40.5px -16px rgba(0, 0, 0, 0.019),
+    0 31px 84px -16px rgba(0, 0, 0, 0.03)
+  ;
+}

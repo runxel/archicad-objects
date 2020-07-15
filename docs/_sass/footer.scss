@@ -1,0 +1,45 @@
+footer {
+	background: #000851;
+	color: $light-grey;
+	padding: 20px 0;
+
+	.emoji {
+		filter: saturate(0);
+	}
+
+	.icon {
+		position: relative;
+		top: 2px;
+		filter: invert(0.9); //its black otherwise
+	}
+
+	.copyright {
+		margin: 0;
+		text-align: center;
+		font-size: .9em;
+	}
+
+	a {
+		text-decoration: none;
+		color: $light-grey;
+
+		&:hover {
+			color: #fff;
+			border-top: 2px dotted #fff;
+		}
+	}
+
+	ul {
+		display: flex;
+		margin: 0 auto;
+		padding: 0;
+		width: 300px;
+		list-style: none;
+		text-align: center;
+		justify-content: space-between;
+	}
+
+	li {
+		display: inline-block;
+	}
+}

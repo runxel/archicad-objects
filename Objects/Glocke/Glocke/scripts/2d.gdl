@@ -1,0 +1,13 @@
+﻿! ––– 2D script ––– !
+
+line_type  gs_linetype
+
+! we don't need a detailed model for project2
+! status ist set to 15 := acts like the conventional project2s
+project2{3}   3, 270, 2+32, 15,   parameters iDetlevel3D = DETLEVEL.d3.simple
+
+fill       gs_fill
+
+poly2_ 2, 2,
+       0, 0, 900,
+       A/2, 360, 4001

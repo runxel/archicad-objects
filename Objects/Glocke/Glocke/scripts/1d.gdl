@@ -1,0 +1,38 @@
+﻿! ––– MASTER script ––– !
+
+
+! Detail Level 3D
+dict DETLEVEL
+  DETLEVEL.d3.mvo      = 1
+  DETLEVEL.d3.scsens   = 2
+  DETLEVEL.d3.detailed = 3
+  DETLEVEL.d3.simple   = 4
+  DETLEVEL.d3.draft    = 5
+  DETLEVEL.d3.off      = 7
+
+  DETLEVEL.st3.mvo      = `nach Modelldarstellung`
+  DETLEVEL.st3.scsens   = `Maßstabsabhängig`
+  DETLEVEL.st3.detailed = `Detailliert` ! `Komplett`
+  DETLEVEL.st3.simple   = `Vereinfacht`
+  DETLEVEL.st3.draft    = `Schematisch`
+  DETLEVEL.st3.off      = `Aus`
+
+! Determine the detail level for the 3D
+if (iDetlevel3D = DETLEVEL.d3.mvo) then	! by MVO
+	if GLOB_PREVIEW_MODE = 1 | GLOB_PREVIEW_MODE = 3 then
+		! In case of "by MVO" on Settings Dialog View and Favorite Saving use the Detailed/Full model
+		_detlevel3D = DETLEVEL.d3.detailed
+	else
+		_mvo_detlevel_3D = 0
+		lgr = libraryglobal("LibraryGlobals13", "iDetlevelMVO3D", _mvo_detlevel_3D)
+
+		_detlevel3D = DETLEVEL.d3.detailed
+		
+		if _mvo_detlevel_3D = DETLEVEL.d3.simple or \
+		   _mvo_detlevel_3D = DETLEVEL.d3.draft then _detlevel3D = DETLEVEL.d3.simple
+
+	endif
+else
+	! just take the number as is
+	_detlevel3D = iDetlevel3D
+endif

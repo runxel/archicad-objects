@@ -1,0 +1,38 @@
+﻿! ––– PARAM script ––– !
+
+if GLOB_MODPAR_NAME = "A" then
+	zzyzx = A
+	parameters zzyzx = zzyzx
+endif
+if GLOB_MODPAR_NAME = "zzyzx" then
+	A = zzyzx
+	parameters A = A
+endif
+
+B = A
+parameters B = B
+
+ac_bottomlevel = SYMB_POS_Z
+ac_toplevel = ac_bottomlevel + ZZYZX
+parameters   ac_bottomlevel = ac_bottomlevel,
+             ac_toplevel = ac_toplevel
+
+
+! options for the detail level (not all are used)
+values{2} "iDetlevel3D"  DETLEVEL.d3.mvo, DETLEVEL.st3.mvo,
+                         DETLEVEL.d3.detailed, DETLEVEL.st3.detailed,
+                         DETLEVEL.d3.simple, DETLEVEL.st3.simple
+
+
+if iDetlevel3D = DETLEVEL.d3.simple then
+    b_clapper = 0
+    parameters b_clapper = b_clapper
+    lock "b_clapper"
+endif
+
+values "gs_cont_pen", range [1,255]
+values "pen_sect_fg", range [1,255]
+
+
+values{2} "i_mount"  1, `Klassisch`,
+				     2, `Fest installiert`

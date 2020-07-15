@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="zzyzx">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsIn3D">
+			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="ac_bottomlevel">
+			<Description><![CDATA["Untere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="ac_toplevel">
+			<Description><![CDATA["Obere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Angle Name="y_rot_offset_ang">
+			<Description><![CDATA["Winkel-Versatz"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Angle>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Konturstift"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="gs_linetype">
+			<Description><![CDATA["Linientyp"]]></Description>
+			<Value>1</Value>
+		</LineType>
+		<FillPattern Name="gs_fill">
+			<Description><![CDATA["Schraffur Grundriss"]]></Description>
+			<Value>21</Value>
+		</FillPattern>
+		<FillPattern Name="fill_sect">
+			<Description><![CDATA["Schnittschraffur"]]></Description>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="pen_sect_fg">
+			<Description><![CDATA["Vordergrundstift Schnittschraffur"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_sect_bg">
+			<Description><![CDATA["Hintergrundstift Schnittschraffur"]]></Description>
+			<Value>19</Value>
+		</PenColor>
+
+		<!-- __div__: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__div__">
+			<Description><![CDATA["3D Attribute"]]></Description>
+		</Title>
+		<Material Name="gs_mat">
+			<Description><![CDATA["Oberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>40</Value>
+		</Material>
+		<Boolean Name="b_shadow">
+			<Description><![CDATA["Schatten"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Integer Name="iDetlevel3D">
+			<Description><![CDATA["Detailgrad"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>3</Value>
+		</Integer>
+		<Boolean Name="b_clapper">
+			<Description><![CDATA["Klöppel"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Integer Name="i_mount">
+			<Description><![CDATA["Aufhängung"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+	</Parameters>
+</ParamSection>

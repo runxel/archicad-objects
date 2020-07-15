@@ -1,0 +1,268 @@
+﻿! ––– 3D script ––– !
+
+if b_shadow then
+    shadow  auto, on
+else
+    shadow  off, off
+endif
+
+if _detlevel3D = DETLEVEL.d3.detailed then
+    resol 48
+    ! Beware! -> `revolve` goes around the X-axis!
+    put 0.815,  0.1649, 2,
+        0.815,  0.1650, 1, ! otherwise the `2` would make the rounding faceted
+        0.833,  0.2039, 900,
+        0.7931, 0.1928, 3001,
+        0.7823, 0.2312, 1,
+        0.7236, 0.2147, 900,
+        0.7301, 0.2754, 3001,
+        0.4032, 0.2997, 1,
+        0.4328, 0.6976, 900,
+        0.2213, 0.3593, 3001,
+        0.4063, 0.6554, 900,
+        0.1128, 0.4663, 3002,
+        0,      0.5,    2,
+        0.001,  0.49,   2,
+        0.0578, 0.3963, 2,
+        0.1549, 0.3392, 1,
+        0.4426, 0.8286, 900,
+        0.4004, 0.2625, 3001,
+        0.7429, 0.2370, 1,
+        0.0379, 0,      900,
+        0.7817, 0.005,  3001
+else
+    ! not detailed
+    resol 24
+    put 0.815,  0.1650, 2,
+        0.7931, 0.1928, 2,
+        0.7823, 0.2312, 1,
+        0.7301, 0.2754, 1,
+        0.4032, 0.2997, 1,
+        0.2213, 0.3593, 1,
+        0.1128, 0.4663, 2,
+        0,      0.5,    2,
+        0.001,  0.49,  2
+endif
+
+
+material   gs_mat
+pen        gs_cont_pen
+sect_attrs fill_sect, pen_sect_bg, pen_sect_fg, gs_cont_pen
+
+group "Bell"
+    mul A, B, zzyzx  ! Groups ignore any transformations from outside!
+    roty  270+y_rot_offset_ang
+    revolve  nsp/3, 360, 1+2,
+             get(nsp)
+endgroup
+
+! Glockenhenkel -----------------
+if i_mount = 1 then ! classic style
+    henkel_width = 0.05
+    group "Henkel_1"
+        mul A, B, zzyzx
+        rotx 90
+        add -0.1435, 0, -henkel_width/2
+        gosub "Henkel"
+    endgroup
+    group "Henkel_2"
+        mul A, B, zzyzx
+        rotz 90
+        rotx 90
+        add -0.1435, 0, -henkel_width/2
+        gosub "Henkel"
+    endgroup
+    union_henkel = addgroup ("Henkel_1", "Henkel_2")
+    killgroup "Henkel_1"
+    killgroup "Henkel_2"
+    addz 0.815*zzyzx
+    placegroup union_henkel
+    del 1
+else
+    addz 0.815*zzyzx
+    _hkl_w = 0.16*A
+    addx -_hkl_w/2
+    addy -_hkl_w/2 - 0.01
+    block _hkl_w, 0.02, 0.185*zzyzx
+    addy  _hkl_w
+    block _hkl_w, 0.02, 0.185*zzyzx
+    del 4
+endif
+
+! Schlagwerk ----------------------
+if b_clapper then
+
+    group "Mount"  ! Halterung des Klöppels an der Glocke
+        mul A, B, zzyzx
+        _mnt_width = 0.08
+        _mnt_height = 0.16
+        _mnt_dist = 0.06
+        add 0, _mnt_dist/2, 0.66
+        rotx 90
+        cylind  _mnt_dist, 0.01
+        del 2
+        addx -_mnt_width/2
+        addy _mnt_dist/2
+        addz 0.782-_mnt_height
+        gosub "Mount"
+        addy -(_mnt_dist+0.01)
+        gosub "Mount"
+    endgroup
+    
+    group "kloeppel_mount"
+        mul A, B, zzyzx
+        addz 0.53
+        rotx 90
+        rotz 90
+        addz -0.0125
+        prism_ 8, 0.0125*2,
+               0, 0, 79,
+               0, 0.0125, 79,
+               0.07, 0.05, 100+79,
+               0.12, 0, 100+79,
+               0, 0, 900,
+               0.19, -0.0625, 3000+15,
+               -0.12, 0, 100+79,
+               0, -0.0125, 79
+    endgroup
+    group "kloeppel_stab"
+        mul A, B, zzyzx
+        addz 0.02
+        cylind 0.51, 0.0125
+    endgroup
+    group "kloeppel_sphere"
+        mul A, B, zzyzx
+        addz -0.032
+        sphere 0.06
+    endgroup
+    group "kloeppel_end"
+        mul A, B, zzyzx
+        resol 6
+        roty -90
+        addx -0.224
+        revolve 3, 360, 1+2,
+                0, 0.012, 2,
+                0.01, 0.01, 100+2,
+                0.135, 0.01, 2
+    endgroup
+    
+    union_model = addgroup ("Bell", "Mount")
+    killgroup "Mount"
+    placegroup union_model
+    killgroup union_model
+
+    kl_1 = addgroup ("kloeppel_mount", "kloeppel_stab")
+    kl_2 = addgroup ("kloeppel_sphere", "kloeppel_end")
+    union_kloeppel = addgroup (kl_1, kl_2)
+    killgroup kl_1
+    killgroup kl_2
+    killgroup "kloeppel_mount"
+    killgroup "kloeppel_stab"
+    killgroup "kloeppel_sphere"
+    killgroup "kloeppel_end"
+    placegroup union_kloeppel
+    killgroup union_kloeppel
+
+else
+    ! no union, just place the group
+    placegroup "Bell"
+endif
+
+killgroup "Bell"
+
+END  ! -- END -- END -- END -- END -- END -- END -- END -- END -- END -- !
+! ---------------------------------------------------------------------- !#
+
+! ---------------------------------------------------------------------- !
+"Mount":
+    block _mnt_width, 0.01, _mnt_height
+return
+
+! ---------------------------------------------------------------------- !
+"Henkel":
+    prism_ 61, henkel_width,
+           0, 0.1716,          79,
+           -0.0019, 0.1717,    79,
+           -0.00635, 0.171,    79,
+           -0.01062, 0.1695,   79,
+           -0.01457, 0.1673,   79,
+           -0.01807, 0.1645,   79,
+           -0.02103, 0.1611,   79,
+           -0.02336, 0.1572,   79,
+           -0.02498, 0.1530,   79,
+           -0.02584, 0.1486,   79,
+           -0.02592, 0.1440,   79,
+           -0.02515, 0.1398,   79,
+           0.00206, 0.0276,    15,
+           0, 0,               15,
+           0.06889, 0,         15,
+           0.05259, 0.0170,    15,
+           0.04199, 0.1042,    79,
+           0.04184, 0.1076,    79,
+           0.04233, 0.1107,    79,
+           0.04334, 0.1136,    79,
+           0.04485, 0.1163,    79,
+           0.04681, 0.1187,    79,
+           0.04916, 0.1208,    79,
+           0.05183, 0.1224,    79,
+           0.05474, 0.1235,    79,
+           0.05780, 0.1241,    79,
+           0.05936, 0.1241,    79,
+           0.14335, 0.1241,    13,
+           0.22734, 0.1241,    79,
+           0.23072, 0.1238,    79,
+           0.23370, 0.1229,    79,
+           0.23648, 0.1215,    79,
+           0.23897, 0.1196,    79,
+           0.24110, 0.1174,    79,
+           0.24280, 0.1147,    79,
+           0.24402, 0.1119,    79,
+           0.24472, 0.1088,    79,
+           0.24489, 0.1057,    79,
+           0.24470, 0.1042,    79,
+           0.23410, 0.0170,    15,
+           0.21781, 0,         15,
+           0.28670, 0,         15,
+           0.28464, 0.0276,    15,
+           0.31186, 0.1398,    79,
+           0.31239, 0.1420,    79,
+           0.31268, 0.1465,    79,
+           0.31218, 0.1509,    79,
+           0.31091, 0.1553,    79,
+           0.30890, 0.1593,    79,
+           0.30623, 0.1630,    79,
+           0.30296, 0.1661,    79,
+           0.29921, 0.1686,    79,
+           0.29507, 0.1704,    79,
+           0.29069, 0.1714,    79,
+           0.28635, 0.1716,    79,
+           0.18904, 0.1716,    15,
+           0.18794, 0.1814,    15,
+           0.14335, 0.1814,    13,
+           0.09876, 0.1814,    15,
+           0.09766, 0.1716,    15,
+           0, 0.1716,          -1
+return
+
+! ---------------------------------------------------------------------- !
+"Doughnut":
+    resol  24
+    elbow dn_rad, 360, dnsect_rad
+return
+
+! ---------------------------------------------------------------------- !
+"unused":
+    ! Eine alternative Aufhängung
+    cyl_height = 0.04
+    cyl_width = 0.0125
+    addz 0.785-cyl_height
+    rotz 90
+    addy cyl_height
+    cylind  cyl_height, cyl_width
+    rotz -90
+    mulz -1
+    elbow  cyl_height, 180, cyl_width
+    del 1
+    addx  cyl_height*2
+    cylind  cyl_height, cyl_width
+return

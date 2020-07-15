@@ -12,7 +12,7 @@ version: 1.0
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
-[![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](objects/Stiftfarben/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.0-0086d1?style=flat-square)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-Attribution_4.0-0086d1?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
 (DE) Erweiterung des mitgelieferten 'Stiftfarben' Objekts. Dabei wurden die Standardeinstellungen etwas geändert, Schreibfehler ausgebessert und unsinnige Eingaben ausgeschlossen.  

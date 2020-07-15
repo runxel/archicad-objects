@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body {
-	font-family: $base-font-family
+	font-family: $base-font-family;
 	letter-spacing: 0.01rem;
 	font-size: 1.8em;
 	line-height: 1.75em;
@@ -16,7 +16,7 @@ input, label, select, textarea, table, header, footer, .categories, .listing, .s
 	-webkit-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
 	-moz-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
 	-o-font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-	font-family: $base-font-family
+	font-family: $base-font-family;
 	text-rendering: geometricPrecision;
 }
 
@@ -34,7 +34,7 @@ h6 {
 h1 {
 	font-size: 5rem;
 	letter-spacing: -2px;
-	text-indent: -3px
+	text-indent: -3px;
 }
 
 .tutorial-content h1 {
@@ -44,23 +44,23 @@ h1 {
 
 h2 {
 	font-size: 3.6rem;
-	letter-spacing: -1px
+	letter-spacing: -1px;
 }
 
 h3 {
-	font-size: 3rem
+	font-size: 3rem;
 }
 
 h4 {
-	font-size: 2.5rem
+	font-size: 2.5rem;
 }
 
 h5 {
-	font-size: 2rem
+	font-size: 2rem;
 }
 
 h6 {
-	font-size: 2rem
+	font-size: 2rem;
 }
 
 a {
@@ -80,12 +80,12 @@ dl {
 	-moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
 	-o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
 	margin: 0 0 1.75em 0;
-	text-rendering: geometricPrecision
+	text-rendering: geometricPrecision;
 }
 
 ol,
 ul {
-	padding-left: 3rem
+	padding-left: 3rem;
 }
 
 ol ol,
@@ -93,15 +93,15 @@ ul ul,
 ul ol,
 ol ul {
 	margin: 0 0 0.4em 0;
-	padding-left: 2em
+	padding-left: 2em;
 }
 
 li {
-	margin: 0.4em 0
+	margin: 0.4em 0;
 }
 
 li li {
-	margin: 0
+	margin: 0;
 }
 
 hr {
@@ -110,7 +110,7 @@ hr {
 	border: 0;
 	border-top: #EFEFEF 1px solid;
 	margin: 3.2em 0;
-	padding: 0
+	padding: 0;
 }
 
 blockquote {
@@ -118,35 +118,35 @@ blockquote {
 	box-sizing: border-box;
 	margin: 1.75em 0 1.75em -2.2em;
 	padding: 0 0 0 1.75em;
-	border-left: #4A4A4A 0.4em solid
+	border-left: #4A4A4A 0.4em solid;
 }
 
 blockquote p {
 	margin: 0.8em 0;
-	font-style: italic
+	font-style: italic;
 }
 
 blockquote small {
 	display: inline-block;
 	margin: 0.8em 0 0.8em 1.5em;
 	font-size: 0.9em;
-	color: #CCC
+	color: #CCC;
 }
 
 blockquote small:before {
-	content: "\2014 \00A0"
+	content: "\2014 \00A0";
 }
 
 blockquote cite {
-	font-weight: 700
+	font-weight: 700;
 }
 
 blockquote cite a {
-	font-weight: normal
+	font-weight: normal;
 }
 
 mark {
-	background-color: #fdffb6
+	background-color: #fdffb6;
 }
 
 kbd {

@@ -1,17 +1,21 @@
 ---
 title: 2D Complex Profile
+description: |
+   Zur Anzeige von Profilen aus dem Profilmanager im 2d. _Anmerkung: Profilmodifikatoren können nicht verwendet werden. Es kann jedoch über `A` und `B` Stretchfaktoren eingegeben werden._
+tags: 2d profile
+version: 1.1
 ---
 # 2D Complex Profile
 
-<img align="right" width=200 src="Objects/2D_Complex_Profile/2D_Complex_Profile/images/Picture_0.png">
+<img align="right" width=200 src="2D%20Complex%20Profile/images/Picture_0.png">
 
 ![Compatibility](https://img.shields.io/badge/compatibility-v23_▲-lightgrey?style=flat-square&logo=archicad&logoColor=white)
 ![Language](https://img.shields.io/badge/language-GER-lightgrey?style=flat-square)
 ![Dependencies](https://img.shields.io/badge/dependencies-none-a9dfbf?style=flat-square)
-[![Version](https://img.shields.io/badge/version-1.1-2980b9?style=flat-square)](Objects/2D_Complex_Profile/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1-2980b9?style=flat-square)](CHANGELOG.md)
 
 
-(DE) Zur Anzeige von Komplexen Profilen aus dem Profil Manager im 2D.  
+(DE)Zur Anzeige von Komplexen Profilen aus dem Profil Manager im 2D.  
 (EN) Displays a selected complex profile in 2D.  
 
 _Anmerkung: Profilmodifikatoren können nicht verwendet werden. Es kann jedoch über `A` und `B` Stretchfaktoren eingegeben werden._  

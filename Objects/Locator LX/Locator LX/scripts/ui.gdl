@@ -302,11 +302,13 @@ return
 
     ui_style  0, 1
     ui_outfield `Symbol pen 2D`,  UI.column.start[1], UI.rowheight*7+o_d, UI.column.width/2, UI.out.height
-    ui_infield  "pen_symbol2d",     UI.column.start[2], UI.rowheight*7,     UI.in.pen, UI.in.height
+    ui_infield  "pen_symbol2d",   UI.column.start[2], UI.rowheight*7,     UI.in.pen, UI.in.height
 
     ui_outfield `Symbol pen 3D`,  UI.column.start[1], UI.rowheight*8+o_d, UI.column.width/2, UI.out.height
-    ui_infield  "pen_symbol3d",     UI.column.start[2], UI.rowheight*8,     UI.in.pen, UI.in.height
+    ui_infield  "pen_symbol3d",   UI.column.start[2], UI.rowheight*8,     UI.in.pen, UI.in.height
     
+    ui_outfield `Surface`,        UI.column.start[2]+UI.column.width/2, UI.rowheight*8+o_d, UI.column.width/2, UI.out.height
+    ui_infield  "gs_mat",         UI.column.start[3], UI.rowheight*8,     UI.in.pen*3, UI.in.height
 return
 
 

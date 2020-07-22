@@ -10,9 +10,9 @@
 dict OBJ
   OBJ.NAME    = "Locator LX"
   OBJ.AUTHOR  = "Lucas Becker"
-  OBJ.VERSION = "1.0"
-  OBJ.DATE    = "2020-05-19"
-  OBJ.WEB     = "https://github.com/runxel/ArchiCAD-Objects"
+  OBJ.VERSION = "1.1"
+  OBJ.DATE    = "2020-07-22"
+  OBJ.WEB     = "https://runxel.xyz/archicad-objects"
 ! ---------------------------------------------------------------------- !
 
 r = request("REFERENCE_LEVEL_DATA", "", level_name1, elev1, level_name2, elev2, level_name3, elev3, level_name4, elev4)
@@ -54,6 +54,6 @@ stlye_z = 1*fontopt_bold_coor_z + 2*fontopt_italic_coor_z + 4*fontopt_underline_
 define style "txt_style_coor_z_l"   fontCoor, font_size_coor, 7, stlye_z
 define style "txt_style_coor_z_r"   fontCoor, font_size_coor, 9, stlye_z
 
-stlye_id = 1*fontopt_bold_coor_id + 2*fontopt_italic_coor_id + 4*fontopt_underline_coor_id
+stlye_id = 1*fontopt_bold_id + 2*fontopt_italic_id + 4*fontopt_underline_id
 define style "txt_style_id"         fontId,   font_size_id,   7, stlye_id
 

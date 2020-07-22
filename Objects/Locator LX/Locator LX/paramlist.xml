@@ -166,6 +166,13 @@
 			</Flags>
 			<Value>1</Value>
 		</PenColor>
+		<Material Name="gs_mat">
+			<Description><![CDATA["Material"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>57</Value>
+		</Material>
 		<PenColor Name="pen_text_id">
 			<Description><![CDATA["Pen of Identifier"]]></Description>
 			<Flags>
@@ -443,6 +450,7 @@
 		<Integer Name="uID">
 			<Description><![CDATA["Unique Hotspot ID"]]></Description>
 			<Flags>
+				<ParFlg_Child/>
 				<ParFlg_Unique/>
 				<ParFlg_Hidden/>
 			</Flags>
@@ -451,6 +459,7 @@
 		<Integer Name="gs_ui_current_page">
 			<Description><![CDATA[""]]></Description>
 			<Flags>
+				<ParFlg_Child/>
 				<ParFlg_Unique/>
 				<ParFlg_Hidden/>
 			</Flags>
@@ -459,6 +468,7 @@
 		<Length Name="x_coor_text">
 			<Description><![CDATA["X Coordinate of text"]]></Description>
 			<Flags>
+				<ParFlg_Child/>
 				<ParFlg_Hidden/>
 			</Flags>
 			<Value>0.125</Value>
@@ -466,6 +476,7 @@
 		<Length Name="y_coor_text">
 			<Description><![CDATA["Y Coordinate of text"]]></Description>
 			<Flags>
+				<ParFlg_Child/>
 				<ParFlg_Hidden/>
 			</Flags>
 			<Value>0.125</Value>

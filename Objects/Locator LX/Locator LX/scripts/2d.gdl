@@ -40,7 +40,6 @@ return
     
     tr_total = 0
     tr_y = 0
-    pen   pen_text_general
     
     !! let the text be movable
     ! horizontal

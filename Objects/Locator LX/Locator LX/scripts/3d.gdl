@@ -4,8 +4,9 @@
 if b_display3d then
 
     hotspot 0, 0, 0, uID
-    shadow  off
-    pen     pen_symbol3d
+    shadow    off
+    pen       pen_symbol3d
+    material  gs_mat
 
 	height = (A+B)/2
 

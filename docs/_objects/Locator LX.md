@@ -3,7 +3,7 @@ title: Locator LX
 description: |
    Der 'Locator LX' dient dazu die Koordinaten eines Punktes anzuzeigen. Kann auch in einer interaktiven Auswertung ausgewertet werden. 
 tags: 2d 3d helferlein auswertung
-version: 1.0
+version: 1.1
 ---
 # Locator LX
 

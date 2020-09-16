@@ -1,0 +1,129 @@
+﻿!--- 2D script ---!
+
+gosub 100  ! get the 'bmat' dict filled
+n_total_bmat = vardim1(bmat.real_id)
+
+line_type  lt_basic  ! Volllinie
+
+define style  "st1_headline"  fontType, 1, 7, 0
+set style  "st1_headline"
+pen  pen_text
+text2  0, size+0.3, text_h1
+
+define style{2}  "st2_default"  fontType, 0.0125, 1
+set style "st2_default"
+
+poly_flag = 1+2+4+64
+
+cols = 0
+rows = 0
+
+
+dim visibility[]
+gosub "Visibility"
+n = request ("Pen_of_RGB", "1 1 1", pen_white)
+
+! Place the actual fills
+for i=1 to n_total_bmat
+    pen  gs_cont_pen
+    fill bmat.style.fill[i]
+
+    ! First let's test if we would go wider than the specified width
+    if i#1 and ((size + dist) * cols + size) > max_width then
+        del cols
+        cols = 0
+        add2 0, -(size + dist)  ! next row
+        rows = rows + 1
+    endif
+
+    poly2_b{2}  5, poly_flag,
+                bmat.style.pen[i], bmat.style.pen_bg[i],
+                0, 0, 0, !fill loc
+                0, 0, 33,
+                0, size, 33,
+                size, size, 33,
+                size, 0, 33,
+                0, 0, 33
+    
+    ! Using richtext here, so we can limit the size of the text box
+    ! thus no names will flow out of their fills
+    if visibility[i] > 0 then
+        prg_pen = pen_white
+    else
+        prg_pen = pen_text
+    endif
+    paragraph "prg_bmat_name"  2, 0, 0, 0, 1
+        pen  prg_pen
+        bmat.name[i]
+    endparagraph
+    textblock "txtblock_bmat_name"  size-0.02, 5, 0, 1, 1.1, 0, 
+              "prg_bmat_name"
+    richtext2  size/2, size/2, "txtblock_bmat_name"
+    
+    add2  size + dist, 0
+    cols = cols + 1
+
+next i
+
+del ntr()
+
+! -- Hotspots:
+hotspot2  0, size
+hotspot2  max_width, size
+hotspot2  0, -rows * (size + dist)
+
+! max_width adjusting
+hotspot2  0, size,         201, max_width, 1+128 !base
+hotspot2  max_width, size, 202, max_width, 2 !mov
+hotspot2  -1, size,        203, max_width, 3 !ref
+
+! size
+hotspot2  0, 0,     204, size, 1+128 !base
+hotspot2  size, 0,  205, size, 2 !mov
+hotspot2  -1, 0,    206, size, 3 !ref
+
+
+END ! -- END -- END -- !
+
+! --------------------------------------------------------------------------- !
+"Visibility":
+    ! We want to know if the background is totally black
+    ! so we can later change the font color to white.
+    ! This assumes we use a dark pen for the names of the BMats.
+    ! Change the names below for i18n / diff. standards:
+    test_1 = "Misch-Schraffur"
+    test_2 = "Nur Vordergrund"
+    test_3 = "Nur Hintergrund"
+
+    for k=1 to n_total_bmat
+        ! Get the fill name first
+        n = request ("Name_of_fill", bmat.style.fill[k], currname)
+
+        visibility[k] = 0
+
+        ! This problem is normally restricted to massive fills
+        if strstr(currname, test_1) > 0 then
+            ! naive solution, doesn't account for actual colors
+            r = split(currname, "%s %n%s", null1, percentage, null2)
+            if percentage > 40 then
+                visibility[k] = 1
+            endif
+        endif
+        ! ..but let's also test the fore-/background 
+        ! Foreground
+        if strstr(currname, test_2) > 0 then
+            n = request ("Rgb_of_pen", bmat.style.pen[k], r, g, b)
+            if r+g+b < 1.5 then  ! too dark
+                visibility[k] = 1
+            endif
+        endif
+
+        ! Background
+        if strstr(currname, test_3) > 0 then
+            n = request ("Rgb_of_pen", bmat.style.pen_bg[k], r, g, b)
+            if r+g+b < 1.5 then  ! too dark
+                visibility[k] = 1
+            endif
+        endif
+    next k
+return

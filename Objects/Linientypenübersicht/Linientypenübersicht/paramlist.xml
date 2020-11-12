@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Max. Breite"]]></Description>
+			<Fix/>
+			<Value>10</Value>
+		</Length>
+		<Integer Name="display_type">
+			<Description><![CDATA["Darstellungsart"]]></Description>
+			<Value>1</Value>
+		</Integer>
+		<Integer Name="max_id">
+			<Description><![CDATA["Maximale abzufragende ID-Nr"]]></Description>
+			<Value>300</Value>
+		</Integer>
+		<PenColor Name="pen_lines">
+			<Description><![CDATA["Stift für Linien"]]></Description>
+			<Value>3</Value>
+		</PenColor>
+		<Length Name="line_length">
+			<Description><![CDATA["Linienlänge"]]></Description>
+			<Value>3</Value>
+		</Length>
+		<Length Name="dist">
+			<Description><![CDATA["Abstand"]]></Description>
+			<Value>0.4</Value>
+		</Length>
+		<String Name="fontType">
+			<Description><![CDATA["Schriftart"]]></Description>
+			<Value><![CDATA["Arial Westlich"]]></Value>
+		</String>
+		<PenColor Name="pen_text">
+			<Description><![CDATA["Stift für Text"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<String Name="text_h1">
+			<Description><![CDATA["Text Überschrift"]]></Description>
+			<Value><![CDATA["Linientypenübersicht"]]></Value>
+		</String>
+	</Parameters>
+</ParamSection>

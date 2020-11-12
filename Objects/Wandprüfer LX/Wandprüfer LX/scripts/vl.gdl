@@ -1,0 +1,1 @@
+﻿!--- Param script ---!values "grid" 30, 45, 60, 90values{2} "reference" 	0, "Absolut",						1, "Orientierung des Projekts (Norden)",						2, "Aktuelle Ansichtsdrehung",						3, "Feier Winkel"if reference # 3 then lock "ang_free"values "precision" range [1,9]

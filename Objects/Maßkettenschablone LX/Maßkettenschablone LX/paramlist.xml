@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Value>12</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Länge"]]></Description>
+			<Fix/>
+			<Value>9</Value>
+		</Length>
+		<Length Name="ZZYZX">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsIn3D">
+			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="ac_bottomlevel">
+			<Description><![CDATA["Untere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ac_toplevel">
+			<Description><![CDATA["Obere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+
+		<!-- __general_settings: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__general_settings">
+			<Description><![CDATA["Allgemeine Einstellungen"]]></Description>
+		</Title>
+		<Boolean Name="build_contour">
+			<Description><![CDATA["Kontur Gebäude"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_corner_pt">
+			<Description><![CDATA["Eckpunkte Gebäude an"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_text">
+			<Description><![CDATA["Beschriftung an"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="b_marker">
+			<Description><![CDATA["Marker an"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+
+		<!-- __dim_settings: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__dim_settings">
+			<Description><![CDATA["Einstellungen Maßketten"]]></Description>
+		</Title>
+		<Integer Name="n_dims">
+			<Description><![CDATA["Anzahl Maßketten"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>4</Value>
+		</Integer>
+		<Length Name="cl">
+			<Description><![CDATA["Markergröße"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.1</Value>
+		</Length>
+		<Boolean Name="b_dim_dist_same">
+			<Description><![CDATA["Abstand gleich"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="dim_dist">
+			<Description><![CDATA["Abstand von Kontur [ARRAY]"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="4" SecondDimension="0">
+				<AVal Row="1">2</AVal>
+				<AVal Row="2">2</AVal>
+				<AVal Row="3">2</AVal>
+				<AVal Row="4">2</AVal>
+			</ArrayValues>
+		</Length>
+		<Length Name="dim_dist_generic">
+			<Description><![CDATA["Abstand von Kontur"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2</Value>
+		</Length>
+		<Length Name="dist_top">
+			<Description><![CDATA["Abstand Oben"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.6</Value>
+		</Length>
+		<Length Name="dist_bottom">
+			<Description><![CDATA["Abstand Unten"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.6</Value>
+		</Length>
+		<Length Name="dist_left">
+			<Description><![CDATA["Abstand Links"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.6</Value>
+		</Length>
+		<Length Name="dist_right">
+			<Description><![CDATA["Abstand Rechts"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.6</Value>
+		</Length>
+		<Length Name="dim_dim_dist">
+			<Description><![CDATA["Maßkettenabstand"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0.6</Value>
+		</Length>
+
+		<!-- __text_settings: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__text_settings">
+			<Description><![CDATA["Einstellungen Text"]]></Description>
+		</Title>
+		<Integer Name="pos_text">
+			<Description><![CDATA["Position der Texte"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Length Name="dist_text">
+			<Description><![CDATA["Abstand Text von Punkten"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>3</Value>
+		</Length>
+		<RealNum Name="font_size">
+			<Description><![CDATA["Zeichengröße (mm)"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2</Value>
+		</RealNum>
+		<String Name="font">
+			<Description><![CDATA["Zeichensatz"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Univers LT Std 55 Westlich"]]></Value>
+		</String>
+
+		<!-- __text_contents: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="__text_contents">
+			<Description><![CDATA["Maßkettenbeschriftung"]]></Description>
+		</Title>
+		<String Name="dim_preset">
+			<Description><![CDATA["Voreingestellte Sets"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="dim_text_1">
+			<Description><![CDATA["Beschriftung Maßkette 1"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Achsen"]]></Value>
+		</String>
+		<String Name="dim_text_2">
+			<Description><![CDATA["Beschriftung Maßkette 2"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Öffnungen"]]></Value>
+		</String>
+		<String Name="dim_text_3">
+			<Description><![CDATA["Beschriftung Maßkette 3"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Rohbau"]]></Value>
+		</String>
+		<String Name="dim_text_4">
+			<Description><![CDATA["Beschriftung Maßkette 4"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["TGA"]]></Value>
+		</String>
+		<String Name="dim_text_5">
+			<Description><![CDATA["Beschriftung Maßkette 5"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="dim_text_6">
+			<Description><![CDATA["Beschriftung Maßkette 6"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="dim_text_7">
+			<Description><![CDATA["Beschriftung Maßkette 7"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="dim_text_8">
+			<Description><![CDATA["Beschriftung Maßkette 8"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="dim_text_9">
+			<Description><![CDATA["Beschriftung Maßkette 9"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="dim_text_10">
+			<Description><![CDATA["Beschriftung Maßkette 10"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+	</Parameters>
+</ParamSection>

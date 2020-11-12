@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>61057</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Maß 1"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="AC_CustomReadability">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Integer Name="AC_LabelOrientation">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Integer>
+		<String Name="AC_TextFont_1">
+			<Description><![CDATA["Zeichensatz 1 (Grundeinstell.)"]]></Description>
+			<Fix/>
+			<Value><![CDATA["Arial"]]></Value>
+		</String>
+		<RealNum Name="AC_TextSize_1">
+			<Description><![CDATA["Schriftgröße 1 (Grundeinstell.)"]]></Description>
+			<Fix/>
+			<Value>3</Value>
+		</RealNum>
+		<Integer Name="AC_TextStyle_1">
+			<Description><![CDATA["Textstil 1 (Grundeinstellung)"]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Integer>
+		<Integer Name="AC_TextAlignment_1">
+			<Description><![CDATA["Markertext 1 Ausrichtung (Standard)"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Integer>
+		<RealNum Name="AC_TextLeading_1">
+			<Description><![CDATA["Markertext 1 Zeilenabstand (Standard)"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</RealNum>
+		<RealNum Name="AC_TextCharWidthFactor_1">
+			<Description><![CDATA["Markertext 1 Zeichenbreite-Faktor (Standard)"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</RealNum>
+		<RealNum Name="AC_TextCharSpaceFactor_1">
+			<Description><![CDATA["Markertext 1 Textzeichenbreite-Faktor (Standard)"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</RealNum>
+		<PenColor Name="AC_TextPen_1">
+			<Description><![CDATA["Stift Text (Grundeinstellung)"]]></Description>
+			<Fix/>
+			<Value>46</Value>
+		</PenColor>
+		<Boolean Name="AC_bLabelAlwaysReadable">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Boolean>
+		<Boolean Name="AC_bLabelTextWrap">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="AC_bLabelOpaqueFill">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="AC_LabelTextBgrPen">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>-1</Value>
+		</PenColor>
+		<Boolean Name="AC_bLabelFrame">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Boolean>
+		<Length Name="AC_LabelFrameOffset">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Length>
+		<PenColor Name="AC_LabelPointerPen">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>85</Value>
+		</PenColor>
+		<LineType Name="AC_LabelPointerLineType">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</LineType>
+		<Integer Name="AC_LabelPointerConnection">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Value>0</Value>
+		</Integer>
+		<Integer Name="reference">
+			<Description><![CDATA["Referenzdrehung"]]></Description>
+			<Value>0</Value>
+		</Integer>
+		<Angle Name="grid">
+			<Description><![CDATA["Zugelassene Winkel"]]></Description>
+			<Value>90</Value>
+		</Angle>
+		<RealNum Name="ang_free">
+			<Description><![CDATA["Freier Winkel"]]></Description>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="max_deviation_str">
+			<Description><![CDATA["Maximale Abweichung [in °]"]]></Description>
+			<Value><![CDATA["0,000001"]]></Value>
+		</String>
+		<Integer Name="precision">
+			<Description><![CDATA["Anzeigegenauigkeit"]]></Description>
+			<Value>6</Value>
+		</Integer>
+		<Boolean Name="b_use_color">
+			<Description><![CDATA["Auffällige Farben verwenden"]]></Description>
+			<Value>1</Value>
+		</Boolean>
+	</Parameters>
+</ParamSection>

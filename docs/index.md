@@ -14,9 +14,10 @@ layout: default
 <h2 id="{{ obj.title | slugify }}" class="title">{{ obj.title }}</h2>
 <div class="description">{{ obj.description | markdownify }}</div>
 <a class="download" href="https://github.com/{{ site.github_username }}/{{ site.repo_name }}/raw/master/Objects/{{ obj.title }}/{{ obj.title }}.gsm">Download</a>
+<span class="compatibility"><img class="icon" height="24" width="24" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/archicad.svg" alt="icon"/>{{ obj.compat }}</span>
 <span class="version">Version: <a class="changelog" href="https://github.com/{{ site.github_username }}/{{ site.repo_name }}/blob/master/Objects/{{ obj.title }}/CHANGELOG.md">{{ obj.version }}</a></span>
 </div>
-<img src="https://raw.githubusercontent.com/{{ site.github_username }}/{{ site.repo_name }}/master/Objects/{{ obj.title }}/{{ obj.title }}/images/Picture_0.png" alt="{{ obj.title }} icon" width="200" height="200"> 
+<img class="preview" src="https://raw.githubusercontent.com/{{ site.github_username }}/{{ site.repo_name }}/master/Objects/{{ obj.title }}/{{ obj.title }}/images/Picture_0.png" alt="{{ obj.title }} icon" width="200" height="200"> 
 </section>
 {% endfor %}
 </div>

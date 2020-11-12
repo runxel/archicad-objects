@@ -16,6 +16,7 @@
 		margin: 0;
 		margin-bottom: 1em;
 		padding: 0;
+		text-transform: lowercase;
 		
 		li {
 			font-size: 70%;
@@ -37,7 +38,7 @@
 		margin: 0.4em 0;
 	}
 
-	img {
+	.preview {
 		overflow: hidden;
 		border-radius: 10px;
 		box-shadow:  5px 5px 10px #e4e4e4, 
@@ -65,6 +66,17 @@
 			box-shadow: inset 5px 5px 10px #d6d6d6, 
 						inset -5px -5px 10px #ffffff;
 		}   
+	}
+
+	.compatibility {
+		.icon {
+			margin: 0 5px;
+			position: relative;
+			top: 3px;
+			// and now: a crazy hack to turn a black icon into blue:
+			// see https://stackoverflow.com/questions/42966641/how-to-transform-black-into-any-given-color-using-only-css-filters/43960991#43960991
+			filter: invert(25%) sepia(67%) saturate(815%) hue-rotate(176deg) brightness(90%) contrast(84%);
+		}
 	}
 
 	.version {

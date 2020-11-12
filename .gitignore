@@ -13,6 +13,6 @@ docs/_site/
 .jekyll-cache
 .jekyll-metadata
 
-# sublime text stuff
-*.sublime-project
-*.sublime-workspace
+# IDE stuff
+*.sublime-*
+*.code-workspace

@@ -1,7 +1,7 @@
 ---
 title: Wandprüfer LX
 description: |
-   Zur Überprüfung von schief gestellten Wänden im Grundriss.
+   Zur Überprüfung von schief gezeichneten Wänden im Grundriss.
 description_en: |
    To detect misplaced walls in the floor plan.
 tags: 2D Etikett Helferlein

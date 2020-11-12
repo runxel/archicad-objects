@@ -1,0 +1,1 @@
+﻿!--- Param script ---!A = sizeB = max_widthparameters 	A = A,			B = Bvalues "dist" range [0,]values "max_id" 100, 200, 300, 400, 500, custom, range [1,]values "max_width" range (size,]values "pen_text" range [1,255]values "gs_cont_pen" range [0,255]values "foreground_pen" range [1,255]

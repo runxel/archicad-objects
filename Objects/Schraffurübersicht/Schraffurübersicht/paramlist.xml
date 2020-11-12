@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Größe"]]></Description>
+			<Fix/>
+			<Value>0.3</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maximale Breite"]]></Description>
+			<Fix/>
+			<Value>15.1</Value>
+		</Length>
+		<Length Name="size">
+			<Description><![CDATA["Größe"]]></Description>
+			<Value>0.3</Value>
+		</Length>
+		<Length Name="dist">
+			<Description><![CDATA["Abstand"]]></Description>
+			<Value>0.3</Value>
+		</Length>
+		<String Name="text_h1">
+			<Description><![CDATA["Überschrift"]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+			</Flags>
+			<Value><![CDATA["Schraffurübersicht"]]></Value>
+		</String>
+		<Integer Name="max_id">
+			<Description><![CDATA["Maximal abzufragende ID-Nr"]]></Description>
+			<Value>300</Value>
+		</Integer>
+		<Length Name="max_width">
+			<Description><![CDATA["Maximale Breite"]]></Description>
+			<Value>15.1</Value>
+		</Length>
+		<String Name="fontType">
+			<Description><![CDATA["Schriftart"]]></Description>
+			<Value><![CDATA["Arial Westlich"]]></Value>
+		</String>
+		<PenColor Name="pen_text">
+			<Description><![CDATA["Textfarbe"]]></Description>
+			<Value>20</Value>
+		</PenColor>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Konturstift"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="lt_basic">
+			<Description><![CDATA["Konturlinienart"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<PenColor Name="foreground_pen">
+			<Description><![CDATA["Vordergrundstift"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="background_pen">
+			<Description><![CDATA["Hintergrundstift"]]></Description>
+			<Value>0</Value>
+		</PenColor>
+	</Parameters>
+</ParamSection>

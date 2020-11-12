@@ -1,5 +1,6 @@
 # .gitignore
 ideas/
+todo.md
 
 # no big binaries / proprietary image files in git
 Objects/*/img/*.psd

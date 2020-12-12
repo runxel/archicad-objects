@@ -1,0 +1,41 @@
+﻿!--- param script ---!
+
+hideparameter all
+
+! Accept only Profiles of type "Object"
+values  "profileID"			profiletypes_mask  16
+
+values  "gs_resol"			range [4,]
+
+! I don't care for the FM types
+!call "FM_types" parameters all
+
+values "PanelThk"	range [0.001,]
+
+values{2} "iDetlevel2D"	aDetlevel2D, sDetlevel2D
+values{2} "iDetlevel3D"	aDetlevel3D, sDetlevel3D
+
+! rotation of the panel
+values "gs_updirection"  0, 90, 180, 270
+
+values "penCut" 	range [1,255]
+values "penUnCut" 	range [1,255]
+
+!-----------------------------------------------------------------------------!
+
+parameters ac_thickness = panelThk
+
+parameters ac_width = rightSide_X - leftSide_X
+parameters ac_nominalWidth = ac_width
+
+parameters ac_height = upperSide_Y - downSide_Y
+parameters ac_nominalHeight = ac_height
+
+! If TRUE, the origin of the 2D model’s coordinate system is placed on the axis line of the connecting frame.
+! Otherwise the origin of the coordinate system can be at the side or 
+! at the clamp’s depth of the connecting frame – depending on the ac_aSizeIsWithClamp parameter.
+parameters ac_originIsFrameCenter = 0
+
+! If TRUE the A is the distance between the frames plus the clamps size.
+! Otherwise, the A size is measured between the frames.
+parameters ac_aSizeIsWithClamp = 0

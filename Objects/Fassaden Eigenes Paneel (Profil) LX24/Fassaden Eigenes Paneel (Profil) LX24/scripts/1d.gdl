@@ -1,0 +1,71 @@
+﻿!--- MASTER script ---!
+
+eps = 0.0001
+
+! GLOB_STRUCTURE_DISPLAY: 0 – entire structure, 1 – core only, 2 – without finishes
+COMPTYPE_CORE 	= 0
+COMPTYPE_FINISH	= 1
+COMPTYPE_OTHER	= 2
+
+! const values for parameter: iDetlevel3D
+DETLEVEL3D_MVO			= 1
+DETLEVEL3D_SCHEMATIC	= 2
+DETLEVEL3D_SIMPLE		= 3
+DETLEVEL3D_DETAILED		= 4
+DETLEVEL3D_LINE			= 5
+
+dim aDetlevel3D[]							, sDetlevel3D[]					: i=1
+	aDetlevel3D[i] = DETLEVEL3D_MVO			: sDetlevel3D[i] = `nach Modelldarstellung`		: i=i+1
+	aDetlevel3D[i] = DETLEVEL3D_DETAILED	: sDetlevel3D[i] = `Komplett`		: i=i+1
+	aDetlevel3D[i] = DETLEVEL3D_SIMPLE		: sDetlevel3D[i] = `Vereinfacht`	: i=i+1
+	aDetlevel3D[i] = DETLEVEL3D_SCHEMATIC	: sDetlevel3D[i] = `Schematisch`	: i=i+1
+
+! const values for parameter: iDetlevel2D
+DETLEVEL2D_SCALESENSITIVE	= -1
+DETLEVEL2D_MVO				= 1
+DETLEVEL2D_SCHEMATIC		= 2
+DETLEVEL2D_SIMPLE			= 3
+DETLEVEL2D_DETAILED			= 4
+
+dim aDetlevel2D[]								, sDetlevel2D[]								: i=1
+	aDetlevel2D[i] = DETLEVEL2D_MVO				: sDetlevel2D[i] = `nach Modelldarstellung`	: i=i+1
+	aDetlevel2D[i] = DETLEVEL2D_SCALESENSITIVE	: sDetlevel2D[i] = `Maßstabsabhängig`		: i=i+1
+	aDetlevel2D[i] = DETLEVEL2D_DETAILED		: sDetlevel2D[i] = `Komplett`				: i=i+1
+	aDetlevel2D[i] = DETLEVEL2D_SIMPLE			: sDetlevel2D[i] = `Vereinfacht`			: i=i+1
+	aDetlevel2D[i] = DETLEVEL2D_SCHEMATIC		: sDetlevel2D[i] = `Schematisch`			: i=i+1
+
+
+nCorners = vardim1(AC_FrameAxisCoords)
+nCorners_in = vardim1(AC_clampFreeRegionCoords)
+
+if bExtendedPanel then
+	! Normally this means the panel is extened by the clamp size. `AC_PanelCoords`
+	! ("Auf Klemmleistenbreite erweitert")
+	! But we do it differently and extend to the center of the frame axis.
+	leftSide_X  = AC_FrameAxisCoords[1][1]
+	rightSide_X = AC_FrameAxisCoords[1][1]
+	downSide_Y  = AC_FrameAxisCoords[1][2]
+	upperSide_Y = AC_FrameAxisCoords[1][2]
+
+	for i = 1 to nCorners
+		if AC_FrameAxisCoords[i][1] < leftSide_X  then leftSide_X  = AC_FrameAxisCoords[i][1]
+		if AC_FrameAxisCoords[i][1] > rightSide_X then rightSide_X = AC_FrameAxisCoords[i][1]
+		if AC_FrameAxisCoords[i][2] < downSide_Y  then downSide_Y  = AC_FrameAxisCoords[i][2]
+		if AC_FrameAxisCoords[i][2] > upperSide_Y then upperSide_Y = AC_FrameAxisCoords[i][2]
+	next i
+else
+	leftSide_X  = AC_clampFreeRegionCoords[1][1]
+	rightSide_X = AC_clampFreeRegionCoords[1][1]
+	downSide_Y  = AC_clampFreeRegionCoords[1][2]
+	upperSide_Y = AC_clampFreeRegionCoords[1][2]
+
+	for i = 1 to nCorners_in
+		if AC_clampFreeRegionCoords[i][1] < leftSide_X  then leftSide_X  = AC_clampFreeRegionCoords[i][1]
+		if AC_clampFreeRegionCoords[i][1] > rightSide_X then rightSide_X = AC_clampFreeRegionCoords[i][1]
+		if AC_clampFreeRegionCoords[i][2] < downSide_Y  then downSide_Y  = AC_clampFreeRegionCoords[i][2]
+		if AC_clampFreeRegionCoords[i][2] > upperSide_Y then upperSide_Y = AC_clampFreeRegionCoords[i][2]
+	next i
+endif
+
+centerX = (leftSide_X + rightSide_X) / 2
+centerY = (downSide_Y + upperSide_Y) / 2

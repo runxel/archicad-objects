@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CalledMacros>
+	<Macro>
+		<MName><![CDATA["CW Transformation"]]></MName>
+		<MainGUID>8CB3732B-1A30-4267-85F3-4F0F06BBD13C</MainGUID>
+	</Macro>
+	<Macro>
+		<MName><![CDATA["SchematicCWSash"]]></MName>
+		<MainGUID>99EFD39F-78B2-4283-A498-33C2B8CE651D</MainGUID>
+	</Macro>
+	<Macro>
+		<MName><![CDATA["ui_CWPanel_m"]]></MName>
+		<MainGUID>1821DC44-15A2-476E-A6CD-BF3740259118</MainGUID>
+	</Macro>
+	<Macro>
+		<MName><![CDATA["FM_types"]]></MName>
+		<MainGUID>2759D2DF-AA8E-44D1-AD1D-261581266B34</MainGUID>
+	</Macro>
+</CalledMacros>

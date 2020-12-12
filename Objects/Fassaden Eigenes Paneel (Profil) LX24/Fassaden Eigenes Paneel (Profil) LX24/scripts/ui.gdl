@@ -1,0 +1,161 @@
+﻿!--- UI script ---!
+
+dict UI
+  UI.width = 444
+  UI.height = 200
+  ! page IDs
+  UI.tabid.root = -1
+  UI.tabid.settings = 100
+  UI.tabid.representation = 200
+  ! UI basic LAYOUT settings
+  UI.gap.h = 5				! horizontal GAP
+  UI.gap.v = UI.gap.h 	! vertical gap
+  ! Most layouts consist of one input and one output column
+  UI.layout.ncol = 2		! determine how many columns you want
+  UI.layout.col[1] = 0
+  UI.layout.col[2] = UI.width / 2  + UI.gap.h	! start of the second column, X-position
+  UI.layout.starty = 4
+  UI.layout.line = 24 		! distance between lines
+  UI.text.align.left = 0
+  ! UI elements
+  UI.el.in.w = (UI.width / UI.layout.ncol) * 0.7	! infield width
+  UI.el.in.h = 19 	! infield height
+  UI.el.in.off = 4 	! vertical offset for infields
+  UI.el.out.w = UI.width / UI.layout.ncol
+  UI.el.out.h = 15 	! outfield height
+  UI.el.button.h = 25
+
+
+! ==============================================================================
+! TRANSLATION !
+! TODO: translate to english
+dict TLX, TLX_DE
+  TLX_DE.dialog = `Fassadenpaneel Einstellungen`
+  TLX_DE.tabid.settings = `Allgemeine Einstellungen`
+  TLX_DE.tabid.representation = `Darstellung und Erscheinung`
+
+TLX = TLX_DE
+! ==============================================================================
+
+ui_dialog  	TLX.dialog, UI.width, UI.height
+ui_current_page 	gs_ui_current_page
+
+! -----------------------------------------------------------------------------
+! UI Pages
+
+ui_page 	UI.tabid.settings, UI.tabid.root, TLX.tabid.settings, "uiTab_CW_panelGeneral_hl(1)"
+	gosub "GeneralSettingsPage"
+
+ui_page 	UI.tabid.representation, UI.tabid.root, TLX.tabid.representation, "uiTab_2DRepr_hl(1)"
+	gosub "pageCallRepresentation"
+
+file_dependence	"uiTab_CW_panelGeneral_hl(1)"
+file_dependence "uiTab_2DRepr_hl(1)"
+
+
+END !---END---END---END---END---END---END---END---END---END--!
+
+
+!-----------------------------------------------------------------------------!
+"GeneralSettingsPage":
+	_yCurr	= UI.layout.starty + UI.el.in.off
+
+	graphic = 18
+	ui_outfield `Profil`, UI.layout.col[1],	_yCurr+2, UI.el.out.w-graphic-2, UI.el.out.h, UI.text.align.left
+	ui_pict "profile_control_hl(1)", UI.layout.col[2] - (UI.gap.h + graphic), _yCurr-1, graphic, graphic, 1
+	file_dependence "profile_control_hl(1)"
+	ui_infield "profileID", UI.layout.col[2], _yCurr-4, UI.el.in.w, UI.el.button.h
+
+	_yCurr = _yCurr + UI.layout.line + 5
+	ui_outfield `Drehung des Paneels`, 		UI.layout.col[1],	_yCurr,	UI.el.out.w,	UI.el.out.h,	UI.text.align.left \
+		ui_tooltip `Rotation des Paneels im Uhrzeigersinn gegenüber seiner ursprünglichen Position.`
+	ui_infield{3} "gs_updirection",		UI.layout.col[2],	_yCurr - UI.el.in.off,	UI.el.in.w,		UI.el.in.h,
+		8, "",
+		0, 0, 0, 0, 0, 0,
+		0, "0°",	0,
+		0, "90°",	90,
+		0, "180°",	180,
+		0, "270°",	270
+
+	_yCurr = _yCurr + UI.layout.line
+	ui_outfield `Paneeldicke`,		UI.layout.col[1],	_yCurr,	UI.el.out.w,	UI.el.out.h,	UI.text.align.left \
+		ui_tooltip `Stärke des Paneels`
+	ui_infield{3} "panelThk",			UI.layout.col[2],	_yCurr - UI.el.in.off,	UI.el.in.w,		UI.el.in.h
+
+	_yCurr = _yCurr + UI.layout.line
+	ui_outfield `Offset von Referenzlinie`, 		UI.layout.col[1],	_yCurr,	UI.el.out.w,	UI.el.out.h,	UI.text.align.left \
+		ui_tooltip "Abstand des Paneels von der Fassadenreferenzlinie"
+	ui_infield{3} "offsetPanel",		UI.layout.col[2],	_yCurr - UI.el.in.off,	UI.el.in.w,		UI.el.in.h
+
+	_yCurr = _yCurr + UI.layout.line
+	ui_infield{3} "bFlipped",			UI.layout.col[2], _yCurr, UI.el.out.w, UI.el.in.h,
+					7, "",
+					0, 0,
+					0, 0, 0, 0,
+					"", `Paneel gespiegelt`, 0,
+					"", `Paneel gespiegelt`, 1 \
+		ui_tooltip "Das Paneel wird horizontal gespiegelt."
+
+	_yCurr = _yCurr + UI.layout.line
+	ui_infield{3} "bExtendedPanel",			UI.layout.col[2], _yCurr, UI.el.out.w, UI.el.in.h,
+					7, "",
+					0, 0,
+					0, 0, 0, 0,
+					"", `Ohne Lücke (ignoriert Profilbreite)`, 0,
+					"", `Ohne Lücke (ignoriert Profilbreite)`, 1 \
+		ui_tooltip "Paneel wird auf Schemabreite erweitert"
+	
+	_yCurr = _yCurr + UI.layout.line + 12
+	ui_outfield `Anmerkung: Der Nullpunkt des Profils muss sich \
+					unten links befinden. Andernfalls wird das Paneel \
+					an einer falschen Stelle sitzen.`, 
+					UI.layout.col[1],	_yCurr,	UI.width, UI.el.out.h*2.1,	UI.text.align.left + 4
+return
+
+
+!-----------------------------------------------------------------------------!
+"pageCallRepresentation":
+	itemID = 1
+	listID = 1
+
+	ui_outfield 	`Anmerkung: Sofern nicht "Überschreiben" ausgewählt ist, \
+					haben diese Attribute nur Auswirkungen auf die schematische Ansicht.`, 
+					UI.layout.col[1], 4, UI.width-UI.layout.col[1], Ui.el.out.h*2.1, UI.text.align.left
+
+	! Make a list
+	ui_listfield 	listID, 0, UI.layout.starty + Ui.el.out.h*2.1 + UI.layout.line, UI.width, UI.height
+
+	ui_listitem itemID, listID, "", 0, "ui_list_detailLevel2D_hl(1)", `2D Darstellung gleich wie 3D-Detaillierung`			: itemID=itemID+1 	! iDetlevel2D
+	file_dependence "ui_list_detailLevel2D_hl(1)"
+
+	ui_listitem itemID, listID, "iDetlevel3D", 		0,	"ui_list_detailLevel3D_hl(1)"		: itemID=itemID+1
+	file_dependence "ui_list_detailLevel3D_hl(1)"
+
+	if	(iDetlevel3D = DETLEVEL3D_DETAILED 	|\
+		iDetlevel3D = DETLEVEL3D_MVO)		then
+
+		ui_listitem itemID, listID, "gs_resol", 		0,	"ui_list_resol_hl(1)"				: itemID=itemID+1
+		file_dependence "ui_list_resol_hl(1)"
+	endif
+
+	ui_listitem itemID, listID, "gs_shadow", 			0,	"ui_list_shadow_hl(1)"			: itemID=itemID+1
+	file_dependence "ui_list_shadow_hl(1)"
+
+	! --- Attributes -------
+	ui_listitem itemID, listID, "gs_2D_representation", 1, "" 		: itemID=itemID+1
+
+	ui_listitem itemID, listID, "bOverridePenCut", 	1,	"ui_list_OverrideCutFillPens_hl(1)"	: itemID=itemID+1
+	file_dependence "ui_list_OverrideCutFillPens_hl(1)"
+	ui_listitem itemID, listID, "penUnCut", 		1,	"ui_list_contourPen_hl(1)"	: itemID=itemID+1
+	file_dependence "ui_list_contourPen_hl(1)"
+	ui_listitem itemID, listID, "penCut", 			1,	"ui_list_cutPen_hl(1)"		: itemID=itemID+1
+	file_dependence "ui_list_cutPen_hl(1)"
+
+	ui_listitem itemID, listID, "bOverrideBmat", 	1,	""	: itemID=itemID+1
+	ui_listitem itemID, listID, "panelBmat", 		1,	"ui_list_BuildingMaterial_hl(1)"	: itemID=itemID+1
+	file_dependence "ui_list_BuildingMaterial_hl(1)"
+
+	ui_listitem itemID, listID, "bOverrideSurface", 	1,	"ui_list_SurfaceOverride_hl(1)"	: itemID=itemID+1
+	file_dependence "ui_list_SurfaceOverride_hl(1)"
+	ui_listitem itemID, listID, "matPanel", 		1,	"ui_list_surface_hl(1)"	: itemID=itemID+1
+return

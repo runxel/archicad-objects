@@ -1,0 +1,229 @@
+﻿!--- 3D script ---!
+
+if iDetlevel3D = DETLEVEL3D_MVO then
+	iDetlevel3D = GLOB_MVO_CWPANEL_DETLEVEL 	! Schematic, Simple, Detailed
+endif
+
+if GLOB_FEEDBACK_MODE then
+	resol 8
+else
+	resol gs_resol
+endif
+
+pen 	penUnCut
+if not(gs_shadow) then shadow off
+
+! Hotspots are only visible when in the "EDIT"-mode
+hotspot centerX, centerY, 0
+
+if iDetlevel3D = DETLEVEL3D_DETAILED then
+	gosub "DetailedModel"
+else
+	dim boundaryCoords[][]
+	if iDetlevel3D = DETLEVEL3D_SCHEMATIC then
+		boundaryCoords = AC_FrameAxisCoords
+	else
+		boundaryCoords = AC_clampFreeRegionCoords
+	endif
+
+	call "SchematicCWSash" parameters 	iPanelType			= 0,			! FIX_PANEL
+										iDetlevel3D			= iDetlevel3D,
+										boundaryCoords		= boundaryCoords,
+								! --- Simple Model -------------------------------------------
+										offsetPanel			= AC_clampWidth/2 - panelThk/2 - offsetPanel,	! default: panel center is on the axis
+										panelThk			= panelThk,
+								! --- Panel Attributes ---------------------------------------
+										penPanelUncut		= penUnCut,
+										penPanelCut			= penCut,
+										panelBMat			= panelBMat,
+										matPanel			= matPanel			
+endif
+
+END !---END---END---END---END---END---END---END---END---END--!
+
+!-----------------------------------------------------------------------------!
+"SchematicModel":
+	! Just a simple panel in case no custom panel named.
+	building_material 	panelBMat
+	if bOverrideSurface then material matPanel
+
+	addz 	offsetPanel
+	for i = 1 to nCorners_in
+		put 	AC_clampFreeRegionCoords [i][1], AC_clampFreeRegionCoords [i][2], 15
+	next i
+
+	prism_ 		nCorners_in, panelThk,
+				get (nsp)
+	del 1
+return
+
+!-----------------------------------------------------------------------------!
+"DetailedModel":
+if profileID < 0 then
+	! Not a profile.
+	gosub "SchematicModel"
+else
+	! This is where it gets interesting
+	if GLOB_VIEW_TYPE > 2 and GLOB_VIEW_TYPE < 6 then	! 3D, section, elevation
+		unID = 1
+		r = min(leftSide_X + rightSide_X, downSide_Y + upperSide_Y) / 4
+		hotspot 0, 							0, 							panelThk, unID, gs_updirection, 6		: unID=unID+1 !center of angle
+		hotspot 0, 							r,							panelThk, unID, gs_updirection, 4+128 	: unID=unID+1 !base hotspot
+		hotspot r * sin (gs_updirection), 	r * cos (gs_updirection), 	panelThk, unID, gs_updirection, 5 		: unID=unID+1 !moving
+		hotspot 0, 							0, 							-1, unID, gs_updirection, 7 	: unID=unID+1 !center of angle
+	endif
+
+	rotz -gs_updirection
+
+	if abs(gs_updirection) < eps then
+		panelWidth = rightSide_X - leftSide_X
+		panelHeight = upperSide_Y - downSide_Y
+	endif
+	if abs(gs_updirection - 90) < eps then
+		panelWidth = upperSide_Y - downSide_Y
+		panelHeight = rightSide_X - leftSide_X
+		addx -panelWidth
+	endif
+	if abs(gs_updirection - 180) < eps then
+		panelWidth = rightSide_X - leftSide_X
+		panelHeight = upperSide_Y - downSide_Y
+		addx -panelWidth
+		addy -panelHeight
+	endif
+	if abs(gs_updirection - 270) < eps then	
+		panelHeight = rightSide_X - leftSide_X
+		panelWidth = upperSide_Y - downSide_Y
+		addy -panelHeight
+	endif
+
+	addz 	offsetPanel
+
+	if bFlipped then
+		addx 	panelWidth
+		mulx 	-1
+	endif
+
+	gosub "Profile"
+endif
+
+return
+
+
+!-----------------------------------------------------------------------------!
+"Profile":
+	n_components = 0
+	dim _componentTypes[]
+
+	! Bounding Box
+	_result = request("Profile_default_boundingbox",  profileID, _xMin, _yMin, _xMax, _yMax)
+	if _result then
+		_profileWidth   = abs(_xMax - _xMin)
+		_profileHeight  = abs(_yMax - _yMin)
+	else
+		_profileWidth   = 0
+		_profileHeight  = 0
+		gosub "SchematicModel"
+		end
+	endif
+
+	! stretch the profile to the extend of the cw panel
+	mul 	panelWidth/_profileWidth, panelHeight/_profileHeight, 1
+
+	n = request{2}("Profile_components", profileID, n_components, _componentTypes)
+
+	if n then
+		dim _bShowPart[]
+		_needRequestDetails = 0
+	
+		for i_curr_comp = 1 to n_components
+			_bShowPart[i_curr_comp] = 1    
+			if GLOB_STRUCTURE_DISPLAY = 1 & _componentTypes[i_curr_comp] <> COMPTYPE_CORE then _bShowPart[i_curr_comp] = 0  
+			if GLOB_STRUCTURE_DISPLAY = 2 & _componentTypes[i_curr_comp] = COMPTYPE_FINISH then _bShowPart[i_curr_comp] = 0
+			if _bShowPart[i_curr_comp] then _needRequestDetails = 1
+		next i_curr_comp
+	
+		if _needRequestDetails then
+
+			dim _profileGeometryRawData[]
+			n = request("Profile_default_geometry", profileID, _profileGeometryRawData) 
+	
+			dim _contStartPoints[]
+			dim _contEndPoints[]
+
+			_contStartPoints[1] = n_components + 1
+
+			for i_curr_comp = 2 to n_components
+				_contStartPoints[i_curr_comp] = _contStartPoints[i_curr_comp - 1] + _profileGeometryRawData[i_curr_comp - 1] * 5
+				_contEndPoints[i_curr_comp-1] = _contStartPoints[i_curr_comp] - 1
+			next i_curr_comp
+
+			_contEndPoints[n_components] = vardim1(_profileGeometryRawData)
+
+			for _iComp = 1 to n_components
+
+				if _bShowPart[_iComp] then
+					dim _currSurfaces[]
+					n = request{3}("Profile_component_info", profileID, _iComp, "gs_profile_comp_surfaces", _currSurfaces)
+		
+					if bOverrideSurface then
+						for _surf = 1 to vardim1(_currSurfaces)
+							_currSurfaces[_surf] = matPanel
+						next _surf
+					endif
+
+					_bmat = 1
+					_pen = 1
+					n = request{3}("Profile_component_info", profileID, _iComp, "gs_profile_bmat", _bmat)
+					n = request{3}("Profile_component_info", profileID, _iComp, "gs_profile_outlinepen", _pen)
+
+					! ATTR OVERRIDES -----------------------
+					if bOverrideBmat then
+						building_material 	panelBmat
+					else
+						building_material 	_bmat
+					endif
+					if bOverridePenCut then
+						sect_attrs{2} 		penCut
+						pen 				penUnCut
+					else
+						sect_attrs{2} 		_pen
+						pen 				_pen
+					endif
+					! ---------------------------------------
+
+					_surface = 1
+					if bOverrideSurface then  ! endstück
+						_surface = matPanel
+					else
+						n = request{3}("Profile_component_info", profileID, _iComp, "gs_profile_surface", _surface)
+					endif
+
+					_surfIdx = 1
+
+					for i_curr_comp = _contStartPoints[_iComp] to _contEndPoints[_iComp] step 5
+
+						if _profileGeometryRawData[i_curr_comp + 4] # -1 then
+							_stat = _profileGeometryRawData[i_curr_comp + 4] + 15
+						else
+							_stat = -1
+						endif
+
+						put _profileGeometryRawData[i_curr_comp],  ! x
+							_profileGeometryRawData[i_curr_comp + 1],  ! y
+							0,  ! alpha; 0 = vertical
+							_stat,
+							_currSurfaces[_surfIdx] 
+							
+						_surfIdx = _surfIdx + 1
+					next i_curr_comp
+
+					cprism_{3} 	_surface, _surface, _surface, 8,
+								nsp/5, panelThk,
+								get(nsp)
+					body 	-1
+
+				endif
+			next _iComp
+		endif
+	endif
+return

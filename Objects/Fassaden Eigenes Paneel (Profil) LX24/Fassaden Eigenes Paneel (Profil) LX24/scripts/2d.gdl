@@ -1,0 +1,8 @@
+﻿!--- 2D script ---!
+
+! `AC_AutoSchematicModel` is set to "ON"
+! so we don't need to script it by hand.
+! See http://gdl.graphisoft.com/reference-guide/parameters-for-curtain-wall#AC_AutoSchematicModel_gdlglobal
+! and http://gdl.graphisoft.com/tips-and-tricks/how-to-make-a-curtain-wall-panel
+
+end

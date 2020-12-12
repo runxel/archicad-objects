@@ -6,6 +6,8 @@ todo.md
 Objects/*/img/*.psd
 Objects/*/img/*.ai
 
+# no PLN files I just use for testing
+Objects/*/*/*.pln
 
 docs/_img/
 # no jekyll stuff

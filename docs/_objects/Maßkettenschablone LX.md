@@ -1,5 +1,5 @@
 ---
-title: Maßkettenschablone
+title: Maßkettenschablone LX
 description: |
    Schablone zur einfachen Platzierung von Maßketten der Außenbemaßung mit Beschriftung.
 description_en: |

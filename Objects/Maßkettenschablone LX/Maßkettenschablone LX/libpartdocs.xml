@@ -1,13 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <libpartdocs>
 	<Copyright>
-		<Author></Author>
+		<Author>Lucas Becker</Author>
 		<License>
-			<Type>CC0</Type>
-			<Version>1.0</Version>
+			<Type>CC BY-SA</Type>
+			<Version>4.0</Version>
 		</License>
 	</Copyright>
 	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0">
-		<![CDATA[]]>
+		<![CDATA[Maßkette, Bemaßung, Beschriftung]]>
 	</Keywords>
+	<CommentSection>
+		<![CDATA[Schablone zur einfachen Platzierung und Beschriftung von Maßketten im Grundriss.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# v1.1 | 2020-12-13
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# runxel.xyz
+# visit https://runxel.xyz/archicad-objects]]>
+	</CommentSection>
+
 </libpartdocs>

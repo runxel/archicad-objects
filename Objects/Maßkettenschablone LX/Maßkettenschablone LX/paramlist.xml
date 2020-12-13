@@ -24,38 +24,6 @@
 			<Fix/>
 			<Value>9</Value>
 		</Length>
-		<Length Name="ZZYZX">
-			<Description><![CDATA["Höhe"]]></Description>
-			<Fix/>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value>1</Value>
-		</Length>
-		<Boolean Name="AC_show2DHotspotsIn3D">
-			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
-			<Fix/>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value>1</Value>
-		</Boolean>
-		<Length Name="ac_bottomlevel">
-			<Description><![CDATA["Untere Ebene"]]></Description>
-			<Fix/>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value>1</Value>
-		</Length>
-		<Length Name="ac_toplevel">
-			<Description><![CDATA["Obere Ebene"]]></Description>
-			<Fix/>
-			<Flags>
-				<ParFlg_Hidden/>
-			</Flags>
-			<Value>0</Value>
-		</Length>
 
 		<!-- __general_settings: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
 
@@ -90,6 +58,13 @@
 			</Flags>
 			<Value>1</Value>
 		</Boolean>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Stift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</PenColor>
 
 		<!-- __dim_settings: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
 
@@ -103,7 +78,7 @@
 			</Flags>
 			<Value>4</Value>
 		</Integer>
-		<Length Name="cl">
+		<Length Name="marker_size">
 			<Description><![CDATA["Markergröße"]]></Description>
 			<Flags>
 				<ParFlg_Child/>
@@ -207,6 +182,20 @@
 			</Flags>
 			<Value><![CDATA["Univers LT Std 55 Westlich"]]></Value>
 		</String>
+		<Integer Name="font_style">
+			<Description><![CDATA["Schriftstil"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<Boolean Name="b_backfill">
+			<Description><![CDATA["Text mit Schraffur hinterlegt"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
 
 		<!-- __text_contents: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
 
@@ -220,75 +209,17 @@
 			</Flags>
 			<Value><![CDATA[""]]></Value>
 		</String>
-		<String Name="dim_text_1">
-			<Description><![CDATA["Beschriftung Maßkette 1"]]></Description>
+		<String Name="dim_text">
+			<Description><![CDATA["Beschriftung Maßketten"]]></Description>
 			<Flags>
 				<ParFlg_Child/>
 			</Flags>
-			<Value><![CDATA["Achsen"]]></Value>
-		</String>
-		<String Name="dim_text_2">
-			<Description><![CDATA["Beschriftung Maßkette 2"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA["Öffnungen"]]></Value>
-		</String>
-		<String Name="dim_text_3">
-			<Description><![CDATA["Beschriftung Maßkette 3"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA["Rohbau"]]></Value>
-		</String>
-		<String Name="dim_text_4">
-			<Description><![CDATA["Beschriftung Maßkette 4"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA["TGA"]]></Value>
-		</String>
-		<String Name="dim_text_5">
-			<Description><![CDATA["Beschriftung Maßkette 5"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA[""]]></Value>
-		</String>
-		<String Name="dim_text_6">
-			<Description><![CDATA["Beschriftung Maßkette 6"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA[""]]></Value>
-		</String>
-		<String Name="dim_text_7">
-			<Description><![CDATA["Beschriftung Maßkette 7"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA[""]]></Value>
-		</String>
-		<String Name="dim_text_8">
-			<Description><![CDATA["Beschriftung Maßkette 8"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA[""]]></Value>
-		</String>
-		<String Name="dim_text_9">
-			<Description><![CDATA["Beschriftung Maßkette 9"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA[""]]></Value>
-		</String>
-		<String Name="dim_text_10">
-			<Description><![CDATA["Beschriftung Maßkette 10"]]></Description>
-			<Flags>
-				<ParFlg_Child/>
-			</Flags>
-			<Value><![CDATA[""]]></Value>
+			<ArrayValues FirstDimension="4" SecondDimension="0">
+				<AVal Row="1"><![CDATA["Achsen"]]></AVal>
+				<AVal Row="2"><![CDATA["Öffnungen"]]></AVal>
+				<AVal Row="3"><![CDATA["Rohbau"]]></AVal>
+				<AVal Row="4"><![CDATA["TGA"]]></AVal>
+			</ArrayValues>
 		</String>
 	</Parameters>
 </ParamSection>

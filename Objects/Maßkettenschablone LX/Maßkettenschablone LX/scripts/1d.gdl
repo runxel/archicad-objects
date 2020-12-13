@@ -1,1 +1,26 @@
-﻿!--- Master script ---!dict TXTANCHORTXTANCHOR.topleft       = 1TXTANCHOR.topmid        = 2TXTANCHOR.topright      = 3TXTANCHOR.midleft       = 4TXTANCHOR.center        = 5TXTANCHOR.midright      = 6TXTANCHOR.bottomleft    = 7TXTANCHOR.bottommid     = 8TXTANCHOR.bottomright   = 9
+﻿!--- Master script ---!
+
+! text anchor
+dict TA
+  TA.top.left     = 1
+  TA.top.mid      = 2
+  TA.top.right    = 3
+  TA.mid.left     = 4
+  TA.mid.center   = 5
+  TA.mid.right    = 6
+  TA.bot.left     = 7
+  TA.bot.mid      = 8
+  TA.bot.right    = 9
+
+! text style
+dict TS
+  TS.normal     = 0
+  TS.bold   	= 1
+  TS.italic 	= 2
+  TS.underlined = 4
+  TS.sup 		= 32
+  TS.sub 		= 64
+  TS.strike 	= 128
+
+model_to_paper = GLOB_SCALE/1000
+

@@ -1,1 +1,52 @@
-﻿!-!
+﻿!--- UI script ---!
+
+dict UI
+  UI.width = 444
+  UI.height = 260
+  UI.listID = 1
+
+itemID = 1
+
+ui_listfield  UI.listID, 0, 0, UI.width, UI.height
+
+! --- General Settings
+ui_listitem itemID, UI.listID, "", 0, "ui_select_all_hl(1)", `Allgemeine Einstellungen`			: itemID=itemID+1
+ui_listitem itemID, UI.listID, "build_contour", 1, ""	: itemID=itemID+1
+ui_listitem itemID, UI.listID, "b_corner_pt", 1, ""		: itemID=itemID+1
+ui_listitem itemID, UI.listID, "b_text", 1, ""			: itemID=itemID+1
+ui_listitem itemID, UI.listID, "b_marker", 1, ""		: itemID=itemID+1
+ui_listitem itemID, UI.listID, "gs_cont_pen", 1, "ui_list_pencolor_hl(1)"		: itemID=itemID+1
+	file_dependence "ui_list_pencolor_hl(1)", "ui_select_all_hl(1)"
+
+! --- Settings Dimension lines
+ui_listitem itemID, UI.listID, "", 0, "ui_horizontalSeparator_hl(1)", `Einstellungen Schablone`			: itemID=itemID+1
+ui_listitem itemID, UI.listID, "n_dims", 1, ""				: itemID=itemID+1
+ui_listitem itemID, UI.listID, "marker_size", 1, ""			: itemID=itemID+1
+ui_listitem itemID, UI.listID, "b_dim_dist_same", 1, ""		: itemID=itemID+1
+ui_listitem itemID, UI.listID, "dim_dist_generic", 1, "ui_list_thickness_hl(1)"	: itemID=itemID+1
+if not(b_dim_dist_same) then
+	ui_listitem itemID, UI.listID, "dist_top", 1, ""			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "dist_bottom", 1, ""			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "dist_left", 1, ""			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "dist_right", 1, ""			: itemID=itemID+1
+endif
+ui_listitem itemID, UI.listID, "dim_dim_dist", 1, ""			: itemID=itemID+1
+	file_dependence "ui_list_thickness_hl(1)", "ui_horizontalSeparator_hl(1)"
+
+if b_text then
+	! --- Settings Text
+	ui_listitem itemID, UI.listID, "", 0, "ui_bold_hl(1)", `Texteinstellungen` 	: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "dist_text", 1, ""			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "font", 1, "ui_font_style_hl(1)"				: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "font_size", 1, "ui_FontSize_hl(1)"			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "font_style", 1, "ui_underline_hl(1)"			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "b_backfill", 1, ""			: itemID=itemID+1
+		file_dependence "ui_custom_text_hl(1)", "ui_font_style_hl(1)", "ui_FontSize_hl(1)", "ui_bold_hl(1)", "ui_underline_hl(1)"
+
+	! --- Settings Text
+	ui_listitem itemID, UI.listID, "", 0, "ui_custom_text_hl(1)", `Beschriftung`			: itemID=itemID+1
+	ui_listitem itemID, UI.listID, "dim_preset", 1, ""			: itemID=itemID+1
+	for k=1 to n_dims
+		ui_listitem{2} itemID, UI.listID, dim_text[k], 1, "", `Text Maßkette ` + str(k, 1, 0)			: itemID=itemID+1
+	next k
+endif

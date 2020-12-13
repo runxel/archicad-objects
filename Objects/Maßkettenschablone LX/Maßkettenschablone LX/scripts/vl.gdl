@@ -1,1 +1,87 @@
-﻿!--- Param script ---!! Get Font listdim fontnames[] err = REQUEST ("FONTNAMES_LIST", "", fontnames)values "font" fontnames, CUSTOM ! ::: Number of Dimensions (Maßkettenanzahl)values "n_dims",  range [1, 10]! ::: Define your presets herevalues "dim_preset", "Typisch", customif dim_preset = "Typisch" then	dim_text_1 = "funktioniert"	parameters  dim_text_1 = dim_text_1endif! ::: Values for the dimension annotaiondim dim_text_values[]dim_text_values[1] = "Achsen"dim_text_values[2] = "Öffnungen"dim_text_values[3] = "Achse"dim_text_values[4] = "Rohbau"dim_text_values[5] = "Trockenbau"dim_text_values[6] = "TGA"values "dim_text_1"   dim_text_values, customvalues "dim_text_2"   dim_text_values, customvalues "dim_text_3"   dim_text_values, customvalues "dim_text_4"   dim_text_values, customvalues "dim_text_5"   dim_text_values, customvalues "dim_text_6"   dim_text_values, customvalues "dim_text_7"   dim_text_values, customvalues "dim_text_8"   dim_text_values, customvalues "dim_text_9"   dim_text_values, customvalues "dim_text_10"  dim_text_values, custom! ::: Values for the dimensionvalues{2} "pos_text", 			1, "Links",			2, "Rechts"	values  "cl", range[0.04, 1]if not(b_text) then	lock "__text_contents"endif! ::: Make the dimension distance uniform.if b_dim_dist_same then	_temp_dist = dim_dist[1]	for k = 1 to 4		dim_dist[k] = _temp_dist	next k	parameters 	dim_dist = dim_dist,				dim_dist_generic = dim_dist[1]	hideparameter 	"dist_top",					"dist_bottom",					"dist_left",					"dist_right"else	hideparameter 	"dim_dist_generic"	parameters 		dist_top = dim_dist[1],					dist_bottom = dim_dist[2],					dist_left = dim_dist[3],					dist_right = dim_dist[4]endif! A lot of verbose code.! Uninteresting, just hides the Dimensioning names if not needed in the UIif n_dims < 10 then	hideparameter  "dim_text_10"endifif n_dims < 9 then	hideparameter  "dim_text_10",					"dim_text_9"endifif n_dims < 8 then	hideparameter   "dim_text_10",					"dim_text_9",					"dim_text_8"endifif n_dims < 7 then	hideparameter  "dim_text_10",					"dim_text_9",					"dim_text_8",					"dim_text_7"endifif n_dims < 6 then	hideparameter   "dim_text_10",					"dim_text_9",					"dim_text_8",					"dim_text_7",					"dim_text_6"endifif n_dims < 5 then	hideparameter   "dim_text_10",					"dim_text_9",					"dim_text_8",					"dim_text_7",					"dim_text_6",					"dim_text_5"endifif n_dims < 4 then	hideparameter   "dim_text_10",					"dim_text_9",					"dim_text_8",					"dim_text_7",					"dim_text_6",					"dim_text_5"endifif n_dims < 3 then	hideparameter   "dim_text_10",					"dim_text_9",					"dim_text_8",					"dim_text_7",					"dim_text_6",					"dim_text_5",					"dim_text_4",					"dim_text_3"endifif n_dims < 2 then	hideparameter   "dim_text_10",					"dim_text_9",					"dim_text_8",					"dim_text_7",					"dim_text_6",					"dim_text_5",					"dim_text_4",					"dim_text_3",					"dim_text_2"endif
+﻿!--- Param script ---!
+
+hideparameter 	all
+
+! Get font list
+dim fontnames[] 
+err = request("fontnames_list", "", fontnames)
+values "font" fontnames, CUSTOM 
+
+values{2} "font_style" \
+	0, "Normal",
+	TS.bold, "Fett",
+  	TS.italic, "Kusiv",
+  	TS.bold+TS.italic, "Fett Kursiv"
+
+values "gs_cont_pen"	range [1,255]
+
+! ::: Number of Dimensions (Maßkettenanzahl)
+values "n_dims",  range [1,]
+
+if GLOB_MODPAR_NAME = "n_dims" then
+	! temporary new array to make the existing one smaller
+	dim _tdt[]
+	for k=1 to n_dims
+		! copy the existing values over, as long there are any
+		if k <= vardim1(dim_text) then
+			_tdt[k] = dim_text[k]
+		else
+			_tdt[k] = ""
+		endif
+	next k
+	dim_text = _tdt
+endif
+parameters 	dim_text = dim_text
+
+! ::: Define your presets here
+values "dim_preset", "Typisch", custom
+
+if dim_preset = "Typisch" then
+	dim_text[1] = "[GDL Objekt editieren für eigene Liste]"
+	parameters  dim_text = dim_text
+endif
+
+! ::: Values for the dimension annotaion
+dim dim_text_values[]
+	dim_text_values[1] = "Achsen"
+	dim_text_values[2] = "Öffnungen"
+	dim_text_values[3] = "Achse"
+	dim_text_values[4] = "Rohbau"
+	dim_text_values[5] = "Trockenbau"
+	dim_text_values[6] = "TGA"
+
+values "dim_text"   	dim_text_values, custom
+
+! ::: Values for the dimension
+values{2} "pos_text", 
+			1, "Links",
+			2, "Rechts"
+
+	
+values  "marker_size", range[0.04, 1]
+
+if not(b_text) then
+	lock "__text_contents"
+endif
+
+! ::: Make the dimension distance uniform.
+if b_dim_dist_same then
+	_temp_dist = dim_dist[1]
+	for k = 1 to 4
+		dim_dist[k] = _temp_dist
+	next k
+	parameters 	dim_dist = dim_dist,
+				dim_dist_generic = dim_dist[1]
+
+	hideparameter 	"dist_top",
+					"dist_bottom",
+					"dist_left",
+					"dist_right"
+else
+	hideparameter 	"dim_dist_generic"
+	parameters 		dist_top = dim_dist[1],
+					dist_bottom = dim_dist[2],
+					dist_left = dim_dist[3],
+					dist_right = dim_dist[4]
+endif
+

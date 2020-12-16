@@ -1,0 +1,57 @@
+﻿!--- 3D script ---!
+
+! Set Surfaces
+_matPanel = outsideSurface
+bSucceed = request{2}("Building_Material_info", panelBMat, "gs_bmat_surface", _matPanel)
+if bOverrideOutSurf then
+	_outsideSurface		= outsideSurface
+else
+	_outsideSurface		= _matPanel
+endif
+if bOverrideEdgeSurf then
+	_edgeSurface		= edgeSurface
+else
+	_edgeSurface		= _matPanel
+endif
+if bOverrideInSurf then
+	_insideSurface		= insideSurface
+else
+	_insideSurface		= _matPanel
+endif
+
+pen penUnCut
+sect_attrs{2} penCut, lineTypeCut
+building_material panelBMat
+material _matPanel
+
+base
+if	GLOB_MVO_CWPANEL_DETLEVEL = DETLEVEL3D_SCHEMATIC  then
+	for i = 1 to vardim1(AC_FrameAxisCoords)
+		put AC_FrameAxisCoords[i][1], AC_FrameAxisCoords[i][2], 0, 15
+	next i
+
+	material _outsideSurface
+	plane_ nsp/4,
+		get (nsp)
+else 	!  DETLEVEL3D_DETAILED, DETLEVEL3D_SIMPLE
+	! No Detailed/Middle Model if panel is only in frame clamps
+	if vardim1(AC_PanelCoords) < 3 then end
+
+	! Panel coords with clamps
+	for i = 1 to nCorners
+		put AC_PanelCoords[i][1], AC_PanelCoords [i][2], 15
+	next i
+
+	addz 	 -ac_thickness + panel_offset
+	cprism_  _outsideSurface, _insideSurface, _edgeSurface,
+		nCorners, ac_thickness,
+		get (nsp)	
+	del 1			
+endif
+
+vert 0, 0, 0
+vert 1, 0, 0
+vert 0, 1, 0
+vert 0, 0, 1
+coor 2, -1, -2, -3, -4
+body 1

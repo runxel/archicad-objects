@@ -1,0 +1,56 @@
+﻿!--- Master script ---!
+
+dict UI
+
+eps = 0.0001
+
+! const values for GLOB_MVO_CWPANEL_DETLEVEL
+DETLEVEL3D_SCHEMATIC	= 2
+DETLEVEL3D_SIMPLE		= 3
+DETLEVEL3D_DETAILED		= 4
+
+nCorners 	= vardim1(AC_PanelCoords)
+
+! const values for iLastModSurf
+SURF_OUTSIDE	= 1
+SURF_EDGE		= 2
+SURF_INSIDE		= 3
+
+
+! Determine the Language of the user
+! see https://lucasbecker.de/posts/detecting-user-s-language-via-gdl
+
+! declare all the variables we need
+_dummy = "" ! only made so it can be ignored…
+pos    = ""
+nodename  = ""
+nodevalue = ""
+nodetype  = ""
+err = 0 : errex = ""
+
+ch = open('xml', 'ARCHICAD Library.version', 'rl')
+r = input(ch, "NewPositionDesc", _dummy, pos)
+r = input(ch, "MoveToNode FromFirstChild g* ELEM 1", pos, nodename, nodevalue, nodetype)
+r = input(ch, "MoveToNode FromFirstChild * TXT", pos, nodename, nodevalue, nodetype)
+e = input(ch, "GetLastError", _dummy, err, errex)
+close ch
+
+if err = 0 then
+	if  nodevalue = "GER" |\
+		nodevalue = "CHE" |\
+		nodevalue = "AUT"  \
+		then
+
+		UI.lang = "GER"
+	else
+		goto "g_set_lang"
+	endif
+else
+	if debug then
+		! error message
+		print errex
+	endif
+	"g_set_lang":
+	UI.lang = "ENG"
+endif
+

@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Maß 1"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ZZYZX">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsIn3D">
+			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="ac_bottomlevel">
+			<Description><![CDATA["Untere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ac_toplevel">
+			<Description><![CDATA["Obere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Boolean Name="AC_AutoSchematicModel">
+			<Description><![CDATA["Automatisches schematisches Modell"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Integer Name="AC_Panel_Type">
+			<Description><![CDATA["0 - Fest, 1 - Tür, 2 - Fenster"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<Length Name="AC_FrameAxisCoords">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="4" SecondDimension="2">
+				<AVal Column="1" Row="1">-0.02</AVal>
+				<AVal Column="2" Row="1">-0.02</AVal>
+				<AVal Column="1" Row="2">1.02</AVal>
+				<AVal Column="2" Row="2">-0.02</AVal>
+				<AVal Column="1" Row="3">1.02</AVal>
+				<AVal Column="2" Row="3">2.12</AVal>
+				<AVal Column="1" Row="4">-0.02</AVal>
+				<AVal Column="2" Row="4">2.12</AVal>
+			</ArrayValues>
+		</Length>
+		<Length Name="AC_PanelCoords">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="4" SecondDimension="2">
+				<AVal Column="1" Row="1">-0.015</AVal>
+				<AVal Column="2" Row="1">-0.015</AVal>
+				<AVal Column="1" Row="2">1.015</AVal>
+				<AVal Column="2" Row="2">-0.015</AVal>
+				<AVal Column="1" Row="3">1.015</AVal>
+				<AVal Column="2" Row="3">2.115</AVal>
+				<AVal Column="1" Row="4">-0.015</AVal>
+				<AVal Column="2" Row="4">2.115</AVal>
+			</ArrayValues>
+		</Length>
+		<Length Name="AC_clampFreeRegionCoords">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<ArrayValues FirstDimension="4" SecondDimension="2">
+				<AVal Column="1" Row="1">0</AVal>
+				<AVal Column="2" Row="1">0</AVal>
+				<AVal Column="1" Row="2">1</AVal>
+				<AVal Column="2" Row="2">0</AVal>
+				<AVal Column="1" Row="3">1</AVal>
+				<AVal Column="2" Row="3">2.1</AVal>
+				<AVal Column="1" Row="4">0</AVal>
+				<AVal Column="2" Row="4">2.1</AVal>
+			</ArrayValues>
+		</Length>
+		<Length Name="AC_clampWidth">
+			<Description><![CDATA[""]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.1</Value>
+		</Length>
+		<Angle Name="gs_updirection">
+			<Description><![CDATA["Obere Ausrichtung"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Angle>
+		<Length Name="ac_thickness">
+			<Description><![CDATA["Stärke"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0.1</Value>
+		</Length>
+		<Length Name="ac_width">
+			<Description><![CDATA["Breite"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ac_nominalWidth">
+			<Description><![CDATA["NominaleBreite"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ac_height">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>2.1</Value>
+		</Length>
+		<Length Name="ac_nominalHeight">
+			<Description><![CDATA["NominaleHöhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>2.1</Value>
+		</Length>
+		<String Name="ac_openingSide">
+			<Description><![CDATA["Öffnungsseite (L/R)"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<Integer Name="ac_openingDir">
+			<Description><![CDATA["Öffnungsrichtung (0/1/2)"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Integer>
+		<String Name="gs_opening_dir">
+			<Description><![CDATA["Öffnungsrichtung"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+
+		<!-- gs_2D_representation: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_2D_representation">
+			<Description><![CDATA["2D-Darstellung"]]></Description>
+			<Fix/>
+		</Title>
+		<PenColor Name="gs_cont_pen">
+			<Description><![CDATA["Konturstift"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>2</Value>
+		</PenColor>
+		<FillPattern Name="gs_fill_type">
+			<Description><![CDATA["Schraffur"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>65</Value>
+		</FillPattern>
+		<PenColor Name="gs_fill_pen">
+			<Description><![CDATA["Schraffur-Vordergrundstift"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+		<PenColor Name="gs_back_pen">
+			<Description><![CDATA["Schraffur-Hintergrundstift"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>19</Value>
+		</PenColor>
+
+		<!-- gs_3D_representation: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_3D_representation">
+			<Description><![CDATA["3D-Darstellung"]]></Description>
+		</Title>
+		<PenColor Name="penCut">
+			<Description><![CDATA["Schnittstift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2</Value>
+		</PenColor>
+		<LineType Name="lineTypeCut">
+			<Description><![CDATA["Schnittlinie"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>1</Value>
+		</LineType>
+		<PenColor Name="penUnCut">
+			<Description><![CDATA["Aufsichtslinien-Stift"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>2</Value>
+		</PenColor>
+		<BuildingMaterial Name="panelBMat">
+			<Description><![CDATA["Paneel Baustoff"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>117</Value>
+		</BuildingMaterial>
+		<Boolean Name="bOverrideOutSurf">
+			<Description><![CDATA["Äußere Oberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="bOverrideEdgeSurf">
+			<Description><![CDATA["Kante Oberflächenmaterial"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="bOverrideInSurf">
+			<Description><![CDATA["Innere Oberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="bUniformSurfaces">
+			<Description><![CDATA["Einheitliche Oberflächen"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Integer Name="iLastModSurf">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Material Name="outsideSurface">
+			<Description><![CDATA["Äußere Oberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>24</Value>
+		</Material>
+		<Material Name="edgeSurface">
+			<Description><![CDATA["Kante Oberflächenmaterial"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>24</Value>
+		</Material>
+		<Material Name="insideSurface">
+			<Description><![CDATA["Innere Oberfläche"]]></Description>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>24</Value>
+		</Material>
+		<Boolean Name="ac_originIsFrameCenter">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="ac_aSizeIsWithClamp">
+			<Description><![CDATA[""]]></Description>
+			<Flags>
+				<ParFlg_Unique/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Boolean>
+		<Length Name="panel_offset">
+			<Description><![CDATA["Panel Offset"]]></Description>
+			<Value>0</Value>
+		</Length>
+
+		<!-- gs_list: PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK ===== PARAMETER BLOCK -->
+
+		<Title Name="gs_list">
+			<Description><![CDATA["DWG Export Parameter"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+		</Title>
+		<RealNum Name="gs_list_cost">
+			<Description><![CDATA["Preis"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="gs_list_manufacturer">
+			<Description><![CDATA["Hersteller"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_note">
+			<Description><![CDATA["Anmerkungen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_location">
+			<Description><![CDATA["Lage"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_accessories">
+			<Description><![CDATA["Zubehör"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_Type">
+			<Description><![CDATA["Gruppe Typ"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["Andere"]]></Value>
+		</String>
+		<Integer Name="iFMType">
+			<Description><![CDATA["Gruppe Typ"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>25</Value>
+		</Integer>
+		<String Name="FM_InventoryNumber">
+			<Description><![CDATA["Inventarnummer"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_SerialNumber">
+			<Description><![CDATA["Seriennummer"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="FM_ProductionYear">
+			<Description><![CDATA["Herstellungsjahr"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<RealNum Name="FM_ObjectWeight">
+			<Description><![CDATA["Objektgewicht"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value>0</Value>
+		</RealNum>
+		<String Name="FM_ObjectWeightUnit">
+			<Description><![CDATA["Objektgewichtseinheit"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA["kg"]]></Value>
+		</String>
+		<String Name="gs_list_custom1">
+			<Description><![CDATA["Frei definierbar 1"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom2">
+			<Description><![CDATA["Frei definierbar 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom3">
+			<Description><![CDATA["Frei definierbar 3"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom4">
+			<Description><![CDATA["Frei definierbar 4"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+		<String Name="gs_list_custom5">
+			<Description><![CDATA["Frei definierbar 5"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Child/>
+			</Flags>
+			<Value><![CDATA[""]]></Value>
+		</String>
+	</Parameters>
+</ParamSection>

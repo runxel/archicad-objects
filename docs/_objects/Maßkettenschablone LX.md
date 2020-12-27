@@ -5,7 +5,7 @@ description: |
 description_en: |
    Guide to place dimensions easily.
 tags: 2D Helferlein Bemaßung Beschriftung
-version: 1.0
+version: 1.1
 compat: 24
 lang: de
 ---

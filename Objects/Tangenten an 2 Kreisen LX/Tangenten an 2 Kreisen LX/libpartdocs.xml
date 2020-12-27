@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<libpartdocs>
+	<Copyright>
+		<Author>Lucas Becker</Author>
+		<License>
+			<Type>CC BY-SA</Type>
+			<Version>4.0</Version>
+		</License>
+	</Copyright>
+	<Keywords SectVersion="1" SectionFlags="0" SubIdent="0">
+		<![CDATA[Tangenten, Kreisen]]>
+	</Keywords>
+	<CommentSection>
+		<![CDATA[Thaleskreise zum Ermitteln von Tangenten an 2 Kreisen – geometrische Methode im GDL nachgestellt. Ursprung bei Heimo Mooslechner.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# v1.0 | 2020-12-26
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# runxel.xyz
+# visit https://runxel.xyz/archicad-objects]]>
+	</CommentSection>
+
+</libpartdocs>

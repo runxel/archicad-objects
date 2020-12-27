@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Maß 1"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ZZYZX">
+			<Description><![CDATA["Höhe"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="AC_show2DHotspotsIn3D">
+			<Description><![CDATA["2D-Fixpunkte in 3D zeigen"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Boolean>
+		<Length Name="ac_bottomlevel">
+			<Description><![CDATA["Untere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="ac_toplevel">
+			<Description><![CDATA["Obere Ebene"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="radius1">
+			<Description><![CDATA["Radius Kreis 1"]]></Description>
+			<Value>0.5</Value>
+		</Length>
+		<Length Name="radius2">
+			<Description><![CDATA["Radius Kreis 2"]]></Description>
+			<Value>0.25</Value>
+		</Length>
+		<Integer Name="disp_type">
+			<Description><![CDATA["Aussen oder Kreuztangenten?"]]></Description>
+			<Flags>
+				<ParFlg_BoldName/>
+			</Flags>
+			<Value>1</Value>
+		</Integer>
+		<Boolean Name="b_show_construction">
+			<Description><![CDATA["Konstruktionslinien zeigen"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_link_colors">
+			<Description><![CDATA["Gleiche Farben"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Boolean Name="b_link_linetypes">
+			<Description><![CDATA["Gleiche Linienarten"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<PenColor Name="pen_circles">
+			<Description><![CDATA["Stift Kreise"]]></Description>
+			<Value>2</Value>
+		</PenColor>
+		<LineType Name="lt_circles">
+			<Description><![CDATA["Linientyp Kreise"]]></Description>
+			<Value>1</Value>
+		</LineType>
+		<PenColor Name="pen_tangents">
+			<Description><![CDATA["Stift Tangenten"]]></Description>
+			<Value>106</Value>
+		</PenColor>
+		<LineType Name="lt_tangents">
+			<Description><![CDATA["Linientyp Tangenten"]]></Description>
+			<Value>5</Value>
+		</LineType>
+		<PenColor Name="pen_helpers">
+			<Description><![CDATA["Stift Hilfskonstruktion"]]></Description>
+			<Value>102</Value>
+		</PenColor>
+		<LineType Name="lt_helpers">
+			<Description><![CDATA["Linientyp Hilfskonstruktion"]]></Description>
+			<Value>2</Value>
+		</LineType>
+		<PenColor Name="pen_linked">
+			<Description><![CDATA["Stift"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<LineType Name="lt_linked">
+			<Description><![CDATA["Linientyp"]]></Description>
+			<Value>1</Value>
+		</LineType>
+		<Length Name="x1">
+			<Description><![CDATA["X Coor Kreis 1"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="y1">
+			<Description><![CDATA["Y Coor Kreis 1"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="x2">
+			<Description><![CDATA["X Coor Kreis 2"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>3</Value>
+		</Length>
+		<Length Name="y2">
+			<Description><![CDATA["Y Coor Kreis 1"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>2</Value>
+		</Length>
+	</Parameters>
+</ParamSection>

@@ -1,0 +1,220 @@
+﻿!--- 2D script ---!
+
+! overwrite pens and linetypes
+if b_link_colors then
+	pen_circles = pen_linked
+	pen_tangents = pen_linked
+	pen_helpers = pen_linked
+endif
+if b_link_linetypes then
+	lt_circles = lt_linked
+	lt_tangents = lt_linked
+	lt_helpers = lt_linked
+endif
+
+unID = 1
+
+! Hotspots at the center of the circles
+! You can move the location of the circles with these, too
+! { circle one
+hotspot2    0,	y1,		unID,	x1,	1+128	: unID=unID+1		!base
+hotspot2    x1,	y1,		unID,	x1,	2		: unID=unID+1		!move
+hotspot2    -1,	y1,		unID,	x1,	3 		: unID=unID+1		!ref
+
+hotspot2    x1,	0,		unID,	y1,	1+128	: unID=unID+1		!base
+hotspot2    x1,	y1,		unID,	y1,	2		: unID=unID+1		!move
+hotspot2    x1,	-1,		unID,	y1,	3 		: unID=unID+1		!ref
+! }
+
+! { circle two
+hotspot2    0,	y2,		unID,	x2,	1+128	: unID=unID+1	    !base
+hotspot2    x2,	y2,		unID,	x2,	2		: unID=unID+1	    !move
+hotspot2    -1,	y2,		unID,	x2,	3 		: unID=unID+1	    !ref
+
+hotspot2    x2,	0,		unID,	y2,	1+128	: unID=unID+1	    !base
+hotspot2    x2,	y2,		unID,	y2,	2		: unID=unID+1	    !move
+hotspot2    x2,	-1,		unID,	y2,	3 		: unID=unID+1	    !ref
+! }
+
+pen         pen_helpers
+line_type   lt_helpers
+
+! Center line
+line2   	x1, y1,     x2, y2
+hotline2   	x1, y1,     x2, y2, unID : unID=unID+1
+	
+pen         pen_circles
+line_type   lt_circles
+
+! First circle
+add2    x1, y1
+rot2 -45
+  ! change the radius of the circle dynamically
+  hotspot2    0, 0,		    unID,	radius1, 1      : unID=unID+1	!base
+  hotspot2    0, Radius1,	unID,	radius1, 2      : unID=unID+1	!move
+  hotspot2    0, -1,		unID,	radius1, 3      : unID=unID+1	!ref
+
+  circle2     0, 0, radius1
+  ! there is a certain bug, that if you set the first hotarc2 with an angle of 360
+  ! it will only be set to 180° – thus you need to set to slightly less than a full circle 
+  hotarc2     0, 0, radius1, 0, 359.9,  unID        : unID=unID+1
+del 2
+	
+! Second circle
+add2    x2, y2
+rot2 -45
+  ! change the radius of the circle dynamically
+  hotspot2    0, 0,		    unID,	radius2, 1      : unID=unID+1	!base
+  hotspot2    0, radius2,	unID,	radius2, 2      : unID=unID+1	!move
+  hotspot2    0, -1,		unID,	radius2, 3      : unID=unID+1	!ref
+
+  circle2     0, 0, radius2
+  hotarc2     0, 0, radius2, 0, 359.9, unID         : unID=unID+1
+del 2
+
+
+center_dist_x = x2 - x1
+center_dist_y = y2 - y1
+
+thales_diam = sqr(center_dist_x ^ 2 + center_dist_y ^ 2)
+thales_angle = asn(center_dist_y / thales_diam)
+if x1 > x2 then thales_angle = -thales_angle - 180
+
+
+if disp_type = 1 then gosub "Tangents_Outer"
+if disp_type = 2 then gosub "Tangents_Cross"
+if disp_type = 3 then 
+	gosub "Tangents_Outer"
+	gosub "Tangents_Cross"
+endif
+
+END !---END---END---END---END---END---END---END---END---END---END---!
+
+
+!-------------------------------------------------------------------!
+"Tangents_Cross":
+	if radius1 + radius2 < thales_diam then
+		radius_sum = radius1 + radius2
+
+		if b_show_construction then
+			pen         pen_helpers
+			line_type   lt_helpers
+			circle2     x2, y2, radius_sum
+			hotarc2     x2, y2, radius_sum, 0, 360, unID         : unID=unID+1
+		endif
+	
+		add2 x1, y1
+		rot2 thales_angle
+	
+		ankathete = sqr(thales_diam ^ 2 - radius_sum ^ 2)
+		thales_angle = asn(radius_sum / thales_diam)
+		gegenwinkel = 180 - thales_angle - 90
+
+		x2tA = ankathete * cos(thales_angle)
+		y2tA = ankathete * sin(thales_angle)
+
+		x2tA = radius_sum * cos(180 - gegenwinkel) + thales_diam
+		y2tA = radius_sum * sin(180 - gegenwinkel)
+
+		if b_show_construction then 
+			arc2 	thales_diam/2, 0, thales_diam/2, 0, 180
+			hotarc2 thales_diam/2, 0, thales_diam/2, 0, 180, unID         : unID=unID+1
+
+			line2 		0, 0,  x2tA, y2tA 
+			hotline2 	0, 0,  x2tA, y2tA, unID         : unID=unID+1
+
+			line2 		thales_diam, 0, x2tA, y2tA
+			hotline2 	thales_diam, 0, x2tA, y2tA, unID         : unID=unID+1
+		endif
+
+		x1t = -radius1 * cos(180 - gegenwinkel)
+		y1t = -radius1 * sin(180 - gegenwinkel)
+
+		x2t = radius2 * cos(180 - gegenwinkel) + thales_diam
+		y2t = radius2 * sin(180 - gegenwinkel)
+
+		! draw the cross tangents
+		pen         pen_tangents
+		line_type   lt_tangents	
+		
+		hotspot2 	x2t, y2t
+		hotspot2 	x1t, y1t
+
+		line2 		x1t, y1t,   x2t, y2t
+		hotline2 	x1t, y1t,   x2t, y2t, unID         : unID=unID+1
+		
+		hotspot2 	x2t, -y2t
+		hotspot2 	x1t, -y1t
+
+		line2 		x1t, -y1t,   x2t, -y2t
+		hotline2 	x1t, -y1t,   x2t, -y2t, unID         : unID=unID+1
+		
+		del 2
+	else
+		! Show a warning
+		text2	(x1+x2)/2 + max(radius1, radius2), (y1+y2)/2 + max(radius1, radius2), "Abstand zu klein"
+	endif
+return
+
+!-------------------------------------------------------------------!
+"Tangents_Outer":
+	radius_diff = radius1 - radius2
+		
+	ankathete = sqr(thales_diam ^ 2 - radius_diff ^ 2)
+	gegenwinkel = asn(radius_diff / thales_diam)
+	anwinkel = 180 - gegenwinkel - 90
+		
+	if b_show_construction then
+		pen         pen_helpers
+		line_type   lt_helpers	
+		circle2     x1, y1, radius_diff
+	endif
+	
+	! Isect point tangents/circle
+	sx1 = radius1 * cos(anwinkel)
+	sy1 = radius1 * sin(anwinkel)
+
+	sx2 = radius2 * cos(anwinkel)
+	sy2 = radius2 * sin(anwinkel)
+		
+	! display actual tangents:
+	pen 		pen_tangents
+	line_type 	lt_tangents
+	
+	add2 	x1, y1
+	rot2 	thales_angle
+	
+	! first side
+	hotspot2 	sx1, sy1
+	hotspot2 	thales_diam+sx2, sy2
+	
+	line2 		sx1, sy1, thales_diam+sx2, sy2
+	hotline2 	sx1, sy1, thales_diam+sx2, sy2, unID         : unID=unID+1
+
+	! mirrored
+	hotspot2 	sx1, -sy1
+	hotspot2 	thales_diam+sx2, -sy2
+
+	line2 		sx1, -sy1, thales_diam+sx2, -sy2
+	hotline2 	sx1, -sy1, thales_diam+sx2, -sy2, unID         : unID=unID+1
+
+	if b_show_construction then
+		pen         pen_helpers
+		line_type   lt_helpers
+
+		arc2 		thales_diam/2, 0, thales_diam/2, 0, 180
+		hotarc2 	thales_diam/2, 0, thales_diam/2, 0, 180, unID         : unID=unID+1
+
+		circle2     0, 0, radius_diff
+		hotarc2 	0, 0, radius_diff, 0, 360, unID         : unID=unID+1
+
+		rot2 	anwinkel
+		line2 		0, 0, 	radius1, 0
+		hotline2 	0, 0, 	radius1, 0, unID         : unID=unID+1
+		del 1
+	endif
+
+	del 2
+return
+
+

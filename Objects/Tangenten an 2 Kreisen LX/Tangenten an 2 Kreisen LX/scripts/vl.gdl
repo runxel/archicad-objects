@@ -1,0 +1,27 @@
+﻿!--- Param script ---!
+
+values{2} "disp_type" \
+	1, "Außentangenten",
+	2, "Kreuztangenten",
+	3, "Außen- und Kreuztangenten"
+
+if b_link_colors then
+	hideparameter	"pen_circles",
+					"pen_tangents",
+					"pen_helpers"
+else
+	hideparameter 	"pen_linked"
+endif
+
+if b_link_linetypes then
+	hideparameter	"lt_circles",
+					"lt_tangents",
+					"lt_helpers"
+else
+	hideparameter 	"lt_linked"
+endif
+
+values "pen_circles" 	range [1,255]
+values "pen_tangents" 	range [1,255]
+values "pen_helpers" 	range [1,255]
+values "pen_linked" 	range [1,255]

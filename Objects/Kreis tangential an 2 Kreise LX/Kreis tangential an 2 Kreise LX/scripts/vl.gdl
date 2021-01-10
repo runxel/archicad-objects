@@ -1,0 +1,1 @@
+﻿!--- param script ---!values "radius1" 	range (0,]values "radius2" 	range (0,]values "pen_circles" 	range [1,255]values "pen_construction" 	range [1,255]if not(b_show_construction) then	hideparameter "pen_construction"endifres_radius = tangentC.radiusparameters	res_radius = res_radiuslock "res_radius"

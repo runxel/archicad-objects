@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ParamSection>
+	<ParamSectHeader>
+		<AutoHotspots>false</AutoHotspots>
+		<StatBits>
+			<STBit_FixSize/>
+		</StatBits>
+		<WDLeftFrame>0</WDLeftFrame>
+		<WDRightFrame>0</WDRightFrame>
+		<WDTopFrame>0</WDTopFrame>
+		<WDBotFrame>0</WDBotFrame>
+		<LayFlags>65535</LayFlags>
+		<WDMirrorThickness>0</WDMirrorThickness>
+		<WDWallInset>0</WDWallInset>
+	</ParamSectHeader>
+	<Parameters SectVersion="27" SectionFlags="0" SubIdent="0">
+		<Length Name="A">
+			<Description><![CDATA["Maß 1"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="B">
+			<Description><![CDATA["Maß 2"]]></Description>
+			<Fix/>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Boolean Name="b_show_construction">
+			<Description><![CDATA["Konstruktion anzeigen"]]></Description>
+			<Value>0</Value>
+		</Boolean>
+		<Length Name="radius1">
+			<Description><![CDATA["Radius Kreis 1"]]></Description>
+			<Value>0.5</Value>
+		</Length>
+		<Length Name="radius2">
+			<Description><![CDATA["Radius Kreis 2"]]></Description>
+			<Value>1</Value>
+		</Length>
+		<Length Name="res_radius">
+			<Description><![CDATA["Radius des tangierenden Kreises"]]></Description>
+			<Value>2.55</Value>
+		</Length>
+		<PenColor Name="pen_circles">
+			<Description><![CDATA["Stift Kreise"]]></Description>
+			<Value>1</Value>
+		</PenColor>
+		<PenColor Name="pen_construction">
+			<Description><![CDATA["Stift Konstruktion"]]></Description>
+			<Value>81</Value>
+		</PenColor>
+		<Length Name="x1">
+			<Description><![CDATA["X Coor Kreis 1"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>1</Value>
+		</Length>
+		<Length Name="y1">
+			<Description><![CDATA["Y Coor Kreis 1"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Length>
+		<Length Name="x2">
+			<Description><![CDATA["X Coor Kreis 2"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>3</Value>
+		</Length>
+		<Length Name="y2">
+			<Description><![CDATA["Y Coor Kreis 2"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>2</Value>
+		</Length>
+		<Angle Name="tangent_point">
+			<Description><![CDATA["Punkt durch den die Tangente läuft"]]></Description>
+			<Flags>
+				<ParFlg_Hidden/>
+			</Flags>
+			<Value>0</Value>
+		</Angle>
+	</Parameters>
+</ParamSection>
